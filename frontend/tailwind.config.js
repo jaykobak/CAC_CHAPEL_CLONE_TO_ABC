@@ -7,12 +7,19 @@ export default {
   ],
   theme: {
   	extend: {
+		fontFamily: {
+			inter: ["Inter"],
+			cinzel: ["Cinzel"]
+		},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
   		colors: {
+			teal: "#50FDDD",
+			orange: "#F59E0B",
+			paleBlue: "#9198AD",
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
