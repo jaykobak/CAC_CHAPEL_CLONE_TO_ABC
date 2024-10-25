@@ -66,12 +66,14 @@
 }
 
 
-
-
 .hero-bg{
   background-image: url("./assets/herobg.jpg");
   background-size: cover;
   background-position: center;
   height: 100%;
   width: 100%;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none;
 }

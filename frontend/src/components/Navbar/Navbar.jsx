@@ -40,7 +40,7 @@ const navs = [
 const Navbar = () => {
     const {pathname} = useLocation()
     return (
-            <div className='flex justify-between items-center py-3 text-foreground px-16'>
+            <div className='flex justify-between items-center py-3 text-foreground px-16 '>
                 <Logo />
                 <nav className='flex items-center gap-10'>
                     {navs.map(({ name, link, slug }) => (

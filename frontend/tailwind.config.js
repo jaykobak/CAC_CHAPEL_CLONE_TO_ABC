@@ -17,10 +17,12 @@ export default {
   			sm: 'calc(var(--radius) - 4px)'
   		},
   		colors: {
+			bg: "",
 			teal: "#50FDDD",
 			orange: "#F59E0B",
 			paleBlue: "#9198AD",
-  			background: 'hsl(var(--background))',
+  			background: '#FFF3F3',
+			footer: "#320000",
   			foreground: 'hsl(var(--foreground))',
   			card: {
   				DEFAULT: 'hsl(var(--card))',

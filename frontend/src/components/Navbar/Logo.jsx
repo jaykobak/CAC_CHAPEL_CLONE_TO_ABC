@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Logo = () => {
+const Logo = ({footer}) => {
     return (
         <div className='flex gap-2 items-center'>
             <div className='w-14 h-14 border-gray-600 border-2 rounded-full bg-'></div>
             <div className='flex flex-col'>
-                <h2 className='font-bold'>CAC Chapel Lautech</h2>
+                <h2 className={`font-bold ${footer && "text-primary-foreground"}`}>CAC Chapel Lautech</h2>
                 <p className='text-gray-400 text-[12px] font-medium'>Fountain Of Divine Favour</p>
             </div>
         </div>
