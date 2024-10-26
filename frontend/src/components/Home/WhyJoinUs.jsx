@@ -31,9 +31,9 @@ const WhyJoinUs = () => {
             <div>
                 <div className='flex flex-col gap-5 items-center'>
                     <h1 className='text-sm text-primary font-bold'>Why you should join us</h1>
-                    <h1 className='text-5xl font-cinzel text-center text-foreground'>EMBARK ON A JOURNEY OF FAITH <br /> AND SERVICE WITH US</h1>
+                    <h1 className='sm:text-5xl text-[32px] leading-tight font-cinzel text-center text-foreground'>EMBARK ON A JOURNEY OF FAITH AND SERVICE WITH US</h1>
                 </div>
-                <div className='grid grid-cols-3 gap-10 mt-10'>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-10'>
                     {whys.map(({ title, description, img, bg }, index) => (
                         <div key={index} className='relative min-h-[250px] flex flex-col'>
                             <BackgroundImage img={img} className={`${

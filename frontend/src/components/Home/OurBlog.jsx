@@ -34,9 +34,9 @@ const OurBlog = () => {
             <div className='flex flex-col gap-10 text-foreground/80'>
                 <div className='flex flex-col gap-5 items-center'>
                     <h1 className='text-primary font-bold'>Our Blog</h1>
-                    <h1 className='text-5xl font-cinzel'>STAY INFORMED AND INSPIRED</h1>
+                    <h1 className='text-3xl md:text-5xl text-center font-cinzel'>STAY INFORMED AND INSPIRED</h1>
                 </div>
-                <div className='grid grid-cols-3 gap-5'>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-5'>
                     {events.map(({ title, description, img, link, date }, index) => (
                         <div key={index}>
                             <BlogCard title={title} description={description} banner={img} link={link} date={date}  />

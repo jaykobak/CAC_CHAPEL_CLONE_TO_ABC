@@ -9,7 +9,7 @@ const Footer = () => {
     return (
         <div className='flex flex-col gap-4 bg-[#320000] py-5'>
             <MainPadding className="flex flex-col gap-4">
-                <div className='py-16 flex justify-between items-start text-primary-foreground border-b border-primary-foreground/80'>
+                <div className='py-16 flex flex-col gap-10 lg:flex-row justify-between items-start text-primary-foreground border-b border-primary-foreground/80'>
                     <Logo footer={true} />
                     <QuickLinks />
                     <NewsLetter />

@@ -34,9 +34,9 @@ const UpcomingEvents = () => {
         <div className='flex flex-col gap-10 text-foreground/80'>
             <div className='flex flex-col gap-5'>
                 <h1 className='text-primary font-bold'>Upcoimg Events</h1>
-                <h1 className='text-5xl font-cinzel'>GROW IN FAITH THROUGH OUR <br /> EVENTS AND ACTIVITIES</h1>
+                <h1 className='md:text-5xl text-3xl  font-cinzel w-[80%]'>GROW IN FAITH THROUGH OUR EVENTS AND ACTIVITIES</h1>
             </div>
-            <div className='grid grid-cols-3 gap-5'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-5'>
                 {events.map(({name, description, img, location, date}, index)=>(
                     <div className='flex flex-col gap-3 items-center '>
                         <img src={img} alt="" className='w-full' />
@@ -44,7 +44,7 @@ const UpcomingEvents = () => {
                             <h1 className='text-primary font-semibold'>{date}</h1>
                             <h1 className='text-foreground/80 font-semibold flex items-center gap-2'> <MapPin className='w-[16px] h-[16px]' /> {location}</h1>
                             <h1 className='font-cinzel text-3xl font-medium'>{name}</h1>
-                            <p className='text-foreground/80 font-medium'>{description}</p>
+                            <p className='text-foreground/80 font-semibold'>{description}</p>
                         </div>
                     </div>
                 ))}

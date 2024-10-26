@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Logo from './Logo'
 import { Button } from '../ui/button'
 import MainPadding from '../../layouts/MainPadding'
 import { Link, useLocation } from 'react-router-dom'
+import { Menu, SidebarClose, X } from 'lucide-react'
 
 const navs = [
     {
@@ -38,22 +39,43 @@ const navs = [
 ]
 
 const Navbar = () => {
-    const {pathname} = useLocation()
+    const { pathname } = useLocation()
+    const [showNav, setShowNav] = useState(false)
+
+    const openNav = () => setShowNav(true)
+    const closeNav = () => setShowNav(false)
+
     return (
-            <div className='flex justify-between items-center py-3 text-foreground px-16 '>
-                <Logo />
-                <nav className='flex items-center gap-10'>
-                    {navs.map(({ name, link, slug }) => (
-                        <Link to={link} key={slug} className={`font-bold hover:text-primary ${
-                            pathname === link ? 'text-primary' : 'text-foreground/60'
+        <div className='flex justify-between items-center py-3 text-foreground md:px-6 lg:px-16 px-3 '>
+            <Logo />
+            <nav className='items-center gap-10 hidden lg:flex'>
+                {navs.map(({ name, link, slug }) => (
+                    <Link to={link} key={slug} className={`font-bold hover:text-primary ${pathname === link ? 'text-primary' : 'text-foreground/60'
                         }`}
-                        >
-                            {name}
-                        </Link>
-                    ))}
-                </nav>
-                <Button>Contact Us</Button>
+                    >
+                        {name}
+                    </Link>
+                ))}
+            </nav>
+            <Button className="hidden lg:block">Contact Us</Button>
+           
+
+            <Menu onClick={openNav} className='w-10 h-10 text-primary' />
+
+            <div className={`fixed flex flex-col gap-5 right-0 top-0 h-screen w-full sm:w-[300px] bg-background shadow-xl backdrop-blur-sm z-50 px-10 py-5 transition-all duration-500 ${
+                showNav? 'right-0 opacity-100' : 'right-[-450px] opacity-0'
+            }`}>
+                <X onClick={closeNav} className='w-10 h-10 text-primary' />
+                {navs.map(({ name, link, slug }) => (
+                    <Link to={link} key={slug} className={`font-bold w-fit hover:text-primary text-[20px] ${pathname === link ? 'text-primary' : 'text-foreground/60'
+                        }`}
+                    >
+                        {name}
+                    </Link>
+                ))}
+                <Button className="px-8">Contact Us</Button>
             </div>
+        </div>
     )
 }
 
