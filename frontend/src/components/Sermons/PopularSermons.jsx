@@ -1,7 +1,6 @@
-import React, { useRef } from 'react'
-import SermonsCarousel from '../Sermons/SermonsCarousel'
+import React from 'react'
+import SermonsCarousel from './SermonsCarousel'
 import img from "../../assets/Home/Welcome/img2.jfif"
-
 
 const sermons = [
     {
@@ -24,12 +23,12 @@ const sermons = [
     }
 ]
 
-const LatestSermons = () => {
-    return (
-        <div>
-            <SermonsCarousel sermons={sermons} heading="LATEST SERMONS FROM CAC CHAPEL FOUNTAIN OF DIVINE FAVOUR" button={true} />
-        </div>
-    )
+const PopularSermons = () => {
+  return (
+    <div>
+      <SermonsCarousel name={"Poplular Sermons"} sermons={sermons} heading={"ENGAGING MESSAGES INSPIRING OTHERS"}  />
+    </div>
+  )
 }
 
-export default LatestSermons
+export default PopularSermons

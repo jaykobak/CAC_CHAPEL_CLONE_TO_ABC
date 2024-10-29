@@ -23,7 +23,7 @@ const navs = [
     },
     {
         name: "Sermons",
-        link: "#sermons",
+        link: "/sermons",
         slug: "sermons",
     },
     {
