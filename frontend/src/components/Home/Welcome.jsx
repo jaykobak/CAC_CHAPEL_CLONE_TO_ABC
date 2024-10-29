@@ -4,6 +4,7 @@ import img1 from "../../assets/Home/Welcome/img1.jfif"
 import img2 from "../../assets/Home/Welcome/img2.jfif"
 import { Button } from '../ui/button'
 import { ArrowRight } from 'lucide-react'
+import HeadingText from '../HeadingText'
 
 const Welcome = () => {
     return (
@@ -16,7 +17,7 @@ const Welcome = () => {
                     </div>
                     <div className='bg-[#FDDDAA] h-fit w-full text-foreground/85 p-5 py-8 sm:py-10 sm:p-10 flex flex-col gap-5 font-medium'>
                         
-                        <h1 className='md:text-5xl text-3xl font-cinzel'>WELCOME TO OUR <br /> CHURCH</h1>
+                        <HeadingText className='md:text-5xl text-3xl font-cinzel'>WELCOME TO OUR <br /> CHURCH</HeadingText>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, eius inventore dolorum ad obcaecati atque officia quo unde, tenetur culpa dicta tempore, sed exercitationem delectus accusantium cupiditate deleniti animi voluptatem.</p>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus repellendus sit, nisi architecto nihil libero, ipsam pariatur facilis sint cumque illum, culpa repellat eos dolorum maxime natus iure laudantium dolor.</p>
                         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis libero consequatur, velit nihil quibusdam deserunt quos nobis </p>

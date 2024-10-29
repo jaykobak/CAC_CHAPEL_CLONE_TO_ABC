@@ -9,7 +9,8 @@ export default {
   	extend: {
 		fontFamily: {
 			inter: ["Inter"],
-			cinzel: ["Cinzel"]
+			cinzel: ["Cinzel"],
+			secondary: ["Cinzel"]
 		},
   		borderRadius: {
   			lg: 'var(--radius)',

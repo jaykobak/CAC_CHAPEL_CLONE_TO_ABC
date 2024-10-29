@@ -3,6 +3,7 @@ import MainPadding from '../../layouts/MainPadding'
 import { Button } from '../ui/button'
 import img from "../../assets/Home/Welcome/img1.jfif"
 import { MapPin } from 'lucide-react'
+import HeadingText from '../HeadingText'
 
 const events = [
     {
@@ -34,7 +35,7 @@ const UpcomingEvents = () => {
         <div className='flex flex-col gap-10 text-foreground/80'>
             <div className='flex flex-col gap-5'>
                 <h1 className='text-primary font-bold'>Upcoimg Events</h1>
-                <h1 className='md:text-5xl text-3xl  font-cinzel w-[80%]'>GROW IN FAITH THROUGH OUR EVENTS AND ACTIVITIES</h1>
+                <HeadingText className='md:text-5xl text-3xl  font-cinzel w-[80%]'>GROW IN FAITH THROUGH OUR EVENTS AND ACTIVITIES</HeadingText>
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-5'>
                 {events.map(({name, description, img, location, date}, index)=>(
