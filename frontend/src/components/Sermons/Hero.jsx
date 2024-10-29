@@ -6,7 +6,7 @@ import MainPadding from '@/layouts/MainPadding'
 
 const Hero = () => {
     return (
-        <BackgroundImage img={img} className="bg-black/70" >
+        <BackgroundImage img={img} bgClass="bg-black/70" >
             <MainPadding className="flex flex-col md:flex-row gap-5 w-full  md:w-[70%] items-center h-[500px] justify-center">
                 <div className='flex flex-col gap-10  text-primary-foreground '>
                     <h1>Featured</h1>

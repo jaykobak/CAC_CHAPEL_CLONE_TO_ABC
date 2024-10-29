@@ -35,17 +35,21 @@ const WhyJoinUs = () => {
                     <HeadingText className='sm:text-5xl text-[32px] leading-tight font-cinzel text-center text-foreground'>EMBARK ON A JOURNEY OF FAITH AND SERVICE WITH US</HeadingText>
                 </div>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-10'>
-                    {whys.map(({ title, description, img, bg }, index) => (
-                        <div key={index} className='relative min-h-[250px] flex flex-col'>
-                            <BackgroundImage img={img} className={`${
-                                    index === 0 ? "bg-[#1D0000]/85"
-                                    : index === 1? "bg-[#4F3004]/85"
-                                    : "bg-[#115849]/85"
-                                }`} />
-                            <div className='relative z-10 flex flex-col items-center justify-center text-primary-foreground/80 p-6 px-3 text-center gap-4'>
-                                <h1 className='font-cinzel text-2xl'>{title}</h1>
-                                <p>{description}</p>
-                            </div>
+                    {whys.map(({ title, description, img }, index) => (
+                        <div key={index} >
+                            <BackgroundImage
+                                img={img}
+                                bgClass={`${index === 0 ? "bg-[#1D0000]/85"
+                                    : index === 1 ? "bg-[#4F3004]/85"
+                                        : "bg-[#115849]/85"
+                                    }`}
+                                className="min-h-[250px] flex flex-col"
+                            >
+                                <div className='relative z-10 flex flex-col items-center justify-center text-primary-foreground/80 p-6 px-3 text-center gap-4'>
+                                    <h1 className='font-cinzel text-2xl'>{title}</h1>
+                                    <p>{description}</p>
+                                </div>
+                            </BackgroundImage>
                         </div>
                     ))}
 
