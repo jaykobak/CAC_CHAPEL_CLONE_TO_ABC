@@ -13,7 +13,7 @@ const navs = [
     },
     {
         name: "About Us",
-        link: "/about",
+        link: "/about-us",
         slug: "about",
     },
     {
@@ -50,7 +50,7 @@ const Navbar = () => {
             <Logo />
             <nav className='items-center gap-10 hidden lg:flex'>
                 {navs.map(({ name, link, slug }) => (
-                    <Link to={link} key={slug} className={`font-bold hover:text-primary ${pathname === link ? 'text-primary' : 'text-foreground/60'
+                    <Link to={link} key={slug} className={`font-bold text-sm hover:text-primary ${pathname === link ? 'text-primary' : 'text-foreground/60'
                         }`}
                     >
                         {name}
@@ -67,7 +67,7 @@ const Navbar = () => {
             }`}>
                 <X onClick={closeNav} className='w-10 h-10 text-primary' />
                 {navs.map(({ name, link, slug }) => (
-                    <Link to={link} key={slug} className={`font-bold w-fit hover:text-primary text-[20px] ${pathname === link ? 'text-primary' : 'text-foreground/60'
+                    <Link to={link} key={slug} className={`font-bold w-fit hover:text-primary text-[20px] ${pathname.includes(link) ? 'text-primary' : 'text-foreground/60'
                         }`}
                     >
                         {name}

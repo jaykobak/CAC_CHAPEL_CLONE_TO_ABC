@@ -8,7 +8,7 @@ import HeadingText from '../HeadingText'
 
 const OurLeadership = () => {
   return (
-    <MainPadding>
+    <MainPadding className={"hover:px-0 transition-all duration-700"}>
       <BackgroundImage img={img} imgClass={`object-top`} className="md:min-h-[550px] h-[300px]">
         <div className='w-[33%] text-primary-foreground/90  p-10 md:flex flex-col gap-5 relative z-10 hidden '>
           <h1 className='font-bold'>Our Leadership</h1>
