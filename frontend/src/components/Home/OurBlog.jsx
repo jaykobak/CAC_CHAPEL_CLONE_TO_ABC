@@ -6,7 +6,7 @@ import { ArrowRight, MapPin } from 'lucide-react'
 import BlogCard from '../Blog/BlogCard'
 import HeadingText from '../HeadingText'
 
-const events = [
+const blogs = [
     {
         title: "WHY YOU SHOULD SHOW LOVE AND COMPASSION",
         date: "04/11/2024",
@@ -38,7 +38,7 @@ const OurBlog = () => {
                     <HeadingText className='text-3xl md:text-5xl text-center font-cinzel'>STAY INFORMED AND INSPIRED</HeadingText>
                 </div>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-5'>
-                    {events.map(({ title, description, img, link, date }, index) => (
+                    {blogs.map(({ title, description, img, link, date }, index) => (
                         <div key={index}>
                             <BlogCard title={title} description={description} banner={img} link={link} date={date}  />
                         </div>

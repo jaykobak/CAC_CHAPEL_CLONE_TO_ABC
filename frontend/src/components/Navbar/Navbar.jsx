@@ -28,7 +28,7 @@ const navs = [
     },
     {
         name: "Blog",
-        link: "#blog",
+        link: "/blog",
         slug: "blog",
     },
     {
