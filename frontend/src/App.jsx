@@ -1,6 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import About from "./pages/About"
-import Home from "./pages/Home"
+import About from "@/pages/About"
+import Home from "@/pages/Home"
+import Sermons from "./pages/Sermons"
+import Blog from "./pages/Blog"
+import Dashboard from "./pages/Dashboard"
+import Members from "./pages/Members"
+import Attendance from "./pages/Attendance"
 
 function App() {
 
@@ -9,7 +14,12 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route exact path="/about" element={<About />} />
+          <Route path="/about-us" element={<About />} />
+          <Route path="/sermons" element={<Sermons />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/admin" element={<Dashboard />} />
+          <Route path="/admin/members" element={<Members />} />
+          <Route path="/admin/attendance" element = {<Attendance />} />
         </Routes>
       </BrowserRouter>
     </>
