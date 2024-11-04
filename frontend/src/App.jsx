@@ -3,9 +3,9 @@ import About from "@/pages/About"
 import Home from "@/pages/Home"
 import Sermons from "./pages/Sermons"
 import Blog from "./pages/Blog"
-import Dashboard from "./admin-pages/Dashboard"
-import Members from "./admin-pages/Members"
-import Attendance from "./admin-pages/Attendance"
+import Dashboard from "./pages/Dashboard"
+import Members from "./pages/Members"
+import Attendance from "./pages/Attendance"
 
 function App() {
 
