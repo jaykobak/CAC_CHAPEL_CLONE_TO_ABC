@@ -71,7 +71,7 @@ const AddMemberForm = () => {
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
-                <ScrollArea className="h-[60vh] w-full">
+                <ScrollArea className="max-h-[70vh] h-[350px] w-full">
                     <div className='p-4 space-y-8'>
 
                         {/* Dynamically render input fields */}
