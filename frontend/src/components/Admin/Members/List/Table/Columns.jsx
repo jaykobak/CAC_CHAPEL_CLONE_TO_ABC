@@ -9,33 +9,35 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Checkbox } from "@/components/ui/checkbox"
-
+import useMembersStore from "@/stores/membersStore";
 
 export const columns = [
     {
-        id: "selection",
-        header: ({ table }) => (
-            <Checkbox
-            
-                checked={
-                    table?.getIsAllPageRowsSelected() || (table?.getIsSomePageRowsSelected() && "indeterminate")
-                }
-                onCheckedChange={(value) => {
-                    table?.toggleAllPageRowsSelected(!!value)
-                    console.log("I am all rows: ", table?.getSelectedRowModel())
-                }}
-                aria-label="Select all"
-            />
-        ),
-        cell: ({ row }) => (
-            <Checkbox
-                checked={row.getIsSelected()}
-                onCheckedChange={(value) => row.toggleSelected(!!value)}
-                aria-label="Select row"
-            />
-        ),
-        enableSorting: false,
-        enableHiding: false,
+        id: "select",
+        header: ({ table }) => {
+            const { selectedMemberIds, selectAllMembers, deselectAllMembers, members } = useMembersStore();
+            const allRowsSelected = selectedMemberIds.size === members.length;
+
+            const handleSelectAllToggle = () => {
+                allRowsSelected ? deselectAllMembers() : selectAllMembers();
+            };
+
+            return (
+                <Checkbox
+                    checked={allRowsSelected}
+                    onCheckedChange={handleSelectAllToggle}
+                />
+            );
+        },
+        cell: ({ row }) => {
+            const { toggleMemberSelection, isMemberSelected } = useMembersStore();
+            return (
+                <Checkbox
+                    checked={isMemberSelected(row.original.id)}
+                    onCheckedChange={() => toggleMemberSelection(row.original.id)}
+                />
+            );
+        },
     },
     {
         accessorKey: "name",
