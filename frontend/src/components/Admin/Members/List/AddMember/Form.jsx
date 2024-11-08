@@ -83,7 +83,7 @@ const AddMemberForm = () => {
                                 render={({ field }) => (
                                     <FormItem>
                                         <Input placeholder={formField.placeholder} {...field} type={field.type} />
-                                        <FormMessage />
+                                        <FormMessage className="text-xs" />
                                     </FormItem>
                                 )}
                             />
@@ -105,7 +105,7 @@ const AddMemberForm = () => {
                                             ))}
                                         </SelectContent>
                                     </Select>
-                                    <FormMessage />
+                                    <FormMessage className="text-xs" />
                                 </FormItem>
                             )}
                         />
@@ -120,7 +120,7 @@ const AddMemberForm = () => {
                                         <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                                         <FormLabel>Is a Worker</FormLabel>
                                     </div>
-                                    <FormMessage />
+                                    <FormMessage className="text-xs" />
                                 </FormItem>
                             )}
                         />
@@ -142,7 +142,7 @@ const AddMemberForm = () => {
                                                 ))}
                                             </SelectContent>
                                         </Select>
-                                        <FormMessage />
+                                        <FormMessage className="text-xs" />
                                     </FormItem>
                                 )}
                             />

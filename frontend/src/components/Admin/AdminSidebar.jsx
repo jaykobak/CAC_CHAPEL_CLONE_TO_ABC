@@ -3,7 +3,7 @@ import Logo from '../Navbar/Logo'
 import { BookmarkCheck, LucideLayoutDashboard, SidebarCloseIcon, SidebarOpenIcon, UsersIcon } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
 import { Tooltip as ReactTooltip } from 'react-tooltip';
-import { useSidebarStore } from '@/stores/others';
+import { useSidebarStore } from '@/stores/otherStores';
 
 
 

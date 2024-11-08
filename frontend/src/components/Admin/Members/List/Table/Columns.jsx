@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Checkbox } from "@/components/ui/checkbox"
 import useMembersStore from "@/stores/membersStore";
+import { Link } from "react-router-dom";
 
 export const columns = [
     {
@@ -42,6 +43,16 @@ export const columns = [
     {
         accessorKey: "name",
         header: "Name",
+        cell: ({ row }) => {
+            const member = row.original
+
+            return (
+                <Link to={`/admin/members/${member.id}`} className="hover:text-foreground/90 font-semibold flex items-center object-cover gap-2">
+                    <img src={member.img} alt="" className="w-10 h-10 border rounded-lg" />
+                    {member.name}
+                </Link>
+            )
+        }
     },
     {
         accessorKey: "level",

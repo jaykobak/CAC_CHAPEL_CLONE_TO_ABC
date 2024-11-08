@@ -7,7 +7,7 @@ const AdminLayout = ({ children }) => {
     return (
 
         <div className='flex bg-neutral-100 min-h-[100vh] text-foreground/70'>
-            <div className='sticky top-[0px] h-[100vh]'>
+            <div className='sticky top-[0px]'>
                 <AdminSidebar />
             </div>
 
