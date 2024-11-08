@@ -226,12 +226,12 @@ var members = [
 
 members = members.map((member, index) => ({
     ...member,
-    id: index + 1 // Assigning a unique ID starting from 1
+    id: index + 1
 }));
 
 const Table = () => {
     return (
-        <div>
+        <div className='w-full'>
             <DataTable columns={columns} data={members} />
         </div>
     )

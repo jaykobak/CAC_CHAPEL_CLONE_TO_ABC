@@ -23,6 +23,7 @@ import {
 import { ChevronDown } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import useMembersStore from "@/stores/membersStore";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 const DataTable = ({ columns, data }) => {
   const {
@@ -47,10 +48,10 @@ const DataTable = ({ columns, data }) => {
   });
 
   const allRowsSelected = selectedMemberIds.size === members.length;
- 
+
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 w-full">
       <div className="flex items-center">
         <span className="flex-1 text-sm text-muted-foreground">
           {selectedMemberIds.size} of {members.length} row(s) selected.
@@ -79,8 +80,9 @@ const DataTable = ({ columns, data }) => {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <div className="rounded-md border">
-        <Table>
+
+      <div className="rounded-md border text-nowrap max-w-[100%]">
+        <Table className="min-w-[800px]">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
@@ -115,6 +117,7 @@ const DataTable = ({ columns, data }) => {
           </TableBody>
         </Table>
       </div>
+
       <div className="flex items-center justify-end space-x-2 py-4">
         <Button
           variant="outline"

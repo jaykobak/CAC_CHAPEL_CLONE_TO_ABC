@@ -50,8 +50,8 @@ const filters = [
 
 const SearchAndFilter = () => {
   return (
-    <div className='flex space-x-4'>
-      <div className='flex space-x-3 items-center border border-foreground/20 px-4 w-[300px]  rounded-lg'>
+    <div className='flex space-x-4 py-3'>
+      <div className='flex space-x-3 items-center border border-foreground/20 px-4 w-full md:w-[300px]  rounded-lg'>
         <Search className='text-gray-400' />
         <input type="text" className='outline-none border-none py-2 bg-transparent w-full text-sm' placeholder='Search Member' />
       </div>

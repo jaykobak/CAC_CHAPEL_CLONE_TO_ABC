@@ -1,4 +1,4 @@
-import { MoreHorizontal } from "lucide-react"
+import { ArrowUpRight, Mail, MessageCircleIcon, MoreHorizontal, Phone, Trash2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
     DropdownMenu,
@@ -82,13 +82,12 @@ export const columns = [
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
                         <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                        <DropdownMenuItem
-                            onClick={() => navigator.clipboard.writeText(member.email)}
-                        >
-                            Copy Email
-                        </DropdownMenuItem>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>View member details</DropdownMenuItem>
+                        <DropdownMenuItem> <Mail /> Email member  </DropdownMenuItem>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem> <MessageCircleIcon /> Text member  </DropdownMenuItem>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem> <Trash2 /> Delete member  </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
             )

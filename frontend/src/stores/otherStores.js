@@ -1,19 +1,22 @@
+// sidebarStore.js
 import { create } from "zustand";
-import { persist, devtools } from "zustand/middleware";
+import { devtools, persist } from "zustand/middleware";
 
-// Sidebar store with persistence and rehydration tracking
 export const useSidebarStore = create(
   devtools(
     persist(
       (set) => ({
-        isOpen: false, // Initial sidebar state
-        rehydrated: false, // Tracks if state has rehydrated
+        isOpen: false,
+        rehydrated: false,
         toggleSidebar: () => set((state) => ({ isOpen: !state.isOpen })),
+        initializeSidebar: (isLargeScreen) => {
+          set({ isOpen: isLargeScreen });
+        },
       }),
       {
-        name: "sidebar-storage", // Key for localStorage
+        name: "sidebar-storage",
         onRehydrateStorage: () => (state) => {
-          state && set({ rehydrated: true }); // Mark rehydration as complete
+          state && set({ rehydrated: true });
         },
       }
     )

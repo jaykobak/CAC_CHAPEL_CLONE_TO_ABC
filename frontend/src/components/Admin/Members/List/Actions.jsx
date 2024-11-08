@@ -1,4 +1,4 @@
-import { Download, Mail, Phone } from 'lucide-react'
+import { ChevronsUpDown, Download, Mail, MessageCircleIcon, Phone, Trash2 } from 'lucide-react'
 import React from 'react'
 import {
     Dialog,
@@ -9,6 +9,11 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 import { Button } from '@/components/ui/button'
+import {
+    Collapsible,
+    CollapsibleContent,
+    CollapsibleTrigger,
+} from "@/components/ui/collapsible"
 
 const actions = [
     {
@@ -18,38 +23,52 @@ const actions = [
     },
     {
         name: "Text Member(s)",
-        icon: <Phone className='w-' />,
+        icon: <MessageCircleIcon />,
         dialog: <h1>This is the where u schedule events</h1>
     },
     {
         name: "Export",
-        icon: <Download className='w-' />,
+        icon: <Download  />,
         dialog: <h1>This is the where u export data</h1>
+    },
+    {
+        name: "Delete Member(s)",
+        icon: <Trash2 />,
+        dialog: <h1>This is the where u delete members</h1>
     }
 ]
 
 const Actions = () => {
     return (
-        <div className='bg-primary/20 rounded-lg p-2'>
-            <div className=' flex flex-col space-y-2'>
-                {actions.map((action, index) => (
-                    <Dialog key={index}>
-                        <DialogTrigger asChild>
-                            <Button variant="ghost" size="xs" className='outline-none p-2 flex justify-start hover:bg-primary/10'>
-                                {action.icon}
-                                {action.name}
-                            </Button>
-                        </DialogTrigger>
-                        <DialogContent>
-                            <DialogHeader>
-                                <DialogTitle>{action.name}</DialogTitle>
-                            </DialogHeader>
-                            {action.dialog}
-                        </DialogContent>
-                    </Dialog>
+        <div className=''>
+            <Collapsible className=''>
+                <CollapsibleTrigger className=' [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 text-sm flex justify-between w-full border rounded-lg px-3 py-2'>
+                    Actions
+                    <ChevronsUpDown />
+                </CollapsibleTrigger>
+                <CollapsibleContent className='mt-2'>
+                    <div className=' flex flex-col space-y-2 bg-primary/20 rounded-lg p-2'>
+                        {actions.map((action, index) => (
+                            <Dialog key={index}>
+                                <DialogTrigger asChild>
+                                    <Button variant="ghost" size="xs" className='outline-none px-3 py-2 flex justify-start hover:bg-primary/10'>
+                                        {action.icon}
+                                        {action.name}
+                                    </Button>
+                                </DialogTrigger>
+                                <DialogContent>
+                                    <DialogHeader>
+                                        <DialogTitle>{action.name}</DialogTitle>
+                                    </DialogHeader>
+                                    {action.dialog}
+                                </DialogContent>
+                            </Dialog>
 
-                ))}
-            </div>
+                        ))}
+                    </div>
+                </CollapsibleContent>
+            </Collapsible>
+
         </div>
     )
 }

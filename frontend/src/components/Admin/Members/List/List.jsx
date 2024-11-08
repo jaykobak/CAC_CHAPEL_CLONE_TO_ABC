@@ -15,13 +15,11 @@ const List = () => {
         <AddMember />
       </div>
 
-      <div className='flex space-x-5'>
-        <div className='w-[80%]'>
+      <div className='flex flex-col-reverse gap-5 w-full'>
+        <div className='flex-grow'>
           <Table />
         </div>
-        <div className='w-[20%]'>
-          <Actions />
-        </div>
+        <Actions />
       </div>
     </div>
   )

@@ -11,6 +11,7 @@ import Register from "./pages/auth/Register"
 import ForgotPassword from "./pages/auth/ForgotPassword"
 import VerifyOtp from "./pages/auth/VerifyOtp"
 import ResetPassword from "./pages/auth/ResetPassword"
+import Member from "./pages/admin/Members/Member"
 
 function App() {
 
@@ -24,8 +25,9 @@ function App() {
           <Route path="/blog" element={<Blog />} />
 
           {/* Admin */}
-          <Route path="/admin" element={<Dashboard />} />
+          <Route path="/admin/dashboard" element={<Dashboard />} />
           <Route path="/admin/members" element={<Members />} />
+          <Route path="/admin/members/:id" element={<Member />} />
           <Route path="/admin/attendance" element={<Attendance />} />
 
           {/* Authentication */}
