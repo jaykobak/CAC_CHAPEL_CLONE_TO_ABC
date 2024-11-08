@@ -34,19 +34,19 @@ const AdminSidebar = () => {
   const toggleSidebar = useSidebarStore(state => state.toggleSidebar)
   const initializeSidebar = useSidebarStore(state => state.initializeSidebar)
 
-  useEffect(() => {
-    const handleResize = () => {
-      const isLargeScreen = window.innerWidth >= 1024; // Tailwind's 'lg' breakpoint
-      initializeSidebar(isLargeScreen); // Initialize based on screen size
-    };
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     const isLargeScreen = window.innerWidth >= 1024; // Tailwind's 'lg' breakpoint
+  //     initializeSidebar(isLargeScreen); // Initialize based on screen size
+  //   };
 
-    handleResize(); 
-    window.addEventListener('resize', handleResize);
+  //   handleResize(); 
+  //   window.addEventListener('resize', handleResize);
 
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [initializeSidebar]);
+  //   return () => {
+  //     window.removeEventListener('resize', handleResize);
+  //   };
+  // }, [initializeSidebar]);
 
   return (
     <div className={`${isOpen ? "left-0 w-[250px]" : "left-[-260px] lg:w-[68px]"} bg-white border border-foreground/20 h-[100vh] py-5 transition-all ease-in-out duration-300 fixed z-40 bottom-0 left-0 lg:sticky top-0`}>
