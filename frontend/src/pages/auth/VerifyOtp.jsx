@@ -1,5 +1,4 @@
 import AuthLayout from '@/layouts/AuthLayout'
-import React from 'react'
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -20,7 +19,6 @@ import {
     InputOTPSeparator,
     InputOTPSlot,
 } from "@/components/ui/input-otp"
-import { Link } from 'react-router-dom'
 
 const schema = z.object({
     otp: z.string().min(6, {

@@ -1,9 +1,8 @@
 // src/pages/auth/ResetPassword.jsx
 import AuthLayout from '@/layouts/AuthLayout';
-import React from 'react';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 import { Button } from '@/components/ui/button';
 import {
