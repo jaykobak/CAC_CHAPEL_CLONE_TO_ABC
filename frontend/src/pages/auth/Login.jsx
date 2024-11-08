@@ -55,7 +55,7 @@ const Login = () => {
                                 render={({ field }) => (
                                     <FormItem>
                                         <FormLabel className="text-foreground/80">{formField.label}</FormLabel>
-                                        <Input placeholder={formField.placeholder} {...field} type={field.type} />
+                                        <Input placeholder={formField.placeholder} {...field} type={field.type} className="bg-transparent" />
                                         <FormMessage className="text-xs" />
                                     </FormItem>
                                 )}
@@ -73,7 +73,7 @@ const Login = () => {
                             Login
                         </Button>
 
-                        <h1 className='flex gap-2 text-sm font-medium justify-center'>
+                        <h1 className='flex gap-2 text-sm font-medium justify-center flex-wrap text-nowrap'>
                             Do you want to create a new account?
                             <Link to="/auth/register" className='text-primary hover:underline'>
                                 Register

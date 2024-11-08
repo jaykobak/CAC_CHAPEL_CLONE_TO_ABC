@@ -62,7 +62,7 @@ const ResetPassword = () => {
                                 render={({ field }) => (
                                     <FormItem>
                                         <FormLabel className="text-foreground/80">{formField.label}</FormLabel>
-                                        <Input placeholder={formField.placeholder} {...field} type={field.type} />
+                                        <Input placeholder={formField.placeholder} {...field} type={field.type} className="bg-transparent" />
                                         <FormMessage className="text-xs" />
                                     </FormItem>
                                 )}
