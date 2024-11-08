@@ -8,6 +8,7 @@ export default {
         inter: ["Inter"],
         cinzel: ["Cinzel"],
         secondary: ["Cinzel"],
+        poppins: ["Poppins"]
       },
       borderRadius: {
         lg: "var(--radius)",

@@ -33,7 +33,7 @@ const AdminSidebar = () => {
   return (
     <div className={`${isOpen ? "w-[250px]" : "min-w-[60px] w-[68px]"} bg-white border border-foreground/20 h-[100vh] py-5 transition-[width] ease-in-out duration-300 sticky top-0`}>
       <div className={`flex items-center ${isOpen ? "justify-between" : "justify-end"} px-2 w-full`}>
-        {isOpen && <Logo />}
+        {isOpen && <Logo className={"scale-90"} />}
         <div onClick={toggleSidebar} className='text-primary cursor-pointer '>
           {isOpen ? <SidebarCloseIcon />
             : <SidebarOpenIcon />

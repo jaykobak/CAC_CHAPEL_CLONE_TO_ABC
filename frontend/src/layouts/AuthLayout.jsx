@@ -17,7 +17,6 @@ const AuthLayout = ({ children }) => {
         </div>
       </div>
       <div className='bg-white/80 backdrop-blur-sm w-full md:w-1/2 max-h-[100vh] h-[100vh] overflow-hidden overflow-y-scroll flex justify-center items-center px-4 sm:px-6 py-10 relative'>
-        <div className='w-48 h-48 border-[7px] bg-transparent rounded-full border-primary blur-[7px] absolute -top-24 -left-24'></div>
         <div className='w-full h-fit max-w-md flex flex-col items-center'>
           <Logo />
           <div className='bg-white max-[500px]:px-0 p-8  rounded-2xl sm:shadow-lg sm:hover:shadow-xl transition-shadow duration-300 w-full'>
