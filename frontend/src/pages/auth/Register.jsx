@@ -75,7 +75,7 @@ const Register = () => {
                             Register
                         </Button>
 
-                        <h1 className='flex gap-2 text-sm font-medium justify-center'>
+                        <h1 className='flex gap-2 text-sm font-medium justify-center flex-wrap text-nowrap'>
                             Do you want to create a new account?
                             <Link to="/auth/login" className='text-primary hover:underline'>
                                 Login

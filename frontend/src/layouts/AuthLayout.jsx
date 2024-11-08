@@ -4,6 +4,7 @@ import heroImg from "@/assets/herobg.jpg"
 const AuthLayout = ({ children }) => {
   return (
     <div className='flex w-full h-[100vh] bg-gradient-to-br bg-white'>
+
       <div className='relative w-1/2 h-full flex-grow md:flex hidden border-primary shadow-3xl overflow-hidden '>
         <div className='absolute inset-0 bg-black/50 z-10' />
         <img
@@ -15,13 +16,14 @@ const AuthLayout = ({ children }) => {
 
         </div>
       </div>
-      <div className='bg-white/80 backdrop-blur-sm w-full md:w-1/2 max-h-[100vh] h-[100vh] overflow-y-scroll flex justify-center items-center px-4 sm:px-6 py-10'>
-          <div className='w-full h-fit max-w-md flex flex-col items-center'>
-            <Logo />
-            <div className='bg-white max-[500px]:px-0 p-8  rounded-2xl min-[500px]:shadow-lg min-[500px]:hover:shadow-xl transition-shadow duration-300 w-full'>
-              {children}
-            </div>
+      <div className='bg-white/80 backdrop-blur-sm w-full md:w-1/2 max-h-[100vh] h-[100vh] overflow-hidden overflow-y-scroll flex justify-center items-center px-4 sm:px-6 py-10 relative'>
+        <div className='w-48 h-48 border-[7px] bg-transparent rounded-full border-primary blur-[7px] absolute -top-24 -left-24'></div>
+        <div className='w-full h-fit max-w-md flex flex-col items-center'>
+          <Logo />
+          <div className='bg-white max-[500px]:px-0 p-8  rounded-2xl sm:shadow-lg sm:hover:shadow-xl transition-shadow duration-300 w-full'>
+            {children}
           </div>
+        </div>
       </div>
     </div>
   )
