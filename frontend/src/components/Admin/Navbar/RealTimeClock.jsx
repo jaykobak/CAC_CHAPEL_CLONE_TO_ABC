@@ -15,7 +15,7 @@ const RealTimeClock = () => {
 
     return (
         <div>
-            <h1 className='text-4xl text-foreground/40 flex items-start gap-1'>
+            <h1 className='text-4xl text-foreground/40 hidden md:flex items-start gap-1 '>
                 {time.split(" ")[0]}
                 <span className='text-sm text-foreground/70 font-semibold'>{time.split(" ")[1]}</span>
             </h1>
