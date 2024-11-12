@@ -8,23 +8,24 @@ import HeadingText from '../HeadingText'
 const whys = [
     {
         title: "A PLACE TO PRAY",
-        description: <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur fuga enim consectetur doloremque, inventore possimus magnam optio ducimus expedita maxime veniam laboriosam officiis totam eaque porro neque at alias! Deserunt!</p>,
+        description: <p>Our church is a space where you can find peace and guidance through prayer. Whether in quiet reflection or joining others, you’re invited to experience the power of prayer in a community that supports you.</p>,
         img: img1,
         bg: "#1D0000"
     },
     {
         title: "A PLACE TO WORSHIP",
-        description: <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur fuga enim consectetur doloremque, inventore possimus magnam optio ducimus expedita maxime veniam laboriosam officiis totam eaque porro neque at alias! Deserunt!</p>,
+        description: <p>Come and lift your heart in worship with us. Together, we celebrate faith through songs, teachings, and moments that draw us closer to God and to each other, strengthening our bond as a family of believers.</p>,
         img: img1,
         bg: "#4F3004"
     },
     {
-        title: "A PLACE TO TO CALL HOME",
-        description: <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur fuga enim consectetur doloremque, inventore possimus magnam optio ducimus expedita maxime veniam laboriosam</p>,
+        title: "A PLACE TO CALL HOME",
+        description: <p>Welcome to a church that feels like home. Here, you’ll find friendships, encouragement, and a sense of belonging. Whether you’re new or returning, there’s a place for you in our community.</p>,
         img: img1,
         bg: "#115849"
     }
 ]
+
 
 const WhyJoinUs = () => {
     return (
@@ -32,7 +33,10 @@ const WhyJoinUs = () => {
             <div>
                 <div className='flex flex-col gap-5 items-center'>
                     <h1 className='text-sm text-primary font-bold'>Why you should join us</h1>
-                    <HeadingText className='sm:text-5xl text-[32px] leading-tight font-cinzel text-center text-foreground'>EMBARK ON A JOURNEY OF FAITH AND SERVICE WITH US</HeadingText>
+                    <HeadingText className='sm:text-5xl text-[32px] leading-tight font-cinzel text-center text-foreground'>
+                        JOIN US ON A JOURNEY OF FAITH AND SERVICE
+                    </HeadingText>
+
                 </div>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-10'>
                     {whys.map(({ title, description, img }, index) => (

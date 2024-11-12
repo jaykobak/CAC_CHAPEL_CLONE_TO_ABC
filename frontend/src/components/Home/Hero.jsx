@@ -12,13 +12,10 @@ const Hero = () => {
                 <MainPadding>
                     <div className='relative flex flex-col py-10 justify-center gap-5 z-10 items-start h-full w-full sm:w-[563px]'>
                         <HeadingText className='font-cinzel text-[40px] leading-none sm:text-6xl text-primary-foreground/90 hero-heading'>
-                            A COMMUNITY OF FAITH, HOPE, AND  LOVE
+                            Come as You Are, Find Hope, Leave with Love
                         </HeadingText>
                         <p className='text-primary-foreground/80 font-medium'>
-                            We believe that everyone is invited to experience God's grace, and that
-                            means you! Our Church is a place where you can connect with others who
-                            share values and beliefs, and where you can grow in your relationship
-                            with God.
+                            God’s grace is for everyone, including you. Join a welcoming community to grow in faith and connect with others on the journey.
                         </p>
                         <Button className="flex gap-2 items-center px-6 mt-10">Get To Know Us <ArrowRight /> </Button>
                     </div>

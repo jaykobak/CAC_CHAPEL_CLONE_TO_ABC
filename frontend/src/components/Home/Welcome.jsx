@@ -16,16 +16,16 @@ const Welcome = () => {
                         <img src={img1} alt="" className='h-[200px] sm:h-[250px] object-cover' />
                     </div>
                     <div className='bg-[#FDDDAA] h-fit w-full text-foreground/85 p-5 py-8 sm:py-10 sm:p-10 flex flex-col gap-5 font-medium'>
-                        
                         <HeadingText className='md:text-5xl text-3xl font-cinzel'>WELCOME TO OUR <br /> CHURCH</HeadingText>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, eius inventore dolorum ad obcaecati atque officia quo unde, tenetur culpa dicta tempore, sed exercitationem delectus accusantium cupiditate deleniti animi voluptatem.</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus repellendus sit, nisi architecto nihil libero, ipsam pariatur facilis sint cumque illum, culpa repellat eos dolorum maxime natus iure laudantium dolor.</p>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis libero consequatur, velit nihil quibusdam deserunt quos nobis </p>
+                        <p>Our church is a place for all to find hope, encouragement, and a fresh start. We gather as a community to worship, learn, and grow together, grounded in faith and guided by love.</p>
+                        <p>Here, you’ll find people who are committed to lifting each other up, walking through life’s journey together, and discovering God’s purpose in a supportive and open-hearted environment.</p>
+                        <p>No matter where you are in your faith journey, you’re welcome here. We invite you to come, connect, and be a part of something greater.</p>
                         <Button className="flex gap-2 items-center px-6 mt-6 w-full sm:w-fit">Learn More About Our Values <ArrowRight /> </Button>
                     </div>
+
                 </div>
                 <div className='h-[640px] min-w-[30%] hidden md:block'>
-                    <img src={img2} alt="" className='w-full h-full rounded-tr-[150px] object-cover z-0'/>
+                    <img src={img2} alt="" className='w-full h-full rounded-tr-[150px] object-cover z-0' />
                 </div>
             </div>
         </MainPadding>
