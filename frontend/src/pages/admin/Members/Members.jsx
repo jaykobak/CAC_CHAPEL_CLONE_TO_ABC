@@ -13,7 +13,7 @@ const Members = () => {
       <Navbar />
       <AdminPadding className={"bg-white h-full"}>
         {
-          tab === "list" ? <List /> : "members"
+          tab === "overview" ? <List /> : ""
         }
       </AdminPadding>
     </AdminLayout>

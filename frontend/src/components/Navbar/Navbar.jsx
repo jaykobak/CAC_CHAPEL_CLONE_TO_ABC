@@ -17,11 +17,6 @@ const navs = [
         slug: "about",
     },
     {
-        name: "Events",
-        link: "#events",
-        slug: "events",
-    },
-    {
         name: "Sermons",
         link: "/sermons",
         slug: "sermons",

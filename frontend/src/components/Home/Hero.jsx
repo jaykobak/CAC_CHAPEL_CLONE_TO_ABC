@@ -12,7 +12,7 @@ const Hero = () => {
                 <MainPadding>
                     <div className='relative flex flex-col py-10 justify-center gap-5 z-10 items-start h-full w-full sm:w-[563px]'>
                         <HeadingText className='font-cinzel text-[40px] leading-none sm:text-6xl text-primary-foreground/90 hero-heading'>
-                            <span>A</span> COMMUNITY OF <span >F</span>AITH, HOPE, AND  <span>L</span>OVE
+                            A COMMUNITY OF FAITH, HOPE, AND  LOVE
                         </HeadingText>
                         <p className='text-primary-foreground/80 font-medium'>
                             We believe that everyone is invited to experience God's grace, and that
