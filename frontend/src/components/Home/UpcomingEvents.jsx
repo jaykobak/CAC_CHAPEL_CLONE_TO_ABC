@@ -39,7 +39,7 @@ const UpcomingEvents = () => {
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-5'>
                 {events.map(({name, description, img, location, date}, index)=>(
-                    <div className='flex flex-col gap-3 items-center '>
+                    <div className='flex flex-col gap-3 items-center hover:shadow-xl pb-5 transition'>
                         <img src={img} alt="" className='w-full' />
                         <div className='w-[85%] flex flex-col gap-2 text-sm'>
                             <h1 className='text-primary font-semibold'>{date}</h1>
