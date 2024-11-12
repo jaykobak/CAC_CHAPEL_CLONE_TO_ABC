@@ -7,14 +7,6 @@ const tabs = [
     {
         name: "Overview",
         slug: "overview",
-    },
-    {
-        name: "List",
-        slug: "list",
-    },
-    {
-        name: "Groups",
-        slug: "groups"
     }
 ]
 
