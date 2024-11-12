@@ -17,11 +17,6 @@ const navs = [
         slug: "about",
     },
     {
-        name: "Events",
-        link: "#events",
-        slug: "events",
-    },
-    {
         name: "Sermons",
         link: "/sermons",
         slug: "sermons",
@@ -46,7 +41,7 @@ const Navbar = () => {
     const closeNav = () => setShowNav(false)
 
     return (
-        <div className='flex justify-between items-center py-3 text-foreground md:px-6 lg:px-16 px-3 sticky top-0 right-0'>
+        <div className='flex justify-between items-center py-3 text-foreground md:px-6 lg:px-16 px-3 sticky top-0 right-0 z-50 bg-background border-b'>
             <Logo />
             <nav className='items-center gap-10 hidden lg:flex'>
                 {navs.map(({ name, link, slug }) => (

@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 
 /* family=Cinzel:wght@400..900 */
 
@@ -14,7 +16,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
+*{
+  font-family: "Inter";
+}
 
 
 @layer base {
@@ -116,4 +120,35 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  .has-svg{
+    @apply [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0;
+  }
+
+  .center{
+    @apply flex justify-center items-center;
+  }
+}
+
+.custom-scroll-area::-webkit-scrollbar {
+  width: 10px; /* Scrollbar width */
+  display: none;
+}
+
+.custom-scroll-area:hover::-webkit-scrollbar {
+  display: block;
+}
+
+.custom-scroll-area::-webkit-scrollbar-track {
+  border-radius: 8px;
+}
+
+.custom-scroll-area::-webkit-scrollbar-thumb {
+  background-color: #a0a0a0; 
+  border-radius: 8px;
+  border: 2px solid #f0f0f0;
+}
+
+.custom-scroll-area::-webkit-scrollbar-thumb:hover {
+  background-color: #717171;
 }
