@@ -14,12 +14,13 @@ import {
     CollapsibleContent,
     CollapsibleTrigger,
 } from "@/components/ui/collapsible"
+import EmailMembers from './EmailMembers'
 
 const actions = [
     {
         name: "Email Member(s)",
         icon: <Mail className='w-' />,
-        dialog: <h1>This is the where u email members</h1>
+        dialog: <EmailMembers />
     },
     {
         name: "Text Member(s)",
@@ -42,7 +43,7 @@ const Actions = () => {
     return (
         <div className=''>
             <Collapsible className=''>
-                <CollapsibleTrigger className=' [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 text-sm flex justify-between w-full border rounded-lg px-3 py-2'>
+                <CollapsibleTrigger className=' [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 text-sm flex justify-between items-center w-full border rounded-lg px-3 py-2'>
                     Actions
                     <ChevronsUpDown />
                 </CollapsibleTrigger>
@@ -51,7 +52,7 @@ const Actions = () => {
                         {actions.map((action, index) => (
                             <Dialog key={index}>
                                 <DialogTrigger asChild>
-                                    <Button variant="ghost" size="xs" className='outline-none px-3 py-2 flex justify-start hover:bg-primary/10'>
+                                    <Button variant="ghost" size="xs" className='outline-none px-3 py-2 flex justify-start hover:bg-primary/10 transition'>
                                         {action.icon}
                                         {action.name}
                                     </Button>

@@ -7,11 +7,10 @@ const useAuthStore = create(
       (set) => ({
         isAuthenticated: false,
         accessToken: "",
-        refreshToken: "",
-        setAuth: (accessToken, refreshToken) =>
-          set({ isAuthenticated: true, accessToken, refreshToken }),
+        setAuth: (accessToken) =>
+          set({ isAuthenticated: true, accessToken }),
         logout: () =>
-          set({ isAuthenticated: false, accessToken: "", refreshToken: "" }),
+          set({ isAuthenticated: false, accessToken: "" }),
       }),
       {
         name: "auth-storage", // Key for localStorage

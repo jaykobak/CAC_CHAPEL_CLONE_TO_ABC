@@ -4,7 +4,7 @@ import logoImage from "@/assets/logo.jfif"
 const Logo = ({footer, className}) => {
     return (
         <div className={`flex gap-2 items-center text-nowrap ${className}`}>
-            <div className='w-10 h-10 border-gray-600 border-2 rounded-full bg-'>
+            <div className='w-10 h-10 border-gray-600 border-1 rounded-full bg-'>
             <img src={logoImage} alt="logo" className='w-full h-full object-cover rounded-full' />
             </div>
             <div className='flex flex-col tracking-tighter'>

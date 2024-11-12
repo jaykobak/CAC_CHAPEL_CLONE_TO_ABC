@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/dialog"
 import { Button } from '@/components/ui/button'
 import { Plus } from 'lucide-react'
-import AddMemberForm from './Form'
+import AddMemberForm from './AddMemberForm'
 
 
 const AddMember = () => {
