@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { Plus } from 'lucide-react'
 import React from 'react'
-import Actions from './Actions'
+import Actions from './Actions/Actions'
 import Table from './Table/Table'
 import AddMember from './AddMember/AddMember'
 

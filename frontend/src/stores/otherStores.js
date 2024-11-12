@@ -10,7 +10,7 @@ export const useSidebarStore = create(
         rehydrated: false,
         toggleSidebar: () => set((state) => ({ isOpen: !state.isOpen })),
         initializeSidebar: (isLargeScreen) => {
-          set({ isOpen: isLargeScreen });
+          set({ isOpen: !isLargeScreen && isLargeScreen });
         },
       }),
       {

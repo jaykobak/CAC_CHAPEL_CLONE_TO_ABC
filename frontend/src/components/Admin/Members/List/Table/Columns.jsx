@@ -12,6 +12,21 @@ import { Checkbox } from "@/components/ui/checkbox"
 import useMembersStore from "@/stores/membersStore";
 import { Link } from "react-router-dom";
 
+const actions = [
+    {
+        name: "Email Member",
+        icon: <Mail />
+    },
+    {
+        name: "Text Member",
+        icon: <MessageCircleIcon />
+    },
+    {
+        name: "Delete Member",
+        icon: <Trash2 />
+    }
+]
+
 export const columns = [
     {
         id: "select",
@@ -80,14 +95,17 @@ export const columns = [
                             <MoreHorizontal className="h-4 w-4" />
                         </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                    <DropdownMenuContent align="end" >
+                        <DropdownMenuLabel className="text-sm">Actions</DropdownMenuLabel>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem> <Mail /> Email member  </DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem> <MessageCircleIcon /> Text member  </DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem> <Trash2 /> Delete member  </DropdownMenuItem>
+                        {
+                            actions.map((action, index) => (
+                                <DropdownMenuItem key={index} className="text-xs">
+                                    {action.icon}
+                                    {action.name}
+                                </DropdownMenuItem>
+                            ))
+                        }
                     </DropdownMenuContent>
                 </DropdownMenu>
             )
