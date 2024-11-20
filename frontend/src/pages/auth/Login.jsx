@@ -1,5 +1,5 @@
 import AuthLayout from '@/layouts/AuthLayout'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm, Controller } from "react-hook-form"
@@ -13,7 +13,9 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
+import { useLoginMutation } from '@/dataOperations/auth'
+import { useToast } from '@/hooks/use-toast'
 
 const schema = z.object({
     email: z.string(),
@@ -26,6 +28,10 @@ const formFieldsConfig = [
 ]
 
 const Login = () => {
+    const { toast } = useToast()
+    const [searchParams] = useSearchParams()
+    const nextUrl = searchParams.get("next")
+    const { mutate, isPending, isLoading } = useLoginMutation()
     const form = useForm({
         resolver: zodResolver(schema),
         defaultValues: {
@@ -34,18 +40,29 @@ const Login = () => {
         },
     })
 
+    useEffect(() => {
+        if (nextUrl) {
+            toast({
+                title: 'Not Authorized',
+                description: "Please login to continue"
+            })
+        }
+    }, [nextUrl])
+
+
     const email = form.watch("email")
     const password = form.watch("password")
 
     const onSubmit = (values) => {
         console.log(values)
+        mutate(values)
     }
 
     return (
         <AuthLayout>
             <div className='flex flex-col space-y-6'>
-            <h1 className='text-2xl text-center font-semibold bg-gradient-to-b from-foreground/40 via-foreground/60 to-foreground/80 bg-clip-text text-transparent '>Welcome Back</h1>
-            <Form {...form}>
+                <h1 className='text-2xl text-center font-semibold bg-gradient-to-b from-foreground/40 via-foreground/60 to-foreground/80 bg-clip-text text-transparent '>Welcome Back</h1>
+                <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className='flex flex-col gap-6'>
                         {formFieldsConfig.map((formField) => (
                             <FormField
@@ -69,7 +86,7 @@ const Login = () => {
                         </h1>
 
 
-                        <Button disabled={!email || !password} className="w-full">
+                        <Button disabled={!email || !password || isPending || isLoading} className="w-full">
                             Login
                         </Button>
 

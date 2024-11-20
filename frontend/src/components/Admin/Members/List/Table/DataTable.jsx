@@ -30,10 +30,6 @@ const DataTable = ({ columns, data }) => {
     members,
     setMembers,
     selectedMemberIds,
-    toggleMemberSelection,
-    selectAllMembers,
-    deselectAllMembers,
-    isMemberSelected,
   } = useMembersStore();
 
   React.useEffect(() => {

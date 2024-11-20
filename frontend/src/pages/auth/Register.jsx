@@ -13,27 +13,33 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Link } from 'react-router-dom'
+import { useRegisterMutation } from '@/dataOperations/auth'
 
 const schema = z.object({
-    email: z.string().email({message: "Enter a valid email address"}),
-    password: z.string().min(8, {message: "Password cannot be less than 8 characters"}),
+    firstname: z.string().min(3, { message: "First name cannot be empty" }),
+    lastname: z.string().min(3, { message: "Last name cannot be empty" }),
+    email: z.string().email({ message: "Enter a valid email address" }),
+    password: z.string().min(8, { message: "Password cannot be less than 8 characters" }),
     confirmPassword: z.string()
-}).superRefine((data, ctx)=>{
-    if(data.password !== data.confirmPassword) {
+}).superRefine((data, ctx) => {
+    if (data.password !== data.confirmPassword) {
         ctx.addIssue({
             path: ["confirmPassword"],
             message: "Passwords must match",
-          });
+        });
     }
 })
 
 const formFieldsConfig = [
+    { name: "firstname", label: "First Name", placeholder: "John", type: "text" },
+    { name: "lastname", label: "Last Name", placeholder: "Doe", type: "text" },
     { name: "email", label: "Email", placeholder: "e.g name@gmail.com", type: "text" },
-    { name: "password", label: "Password", placeholder: "Enter your password", type: "text" },
-    { name: "confirmPassword", label: "Confirm Password", placeholder: "Re-enter your password", type: "text" },
+    { name: "password", label: "Password", placeholder: "Enter your password", type: "password" },
+    { name: "confirmPassword", label: "Confirm Password", placeholder: "Re-enter your password", type: "password" },
 ]
 
 const Register = () => {
+    const { mutate } = useRegisterMutation()
     const form = useForm({
         resolver: zodResolver(schema),
         defaultValues: {
@@ -47,6 +53,7 @@ const Register = () => {
 
     const onSubmit = (values) => {
         console.log(values)
+        mutate(values)
     }
 
     return (

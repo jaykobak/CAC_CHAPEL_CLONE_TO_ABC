@@ -1,6 +1,6 @@
 import React from 'react'
 import MainPadding from '../../layouts/MainPadding'
-import img from "../../assets/Home/leadership.jpeg"
+import img from "../../assets/Home/leadership.jpg"
 import BackgroundImage from '../BackgroundImage'
 import { Button } from '../ui/button'
 import { ArrowRight } from 'lucide-react'
@@ -9,7 +9,7 @@ import HeadingText from '../HeadingText'
 const OurLeadership = () => {
   return (
     <MainPadding className={"hover:px-0 transition-all duration-700"}>
-      <BackgroundImage img={img} imgClass={`object-top`} className="md:h-[600px] h-[300px]">
+      <BackgroundImage img={img} imgClass={`object-top`} className="md:h-fit h-[300px]">
         <div className='w-[33%] text-primary-foreground/90  p-10 md:flex flex-col gap-5 relative z-10 hidden '>
           <h1 className='font-bold'>Our Leadership</h1>
           <HeadingText className='font-cinzel text-7xl'>PASTOR OGUNSIJI</HeadingText>

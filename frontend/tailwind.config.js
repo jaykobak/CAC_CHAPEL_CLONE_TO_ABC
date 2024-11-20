@@ -7,8 +7,11 @@ export default {
       fontFamily: {
         inter: ["Inter"],
         cinzel: ["Cinzel"],
-        secondary: ["Cinzel"],
-        poppins: ["Poppins"]
+        secondary: ["Faculty Glyphic"],
+        poppins: ["Poppins"],
+        roboto: ["Roboto"],
+        playfairDisplay: ["Playfair Display"]
+
       },
       borderRadius: {
         lg: "var(--radius)",

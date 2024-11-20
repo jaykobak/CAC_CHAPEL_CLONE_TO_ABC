@@ -4,16 +4,18 @@ import { persist, devtools } from "zustand/middleware";
 const useAuthStore = create(
   devtools(
     persist(
-      (set) => ({
+      (set, get) => ({
         isAuthenticated: false,
         accessToken: "",
-        setAuth: (accessToken) =>
-          set({ isAuthenticated: true, accessToken }),
-        logout: () =>
-          set({ isAuthenticated: false, accessToken: "" }),
+        rehydrated: false, // Indicates whether the state has loaded
+        setAuth: (accessToken) => set({ isAuthenticated: true, accessToken }),
+        logout: () => set({ isAuthenticated: false, accessToken: "" }),
       }),
       {
-        name: "auth-storage", // Key for localStorage
+        name: "auth-storage",
+        onRehydrateStorage: () => (state) => {
+          state && set({ rehydrated: true });
+        },
       }
     )
   )

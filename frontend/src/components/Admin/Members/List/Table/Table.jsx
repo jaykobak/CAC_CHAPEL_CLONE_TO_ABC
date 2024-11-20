@@ -3,6 +3,7 @@ import React from 'react'
 import img from "@/assets/herobg.jpg"
 import { columns } from './Columns'
 import DataTable from './DataTable'
+import { useGetMembersQuery } from '@/dataOperations/members'
 
 
 var members = [
@@ -230,6 +231,7 @@ members = members.map((member, index) => ({
 }));
 
 const Table = () => {
+    const { data } = useGetMembersQuery()
     return (
         <div className='w-full'>
             <DataTable columns={columns} data={members} />
