@@ -16,11 +16,18 @@ const OurHistory = () => {
                     <img src={img1} alt="" className='w-full' />
                 </div>
                 <div className='md:w-[50%] w-full flex flex-col gap-5'>
-                    <h1 className='font-bold'>Building a church that reflect's God's love and grace</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus, ullam maxime consequatur unde quis aperiam accusantium esse neque voluptas culpa hic nihil odit vero aspernatur, nulla molestiae assumenda cumque exercitationem? Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam animi soluta harum nostrum totam, unde molestias sunt aliquam illum saepe minus, aut natus quidem qui facilis laudantium consectetur odit officia?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia praesentium architecto natus</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam molestias rerum a nostrum maxime aut sit dolor dicta, cupiditate magnam corrupti voluptate nisi saepe omnis corporis. Recusandae dignissimos consequuntur rerum?</p>
+                    <h1 className='font-bold'>Building a Church That Reflects God's Love and Grace</h1>
+                    <p>
+                        Founded in 2002 by Professor Ogunsiji, his wife, and their family, our church began as a small gathering of dedicated believers within the university community. United by a vision to create a place where God’s love and grace would be evident, they planted the seeds of what has grown into a vibrant faith community.
+                    </p>
+                    <p>
+                        From those humble beginnings, our church has blossomed, welcoming students, faculty, and community members alike. Together, we seek to embody Christ's love, nurture spiritual growth, and provide a welcoming home for those in search of faith, hope, and purpose.
+                    </p>
+                    <p>
+                        Today, our university church stands as a testament to God’s enduring love, with a commitment to inspire, support, and walk alongside each member of our community on their spiritual journey.
+                    </p>
                 </div>
+
             </div>
         </MainPadding>
     )
