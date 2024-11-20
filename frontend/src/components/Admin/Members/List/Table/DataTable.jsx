@@ -28,13 +28,8 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 const DataTable = ({ columns, data }) => {
   const {
     members,
-    setMembers,
     selectedMemberIds,
   } = useMembersStore();
-
-  React.useEffect(() => {
-    setMembers(data); // Set initial members data in Zustand store
-  }, [data, setMembers]);
 
   const table = useReactTable({
     data,
@@ -43,14 +38,12 @@ const DataTable = ({ columns, data }) => {
     getPaginationRowModel: getPaginationRowModel(),
   });
 
-  const allRowsSelected = selectedMemberIds.size === members.length;
-
 
   return (
     <div className="space-y-4 w-full">
       <div className="flex items-center">
         <span className="flex-1 text-sm text-muted-foreground">
-          {selectedMemberIds.size} of {members.length} row(s) selected.
+          {selectedMemberIds.size} of {members?.length} row(s) selected.
         </span>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

@@ -32,7 +32,7 @@ export const columns = [
         id: "select",
         header: ({ table }) => {
             const { selectedMemberIds, selectAllMembers, deselectAllMembers, members } = useMembersStore();
-            const allRowsSelected = selectedMemberIds.size === members.length;
+            const allRowsSelected = selectedMemberIds.size === members?.length;
 
             const handleSelectAllToggle = () => {
                 allRowsSelected ? deselectAllMembers() : selectAllMembers();
@@ -62,9 +62,9 @@ export const columns = [
             const member = row.original
 
             return (
-                <Link to={`/admin/members/${member.id}`} className="hover:text-foreground/90 font-semibold flex items-center object-cover gap-2">
-                    <img src={member.img} alt="" className="w-10 h-10 border rounded-lg" />
-                    {member.name}
+                <Link to={`/admin/members/${member.id}`} className="hover:text-foreground/90 uppercase font-semibold flex items-center object-cover gap-2">
+                    {/* <img src={member.img} alt="" className="w-10 h-10 border rounded-lg" /> */}
+                    {member.firstname} {member.lastname}
                 </Link>
             )
         }

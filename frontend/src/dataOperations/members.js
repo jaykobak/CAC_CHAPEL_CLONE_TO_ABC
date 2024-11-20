@@ -29,9 +29,6 @@ export const useCreateMemberMutation = () => {
 export const useGetMembersQuery = () => {
     return useQuery({
         queryKey: ["members"],
-        queryFn: () => getMembers(),
-        onError: (error) => {
-            
-        }
+        queryFn: getMembers
     })
 }

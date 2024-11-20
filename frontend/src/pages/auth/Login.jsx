@@ -16,6 +16,7 @@ import { Input } from "@/components/ui/input"
 import { Link, useSearchParams } from 'react-router-dom'
 import { useLoginMutation } from '@/dataOperations/auth'
 import { useToast } from '@/hooks/use-toast'
+import Loader from '@/components/Loader'
 
 const schema = z.object({
     email: z.string(),
@@ -31,7 +32,7 @@ const Login = () => {
     const { toast } = useToast()
     const [searchParams] = useSearchParams()
     const nextUrl = searchParams.get("next")
-    const { mutate, isPending, isLoading } = useLoginMutation()
+    const { mutate, isPending } = useLoginMutation()
     const form = useForm({
         resolver: zodResolver(schema),
         defaultValues: {
@@ -86,8 +87,8 @@ const Login = () => {
                         </h1>
 
 
-                        <Button disabled={!email || !password || isPending || isLoading} className="w-full">
-                            Login
+                        <Button disabled={!email || !password || isPending} className="w-full">
+                            {isPending ? <Loader className={'border-primary-foreground'} /> : "Login" }
                         </Button>
 
                         <h1 className='flex gap-2 text-sm font-medium justify-center flex-wrap text-nowrap'>

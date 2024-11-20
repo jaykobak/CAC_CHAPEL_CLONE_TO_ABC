@@ -1,240 +1,36 @@
 import { Checkbox } from '@/components/ui/checkbox'
-import React from 'react'
+import React, { useEffect } from 'react'
 import img from "@/assets/herobg.jpg"
 import { columns } from './Columns'
 import DataTable from './DataTable'
 import { useGetMembersQuery } from '@/dataOperations/members'
+import useMembersStore from '@/stores/membersStore'
+import ClipLoader from "react-spinners/ClipLoader";
+import { RingLoader } from 'react-spinners'
+import Loader from '@/components/Loader'
 
-
-var members = [
-    {
-        img: img,
-        name: "Oyekola Michael Abayomi",
-        email: "abmichael109@gmail.com",
-        level: "100 Level",
-        isAWorker: true,
-        unit: "CHOIR",
-        phone: "09160914217",
-        date: "09-10",
-        homeAddress: "Hospital Road, Iwo, Osun State",
-        hostelAddress: "Prince and Princess Hostel, Under G"
-    },
-    {
-        img: img,
-        name: "Oyekola Michael Abayomi",
-        email: "abmichael109@gmail.com",
-        level: "100 Level",
-        isAWorker: true,
-        unit: "CHOIR",
-        phone: "09160914217",
-        date: "09-10",
-        homeAddress: "Hospital Road, Iwo, Osun State",
-        hostelAddress: "Prince and Princess Hostel, Under G"
-    },
-    {
-        img: img,
-        name: "Oyekola Michael Abayomi",
-        email: "abmichael109@gmail.com",
-        level: "100 Level",
-        isAWorker: true,
-        unit: "CHOIR",
-        phone: "09160914217",
-        date: "09-10",
-        homeAddress: "Hospital Road, Iwo, Osun State",
-        hostelAddress: "Prince and Princess Hostel, Under G"
-    },
-    {
-        img: img,
-        name: "Oyekola Michael Abayomi",
-        email: "abmichael109@gmail.com",
-        level: "100 Level",
-        isAWorker: true,
-        unit: "CHOIR",
-        phone: "09160914217",
-        date: "09-10",
-        homeAddress: "Hospital Road, Iwo, Osun State",
-        hostelAddress: "Prince and Princess Hostel, Under G"
-    },
-    {
-        img: img,
-        name: "Oyekola Michael Abayomi",
-        email: "abmichael109@gmail.com",
-        level: "100 Level",
-        isAWorker: true,
-        unit: "CHOIR",
-        phone: "09160914217",
-        date: "09-10",
-        homeAddress: "Hospital Road, Iwo, Osun State",
-        hostelAddress: "Prince and Princess Hostel, Under G"
-    },
-    {
-        img: img,
-        name: "Oyekola Michael Abayomi",
-        email: "abmichael109@gmail.com",
-        level: "100 Level",
-        isAWorker: true,
-        unit: "CHOIR",
-        phone: "09160914217",
-        date: "09-10",
-        homeAddress: "Hospital Road, Iwo, Osun State",
-        hostelAddress: "Prince and Princess Hostel, Under G"
-    },
-    {
-        img: img,
-        name: "Oyekola Michael Abayomi",
-        email: "abmichael109@gmail.com",
-        level: "100 Level",
-        isAWorker: true,
-        unit: "CHOIR",
-        phone: "09160914217",
-        date: "09-10",
-        homeAddress: "Hospital Road, Iwo, Osun State",
-        hostelAddress: "Prince and Princess Hostel, Under G"
-    },
-    {
-        img: img,
-        name: "Oyekola Michael Abayomi",
-        email: "abmichael109@gmail.com",
-        level: "100 Level",
-        isAWorker: true,
-        unit: "CHOIR",
-        phone: "09160914217",
-        date: "09-10",
-        homeAddress: "Hospital Road, Iwo, Osun State",
-        hostelAddress: "Prince and Princess Hostel, Under G"
-    },
-    {
-        img: img,
-        name: "Oyekola Michael Abayomi",
-        email: "abmichael109@gmail.com",
-        level: "100 Level",
-        isAWorker: true,
-        unit: "CHOIR",
-        phone: "09160914217",
-        date: "09-10",
-        homeAddress: "Hospital Road, Iwo, Osun State",
-        hostelAddress: "Prince and Princess Hostel, Under G"
-    },
-    {
-        img: img,
-        name: "Oyekola Michael Abayomi",
-        email: "abmichael109@gmail.com",
-        level: "100 Level",
-        isAWorker: true,
-        unit: "CHOIR",
-        phone: "09160914217",
-        date: "09-10",
-        homeAddress: "Hospital Road, Iwo, Osun State",
-        hostelAddress: "Prince and Princess Hostel, Under G"
-    },
-    {
-        img: img,
-        name: "Oyekola Michael Abayomi",
-        email: "abmichael109@gmail.com",
-        level: "100 Level",
-        isAWorker: true,
-        unit: "CHOIR",
-        phone: "09160914217",
-        date: "09-10",
-        homeAddress: "Hospital Road, Iwo, Osun State",
-        hostelAddress: "Prince and Princess Hostel, Under G"
-    },
-    {
-        img: img,
-        name: "Oyekola Michael Abayomi",
-        email: "abmichael109@gmail.com",
-        level: "100 Level",
-        isAWorker: true,
-        unit: "CHOIR",
-        phone: "09160914217",
-        date: "09-10",
-        homeAddress: "Hospital Road, Iwo, Osun State",
-        hostelAddress: "Prince and Princess Hostel, Under G"
-    },
-    {
-        img: img,
-        name: "Oyekola Michael Abayomi",
-        email: "abmichael109@gmail.com",
-        level: "100 Level",
-        isAWorker: true,
-        unit: "CHOIR",
-        phone: "09160914217",
-        date: "09-10",
-        homeAddress: "Hospital Road, Iwo, Osun State",
-        hostelAddress: "Prince and Princess Hostel, Under G"
-    },
-    {
-        img: img,
-        name: "Oyekola Michael Abayomi",
-        email: "abmichael109@gmail.com",
-        level: "100 Level",
-        isAWorker: true,
-        unit: "CHOIR",
-        phone: "09160914217",
-        date: "09-10",
-        homeAddress: "Hospital Road, Iwo, Osun State",
-        hostelAddress: "Prince and Princess Hostel, Under G"
-    },
-    {
-        img: img,
-        name: "Oyekola Michael Abayomi",
-        email: "abmichael109@gmail.com",
-        level: "100 Level",
-        isAWorker: true,
-        unit: "CHOIR",
-        phone: "09160914217",
-        date: "09-10",
-        homeAddress: "Hospital Road, Iwo, Osun State",
-        hostelAddress: "Prince and Princess Hostel, Under G"
-    },
-    {
-        img: img,
-        name: "Oyekola Michael Abayomi",
-        email: "abmichael109@gmail.com",
-        level: "100 Level",
-        isAWorker: true,
-        unit: "CHOIR",
-        phone: "09160914217",
-        date: "09-10",
-        homeAddress: "Hospital Road, Iwo, Osun State",
-        hostelAddress: "Prince and Princess Hostel, Under G"
-    },
-    {
-        img: img,
-        name: "Oyekola Michael Abayomi",
-        email: "abmichael109@gmail.com",
-        level: "100 Level",
-        isAWorker: true,
-        unit: "CHOIR",
-        phone: "09160914217",
-        date: "09-10",
-        homeAddress: "Hospital Road, Iwo, Osun State",
-        hostelAddress: "Prince and Princess Hostel, Under G"
-    },
-    {
-        img: img,
-        name: "Oyekola Michael Abayomi",
-        email: "abmichael109@gmail.com",
-        level: "100 Level",
-        isAWorker: true,
-        unit: "CHOIR",
-        phone: "09160914217",
-        date: "09-10",
-        homeAddress: "Hospital Road, Iwo, Osun State",
-        hostelAddress: "Prince and Princess Hostel, Under G"
-    },
-]
-
-members = members.map((member, index) => ({
-    ...member,
-    id: index + 1
-}));
 
 const Table = () => {
-    const { data } = useGetMembersQuery()
+    const {
+        members,
+        setMembers
+    } = useMembersStore();
+    const { data, error, isLoading } = useGetMembersQuery()
+
+    console.log(error)
+
+    useEffect(() => {
+        setMembers(data?.data)
+    }, [data, isLoading])
+
     return (
         <div className='w-full'>
-            <DataTable columns={columns} data={members} />
+            {!isLoading && <DataTable columns={columns} data={data?.data} />}
+            {isLoading && (
+                <div className='flex justify-center h-40 items-center'>
+                    <Loader className={"border-primary"} />
+                </div>
+            ) }
         </div>
     )
 }
