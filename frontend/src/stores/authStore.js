@@ -7,14 +7,17 @@ const useAuthStore = create(
       (set, get) => ({
         isAuthenticated: false,
         accessToken: "",
-        rehydrated: false, // Indicates whether the state has loaded
+        rehydrated: false,
         setAuth: (accessToken) => set({ isAuthenticated: true, accessToken }),
         logout: () => set({ isAuthenticated: false, accessToken: "" }),
       }),
       {
         name: "auth-storage",
         onRehydrateStorage: () => (state) => {
-          state && set({ rehydrated: true });
+          console.log("Rehydrating state:", state);
+          if (state) {
+            set({ rehydrated: true });
+          }
         },
       }
     )

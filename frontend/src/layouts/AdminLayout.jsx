@@ -14,7 +14,7 @@ const AdminLayout = ({ children }) => {
     const { pathname } = useLocation()
 
     useEffect(() => {
-        if (rehydrated && !isAuthenticated) {
+        if (!isAuthenticated) {
             navigate(`/auth/login?next=${pathname}`);
             toast({
                 title: "Not Authorized",
