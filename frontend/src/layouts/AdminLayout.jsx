@@ -23,9 +23,9 @@ const AdminLayout = ({ children }) => {
         }
     }, [rehydrated, isAuthenticated, navigate]);
 
-    if (!rehydrated) {
-        return <div>Loading...</div>;
-    }
+    // if (!rehydrated) {
+    //     return <div>Loading...</div>;
+    // }
 
     return (
         <div className='flex bg-neutral-100 min-h-[100vh] text-foreground/70'>
