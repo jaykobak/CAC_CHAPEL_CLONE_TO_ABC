@@ -15,18 +15,20 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Checkbox } from "@/components/ui/checkbox"
 import { useCreateMemberMutation } from "@/dataOperations/members"
+import { useGetUnitsQuery } from "@/dataOperations/unit"
 
 const levels = ["100 Level", "200 Level", "300 Level", "400 Level", "500 Level", "JUPEB", "PRE DEGREE", "Parents", "Children", "Alumni"]
 
-// Define schema
+
+
 const formSchema = z.object({
     firstname: z.string().min(3, { message: "Name cannot be less than 3 characters" }).max(50),
     lastname: z.string().min(3, { message: "Name cannot be less than 3 characters" }).max(50),
     // matricNumber: z.string().min(10, { message: "Matric Number must be at least 10 characters" }).optional(),
     email: z.string().email({ message: "Invalid email address" }),
     phone: z.string().min(11, { message: "Phone number must be 11 digits" }).max(15),
-    // isAWorker: z.boolean(),
-    // unit: z.string().optional(),
+    isAWorker: z.boolean(),
+    unit: z.string().optional(),
     level: z.enum(levels)
 }).superRefine((data, ctx) => {
     if (data.isAWorker && !data.unit) {
@@ -47,6 +49,7 @@ const formFieldsConfig = [
 ]
 
 const AddMemberForm = () => {
+    const { data } = useGetUnitsQuery()
     const { mutate } = useCreateMemberMutation()
     const form = useForm({
         resolver: zodResolver(formSchema),
@@ -57,7 +60,6 @@ const AddMemberForm = () => {
             email: "",
             phone: "",
             isAWorker: false,
-            unit: "",
             level: "100 Level"
         }
     })
@@ -136,8 +138,8 @@ const AddMemberForm = () => {
                                                 <SelectValue placeholder="Select unit" />
                                             </SelectTrigger>
                                             <SelectContent>
-                                                {["Admin", "IT", "Finance", "Marketing", "HR"].map((unit) => (
-                                                    <SelectItem key={unit} value={unit}>{unit}</SelectItem>
+                                                {data?.data.map((unit) => (
+                                                    <SelectItem key={unit._id} value={unit._id}>{unit.title}</SelectItem>
                                                 ))}
                                             </SelectContent>
                                         </Select>

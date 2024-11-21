@@ -49,8 +49,8 @@ export const columns = [
             const { toggleMemberSelection, isMemberSelected } = useMembersStore();
             return (
                 <Checkbox
-                    checked={isMemberSelected(row.original.id)}
-                    onCheckedChange={() => toggleMemberSelection(row.original.id)}
+                    checked={isMemberSelected(row.original._id)}
+                    onCheckedChange={() => toggleMemberSelection(row.original._id)}
                 />
             );
         },

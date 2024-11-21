@@ -22,4 +22,14 @@ export const createMember = async (data) => {
   return response.data;
 };
 
+export const getUnits = async () => {
+  const response = await apiClient.get("/user/unit")
+  return response.data;
+};
+
+export const getTotalMembersAnalytics = async () => {
+  const response = await apiClient.get("/user/analytics")
+  return response.data;
+};
+
 

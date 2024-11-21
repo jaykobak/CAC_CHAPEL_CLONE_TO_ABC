@@ -17,7 +17,7 @@ const Table = () => {
         setMembers,
         selectedMemberIds
     } = useMembersStore();
-    const { data, error, isLoading } = useGetMembersQuery()
+    const { data, isLoading } = useGetMembersQuery()
 
     useEffect(() => {
         setMembers(data?.data)
