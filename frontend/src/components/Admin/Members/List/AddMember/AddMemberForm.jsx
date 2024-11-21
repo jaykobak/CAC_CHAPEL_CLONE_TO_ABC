@@ -2,7 +2,6 @@ import React from "react"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm, Controller } from "react-hook-form"
-
 import { Button } from "@/components/ui/button"
 import {
     Form,
@@ -15,19 +14,19 @@ import { Input } from "@/components/ui/input"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Checkbox } from "@/components/ui/checkbox"
+import { useCreateMemberMutation } from "@/dataOperations/members"
 
 const levels = ["100 Level", "200 Level", "300 Level", "400 Level", "500 Level", "JUPEB", "PRE DEGREE", "Parents", "Children", "Alumni"]
 
 // Define schema
 const formSchema = z.object({
-    firstName: z.string().min(3, { message: "Name cannot be less than 3 characters" }).max(50),
-    middleName: z.string().min(3, { message: "Name cannot be less than 3 characters" }).max(50),
-    lastName: z.string().min(3, { message: "Name cannot be less than 3 characters" }).max(50),
-    matricNumber: z.string().min(10, { message: "Matric Number must be at least 10 characters" }),
+    firstname: z.string().min(3, { message: "Name cannot be less than 3 characters" }).max(50),
+    lastname: z.string().min(3, { message: "Name cannot be less than 3 characters" }).max(50),
+    // matricNumber: z.string().min(10, { message: "Matric Number must be at least 10 characters" }).optional(),
     email: z.string().email({ message: "Invalid email address" }),
     phone: z.string().min(11, { message: "Phone number must be 11 digits" }).max(15),
-    isAWorker: z.boolean(),
-    unit: z.string().optional(),
+    // isAWorker: z.boolean(),
+    // unit: z.string().optional(),
     level: z.enum(levels)
 }).superRefine((data, ctx) => {
     if (data.isAWorker && !data.unit) {
@@ -40,21 +39,20 @@ const formSchema = z.object({
 
 // Form configuration for easier looping
 const formFieldsConfig = [
-    { name: "firstName", placeholder: "First Name", type: "text" },
-    { name: "middleName", placeholder: "Middle Name", type: "text" },
-    { name: "lastName", placeholder: "Last Name", type: "text" },
-    { name: "matricNumber", placeholder: "Matric Number", type: "text" },
+    { name: "firstname", placeholder: "First Name", type: "text" },
+    { name: "lastname", placeholder: "Last Name", type: "text" },
+    // { name: "matricNumber", placeholder: "Matric Number", type: "text" },
     { name: "email", placeholder: "Email", type: "email" },
-    { name: "phone", placeholder: "Phone Number", type: "text" }
+    { name: "phone", placeholder: "Phone Number", type: "number" }
 ]
 
 const AddMemberForm = () => {
+    const { mutate } = useCreateMemberMutation()
     const form = useForm({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            firstName: "",
-            middleName: "",
-            lastName: "",
+            firstname: "",
+            lastname: "",
             matricNumber: "",
             email: "",
             phone: "",
@@ -66,6 +64,7 @@ const AddMemberForm = () => {
 
     const onSubmit = (values) => {
         console.log(values)
+        mutate(values)
     }
 
     return (
@@ -82,7 +81,7 @@ const AddMemberForm = () => {
                                 name={formField.name}
                                 render={({ field }) => (
                                     <FormItem>
-                                        <Input placeholder={formField.placeholder} {...field} type={field.type} />
+                                        <Input placeholder={formField.placeholder} {...field} type={formField.type} />
                                         <FormMessage className="text-xs" />
                                     </FormItem>
                                 )}

@@ -23,10 +23,6 @@ const AdminLayout = ({ children }) => {
         }
     }, [rehydrated, isAuthenticated, navigate]);
 
-    // if (!rehydrated) {
-    //     return <div>Loading...</div>;
-    // }
-
     return (
         <div className='flex bg-neutral-100 min-h-[100vh] text-foreground/70'>
             <div className='sticky top-[0px] z-50'>

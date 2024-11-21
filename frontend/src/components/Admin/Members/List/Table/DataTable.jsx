@@ -21,15 +21,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ChevronDown } from "lucide-react";
-import { Checkbox } from "@/components/ui/checkbox";
-import useMembersStore from "@/stores/membersStore";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
-const DataTable = ({ columns, data }) => {
-  const {
-    members,
-    selectedMemberIds,
-  } = useMembersStore();
+const DataTable = ({ columns, data, selected }) => {
 
   const table = useReactTable({
     data,
@@ -43,7 +36,7 @@ const DataTable = ({ columns, data }) => {
     <div className="space-y-4 w-full">
       <div className="flex items-center">
         <span className="flex-1 text-sm text-muted-foreground">
-          {selectedMemberIds.size} of {members?.length} row(s) selected.
+          {selected?.size} of {data.length} row(s) selected.
         </span>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

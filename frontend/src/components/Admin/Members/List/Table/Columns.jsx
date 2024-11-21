@@ -31,7 +31,7 @@ export const columns = [
     {
         id: "select",
         header: ({ table }) => {
-            const { selectedMemberIds, selectAllMembers, deselectAllMembers, members } = useMembersStore();
+            const { selectedMemberIds, selectAllMembers, deselectAllMembers, members } = useMembersStore.getState();
             const allRowsSelected = selectedMemberIds.size === members?.length;
 
             const handleSelectAllToggle = () => {
@@ -100,7 +100,7 @@ export const columns = [
                         <DropdownMenuSeparator />
                         {
                             actions.map((action, index) => (
-                                <DropdownMenuItem key={index} className="text-xs">
+                                <DropdownMenuItem key={index} className="text-sm">
                                     {action.icon}
                                     {action.name}
                                 </DropdownMenuItem>
