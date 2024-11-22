@@ -8,6 +8,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { useGetTotalMembersAnalytics } from '@/dataOperations/analytics';
+import Loader from '@/components/Loader';
 
 
 
@@ -65,6 +66,12 @@ const TotalMembersChart = () => {
             <ChartTooltip content={<ChartTooltipContent />} />
             <Bar dataKey="total" fill="var(--color-level)" radius={4} />
           </BarChart>
+        )}
+        {isLoading && (
+          <div className='flex justify-center items-center space-y-2 h-full w-full'>
+            <Loader className={"border-primary"} />
+
+          </div>
         )}
       </ChartContainer>
     </div>
