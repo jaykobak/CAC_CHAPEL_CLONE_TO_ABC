@@ -52,7 +52,7 @@ const AddMemberForm = ({ memberData }) => {
     const { data,  } = useGetUnitsQuery()
     
     const { mutate, isPending } = useCreateMemberMutation()
-    const { mutate: editMutate, isPending: editIsPending } = useEditMemberMutation()
+    const { mutate: editMutate, isPending: editIsPending } = useEditMemberMutation(memberData?._id)
     const form = useForm({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -77,7 +77,7 @@ const AddMemberForm = ({ memberData }) => {
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
-                <div className="custom-scroll-area max-h-[70vh] h-fit w-full ">
+                <div className="custom-scroll-area max-h-[50vh] h-fit w-full ">
                     <div className='p-4 space-y-8'>
 
                         {/* Dynamically render input fields */}

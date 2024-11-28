@@ -49,27 +49,35 @@ export const columns = [
         accessorKey: "name",
         header: "Name",
         cell: ({ row }) => {
-            const member = row.original
-
+            const attendance = row.original
+            
             return (
-                <Link to={`/admin/members/${member.id}`} className="hover:text-foreground/90 uppercase font-semibold flex items-center object-cover gap-2">
-                    {/* <img src={member.img} alt="" className="w-10 h-10 border rounded-lg" /> */}
-                    {member.firstname} {member.lastname}
+                <Link to={`/admin/attendance/${attendance.id}`} className="hover:text-foreground/90 uppercase font-semibold flex items-center object-cover gap-2">
+                    {attendance.name}
                 </Link>
             )
         }
     },
     {
-        accessorKey: "level",
-        header: "Level",
+        accessorKey: "date",
+        header: "Date",
     },
     {
-        accessorKey: "email",
-        header: "Email",
+        accessorKey: "time",
+        header: "Time",
+        cell: ({ row }) => {
+            const attendance = row.original
+
+            return (
+                <p className='flex gap-2 items-center'>
+                    {attendance.fromTime} - {attendance.toTime}
+                </p>
+            )
+        }
     },
     {
-        accessorKey: "phone",
-        header: "Phone Number",
+        accessorKey: "attendance",
+        header: "Attendance Count",
     },
     {
         id: "actions",
@@ -79,7 +87,7 @@ export const columns = [
 
             return (
                 <div>
-                    <ActionsDropdown member={member}  />
+                    <ActionsDropdown member={member} />
                 </div>
             )
         }

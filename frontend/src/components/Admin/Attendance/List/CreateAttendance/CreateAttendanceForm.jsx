@@ -19,11 +19,6 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover"
 import { Input } from "@/components/ui/input"
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Checkbox } from "@/components/ui/checkbox"
-import { useCreateMemberMutation, useEditMemberMutation } from "@/dataOperations/members"
-import { useGetUnitsQuery } from "@/dataOperations/unit"
 import Loader from "@/components/Loader"
 import { cn } from "@/lib/utils"
 import { CalendarIcon, Clock } from "lucide-react"
@@ -48,6 +43,7 @@ const formFieldsConfig = [
     { name: "endTime", placeholder: "Phone Number", type: "time" },
 ]
 
+
 const CreateAttendanceForm = ({ attendanceData }) => {
     const form = useForm({
         resolver: zodResolver(formSchema),
@@ -62,21 +58,6 @@ const CreateAttendanceForm = ({ attendanceData }) => {
     const onSubmit = (values) => {
         console.log(values)
     }
-
-    const handleTimeChange = (
-        type,
-        value
-    ) => {
-        if (form.watch("date")) {
-            const newDate = new Date(date);
-            if (type === "hour") {
-                form.watch("date").setHours(parseInt(value));
-            } else if (type === "minute") {
-                form.watch("date").setMinutes(parseInt(value));
-            }
-
-        }
-    };
 
     return (
         <Form {...form} id="create-attendance-form">
@@ -100,14 +81,14 @@ const CreateAttendanceForm = ({ attendanceData }) => {
                             name="date"
                             render={({ field }) => (
                                 <FormItem className="flex flex-col">
-                                    <FormLabel>Date of birth</FormLabel>
+                                    <FormLabel>Date</FormLabel>
                                     <Popover>
                                         <PopoverTrigger asChild>
                                             <FormControl>
                                                 <Button
                                                     variant={"outline"}
                                                     className={cn(
-                                                        "w-[240px] pl-3 text-left font-normal",
+                                                        "w-full pl-3 text-left font-normal",
                                                         !field.value && "text-muted-foreground"
                                                     )}
                                                 >
@@ -144,9 +125,9 @@ const CreateAttendanceForm = ({ attendanceData }) => {
                                 control={form.control}
                                 name="startTime"
                                 render={({ field }) => (
-                                    <FormItem>
+                                    <FormItem className="w-full">
                                         <FormLabel>From</FormLabel>
-                                        <Input placeholder={"Name"} {...field} type={"time"} className="w-fit" />
+                                        <Input placeholder={"Name"} {...field} type={"time"} className="w-full" />
                                         <FormMessage className="text-xs" />
                                     </FormItem>
                                 )}
@@ -156,20 +137,19 @@ const CreateAttendanceForm = ({ attendanceData }) => {
                                 control={form.control}
                                 name="endTime"
                                 render={({ field }) => (
-                                    <FormItem>
+                                    <FormItem className="w-full">
                                         <FormLabel>To</FormLabel>
-                                        <Input placeholder={"Name"} {...field} type={"time"} className="w-fit" />
+                                        <Input placeholder={"Name"} {...field} type={"time"} className="w-full" />
                                         <FormMessage className="text-xs" />
                                     </FormItem>
                                 )}
                             />
                         </div>
-
                     </div>
                 </div>
-                <Button type="submit" className="float-right">
-                    {true ? <Loader className={"border-primary-foreground"} /> : "Submit"}
-                </Button>
+                {/* <Button type="submit" className="float-right">
+                    Submit
+                </Button> */}
             </form>
         </Form>
     )

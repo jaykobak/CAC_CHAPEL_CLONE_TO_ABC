@@ -33,8 +33,8 @@ export const deleteMember = async (id) => {
   return response.data;
 };
 
-export const editMember = async (id) => {
-  const response = await apiClient.put(`/member/${id}`)
+export const editMember = async (data, id) => {
+  const response = await apiClient.put(`/member/${id}`, data)
   return response.data;
 };
 

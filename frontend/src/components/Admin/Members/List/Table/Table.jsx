@@ -25,7 +25,7 @@ const Table = () => {
 
     return (
         <div className='w-full'>
-            {!isLoading && <DataTable columns={columns} data={data?.data} selected={selectedMemberIds} />}
+            {!isLoading && <DataTable columns={columns} data={data?.data || []} selected={selectedMemberIds} />}
             {isLoading && (
                 <div className='flex justify-center flex-col space-y-2 h-full w-full'>
                     <div className='flex justify-between items-center'>
