@@ -62,6 +62,7 @@ const TotalMembersChart = () => {
               tickLine={false}
               tickMargin={10}
               axisLine={false}
+              allowDecimals={false}
             />
             <ChartTooltip content={<ChartTooltipContent />} />
             <Bar dataKey="total" fill="var(--color-level)" radius={4} />

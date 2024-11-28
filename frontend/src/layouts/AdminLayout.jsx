@@ -24,16 +24,16 @@ const AdminLayout = ({ children }) => {
     }, [rehydrated, isAuthenticated, navigate]);
 
     return (
-        <div className='flex bg-neutral-100 min-h-[100vh] text-foreground/70'>
-            <div className='sticky top-[0px] z-50'>
+        <div className='flex bg-white min-h-[100vh] text-foreground/70'>
+            <div className='sticky top-[1px] left-0 z-50'>
                 <AdminSidebar />
             </div>
 
-            <div className='w-full'>
+            <div className='w-full h-full'>
                 <div className='sticky top-0 z-10'>
                     <Navbar />
                 </div>
-                <div className='w-full'>
+                <div className='w-full h-full'>
                     {children}
                 </div>
             </div>

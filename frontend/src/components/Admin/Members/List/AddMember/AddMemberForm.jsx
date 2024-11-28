@@ -14,11 +14,11 @@ import { Input } from "@/components/ui/input"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Checkbox } from "@/components/ui/checkbox"
-import { useCreateMemberMutation } from "@/dataOperations/members"
+import { useCreateMemberMutation, useEditMemberMutation } from "@/dataOperations/members"
 import { useGetUnitsQuery } from "@/dataOperations/unit"
+import Loader from "@/components/Loader"
 
 const levels = ["100 Level", "200 Level", "300 Level", "400 Level", "500 Level", "JUPEB", "PRE DEGREE", "Parents", "Children", "Alumni"]
-
 
 
 const formSchema = z.object({
@@ -48,31 +48,36 @@ const formFieldsConfig = [
     { name: "phone", placeholder: "Phone Number", type: "number" }
 ]
 
-const AddMemberForm = () => {
-    const { data } = useGetUnitsQuery()
-    const { mutate } = useCreateMemberMutation()
+const AddMemberForm = ({ memberData }) => {
+    const { data,  } = useGetUnitsQuery()
+    
+    const { mutate, isPending } = useCreateMemberMutation()
+    const { mutate: editMutate, isPending: editIsPending } = useEditMemberMutation()
     const form = useForm({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            firstname: "",
-            lastname: "",
-            matricNumber: "",
-            email: "",
-            phone: "",
-            isAWorker: false,
-            level: "100 Level"
+            firstname: memberData ? memberData?.firstname : "",
+            lastname: memberData ? memberData?.lastname : "",
+            matricNumber: memberData ? memberData?.matricNumber : "",
+            email: memberData ? memberData?.email : "",
+            phone: memberData ? memberData?.phone : "",
+            isAWorker: (memberData && memberData?.unit != []) ? true : false,
+            level: memberData ? memberData?.level : "100 Level",
+            unit: memberData ? memberData?.unit[0] : null,
         }
     })
 
     const onSubmit = (values) => {
         console.log(values)
-        mutate(values)
+        memberData ? editMutate(values) : mutate(values) 
     }
+
+    const pending = isPending || editIsPending 
 
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
-                <ScrollArea className="max-h-[70vh] h-[350px] w-full">
+                <div className="custom-scroll-area max-h-[70vh] h-fit w-full ">
                     <div className='p-4 space-y-8'>
 
                         {/* Dynamically render input fields */}
@@ -96,7 +101,7 @@ const AddMemberForm = () => {
                             name="level"
                             render={({ field }) => (
                                 <FormItem>
-                                    <Select onValueChange={field.onChange}>
+                                    <Select onValueChange={field.onChange} value={field.value}>
                                         <SelectTrigger>
                                             <SelectValue placeholder="Select level" defaultValue={field.value}/>
                                         </SelectTrigger>
@@ -133,9 +138,9 @@ const AddMemberForm = () => {
                                 name="unit"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                        <Select onValueChange={field.onChange} value={field.value}>
                                             <SelectTrigger>
-                                                <SelectValue placeholder="Select unit" />
+                                                <SelectValue placeholder="Select unit" defaultValue={field.value} />
                                             </SelectTrigger>
                                             <SelectContent>
                                                 {data?.data.map((unit) => (
@@ -149,8 +154,10 @@ const AddMemberForm = () => {
                             />
                         )}
                     </div>
-                </ScrollArea>
-                <Button type="submit" className="float-right">Add Member</Button>
+                </div>
+                <Button type="submit" className="float-right">
+                    {pending? <Loader className={"border-primary-foreground"} /> : "Submit"}
+                </Button>
             </form>
         </Form>
     )
