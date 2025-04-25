@@ -50,8 +50,8 @@ export const getTotalMembersAnalytics = async () => {
 
 // sermons 
 
-export const createSermons = async (data) => {
-  const response = await apiClient.post("/user/sermon/create-sermons", data)
+export const createSermon = async (data) => {
+  const response = await apiClient.post("/user/sermon/create-sermon", data)
   return response.data;
 };
 
@@ -60,3 +60,12 @@ export const getSermons = async () => {
   return response.data;
 };
 
+export const editSermon = async (data, sermonId) => {
+  const response = await apiClient.put(`/user/sermon/update-sermon/${sermonId}`, data)
+  return response.data;
+};
+
+export const deleteSermon = async (sermonId) => {
+  const response = await apiClient.delete(`/user/sermon/delete-sermon/${sermonId}`)
+  return response.data;
+};

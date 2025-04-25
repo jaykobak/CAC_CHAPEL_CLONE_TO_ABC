@@ -13,7 +13,7 @@ import VerifyOtp from "./pages/auth/VerifyOtp"
 import ResetPassword from "./pages/auth/ResetPassword"
 import Member from "./pages/admin/Members/Member"
 import AttendanceMarking from "./pages/admin/Attendance/AttendanceMarking"
-import SermonPage from "./pages/admin/Sermons/SermonPage"
+import AdminSermonPage from "./pages/admin/Sermons/SermonPage"
 
 function App() {
 
@@ -35,7 +35,7 @@ function App() {
           <Route path="/admin/attendance/:id" element={<AttendanceMarking />} />
 
           {/* Sermons  */}
-          <Route path="/admin/sermons" element={<SermonPage />} />
+          <Route path="/admin/sermons" element={<AdminSermonPage />} />
 
           {/* Authentication */}
           <Route path="/auth/login" element={<Login />} />
