@@ -1,5 +1,3 @@
-"use client"
-
 import { useState, useEffect } from "react"
 import AdminLayout from "@/layouts/AdminLayout"
 import AdminPadding from "@/layouts/AdminPadding"
@@ -26,25 +24,31 @@ import {
 } from "@/components/ui/alert-dialog"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { Checkbox } from "@/components/ui/checkbox"
 // import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import {
   Loader2,
   Search,
   Plus,
   Pencil,
   Trash2,
-  Check,
-  ChevronsUpDown,
   X,
   AlertCircle,
   CheckCircle2,
   Users,
+  CalendarIcon,
+  User,
+  Mail,
+  Phone,
+  Home,
+  Layers,
+  GraduationCap,
+  CalendarDays,
 } from "lucide-react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -94,8 +98,8 @@ const Members = () => {
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)
   const [selectedMember, setSelectedMember] = useState(null)
   const [message, setMessage] = useState({ type: "", text: "" })
-  const [openAddUnitPopover, setOpenAddUnitPopover] = useState(false)
-  const [openEditUnitPopover, setOpenEditUnitPopover] = useState(false)
+  const [showCalendar, setShowCalendar] = useState(false)
+  const [showEditCalendar, setShowEditCalendar] = useState(false)
 
   // Forms
   const addForm = useForm({
@@ -108,6 +112,7 @@ const Members = () => {
       address: "",
       level: "",
       unit: [],
+      birthday: undefined,
     },
   })
 
@@ -121,6 +126,7 @@ const Members = () => {
       address: "",
       level: "",
       unit: [],
+      birthday: undefined,
     },
   })
 
@@ -246,7 +252,7 @@ const Members = () => {
       phone: member.phone,
       address: member.address || "",
       level: member.level,
-      unit: member.unit,
+      unit: member.unit || [],
       birthday: member.birthday ? new Date(member.birthday) : undefined,
     })
     setIsEditDialogOpen(true)
@@ -271,6 +277,23 @@ const Members = () => {
       month: "short",
       day: "numeric",
     })
+  }
+
+  // Toggle unit selection
+  const toggleUnitSelection = (unitId, formType) => {
+    if (formType === "add") {
+      const currentUnits = addForm.getValues("unit") || []
+      const newUnits = currentUnits.includes(unitId)
+        ? currentUnits.filter((id) => id !== unitId)
+        : [...currentUnits, unitId]
+      addForm.setValue("unit", newUnits, { shouldValidate: true })
+    } else {
+      const currentUnits = editForm.getValues("unit") || []
+      const newUnits = currentUnits.includes(unitId)
+        ? currentUnits.filter((id) => id !== unitId)
+        : [...currentUnits, unitId]
+      editForm.setValue("unit", newUnits, { shouldValidate: true })
+    }
   }
 
   // Clear message after 5 seconds
@@ -472,211 +495,233 @@ const Members = () => {
             </CardFooter>
           </Card>
 
-          {/* Add Member Dialog */}
+          {/* Add Member Dialog - Completely Redesigned */}
           <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
-            <DialogContent className="sm:max-w-[650px] p-0 overflow-hidden">
-              <DialogHeader className="px-6 pt-6 pb-2">
-                <DialogTitle className="text-xl font-semibold text-primary">Add New Member</DialogTitle>
+            <DialogContent className="sm:max-w-[700px] p-0 overflow-hidden">
+              <DialogHeader className="px-6 pt-6 pb-2 bg-gradient-to-r from-primary/10 to-primary/5">
+                <DialogTitle className="text-xl font-semibold text-primary flex items-center gap-2">
+                  <User className="h-5 w-5" /> Add New Member
+                </DialogTitle>
                 <DialogDescription>Fill in the details to add a new member to the system.</DialogDescription>
               </DialogHeader>
-              <div className="px-6 py-4">
+
+              <Tabs defaultValue="basic" className="w-full">
+                <div className="px-6 pt-4">
+                  <TabsList className="grid w-full grid-cols-2">
+                    <TabsTrigger value="basic">Basic Information</TabsTrigger>
+                    <TabsTrigger value="additional">Additional Details</TabsTrigger>
+                  </TabsList>
+                </div>
+
                 <Form {...addForm}>
                   <form onSubmit={addForm.handleSubmit(onAddMember)} className="space-y-6">
-                    <div className="grid grid-cols-2 gap-4">
-                      <FormField
-                        control={addForm.control}
-                        name="firstname"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>First Name</FormLabel>
-                            <FormControl>
-                              <Input placeholder="John" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={addForm.control}
-                        name="lastname"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Last Name</FormLabel>
-                            <FormControl>
-                              <Input placeholder="Doe" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      <FormField
-                        control={addForm.control}
-                        name="email"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Email</FormLabel>
-                            <FormControl>
-                              <Input placeholder="john.doe@example.com" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={addForm.control}
-                        name="phone"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Phone</FormLabel>
-                            <FormControl>
-                              <Input placeholder="08012345678" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-                    <FormField
-                      control={addForm.control}
-                      name="address"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Address (Optional)</FormLabel>
-                          <FormControl>
-                            <Input placeholder="123 Main St, City" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <div className="grid grid-cols-2 gap-4">
-                      <FormField
-                        control={addForm.control}
-                        name="level"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Level</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
-                              <FormControl>
-                                <SelectTrigger>
-                                  <SelectValue placeholder="Select level" />
-                                </SelectTrigger>
-                              </FormControl>
-                              <SelectContent>
-                                {levelOptions.map((level) => (
-                                  <SelectItem key={level} value={level}>
-                                    {level}
-                                  </SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={addForm.control}
-                        name="birthday"
-                        render={({ field }) => (
-                          <FormItem className="flex flex-col">
-                            <FormLabel>Birthday (Optional)</FormLabel>
-                            <Popover>
-                              <PopoverTrigger asChild>
+                    <TabsContent value="basic" className="px-6 pt-4">
+                      <div className="space-y-4">
+                        <div className="grid grid-cols-2 gap-4">
+                          <FormField
+                            control={addForm.control}
+                            name="firstname"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel className="flex items-center gap-1">
+                                  <User className="h-3.5 w-3.5" /> First Name
+                                </FormLabel>
                                 <FormControl>
-                                  <Button
-                                    variant={"outline"}
-                                    className={`w-full pl-3 text-left font-normal ${!field.value && "text-muted-foreground"
-                                      }`}
-                                  >
-                                    {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}
-                                    <Calendar className="ml-auto h-4 w-4 opacity-50" />
-                                  </Button>
+                                  <Input placeholder="John" {...field} />
                                 </FormControl>
-                              </PopoverTrigger>
-                              <PopoverContent className="w-auto p-0" align="start">
-                                <Calendar
-                                  mode="single"
-                                  selected={field.value}
-                                  onSelect={field.onChange}
-                                  disabled={(date) => date > new Date() || date < new Date("1900-01-01")}
-                                  initialFocus
-                                />
-                              </PopoverContent>
-                            </Popover>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-                    <FormField
-                      control={addForm.control}
-                      name="unit"
-                      render={({ field }) => (
-                        <FormItem className="flex flex-col">
-                          <FormLabel>Units (Optional)</FormLabel>
-                          <Popover open={openAddUnitPopover} onOpenChange={setOpenAddUnitPopover}>
-                            <PopoverTrigger asChild>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                          <FormField
+                            control={addForm.control}
+                            name="lastname"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel className="flex items-center gap-1">
+                                  <User className="h-3.5 w-3.5" /> Last Name
+                                </FormLabel>
+                                <FormControl>
+                                  <Input placeholder="Doe" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                        </div>
+
+                        <FormField
+                          control={addForm.control}
+                          name="email"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="flex items-center gap-1">
+                                <Mail className="h-3.5 w-3.5" /> Email
+                              </FormLabel>
                               <FormControl>
-                                <Button
-                                  variant="outline"
-                                  role="combobox"
-                                  className={`w-full justify-between ${!field.value?.length && "text-muted-foreground"}`}
-                                >
-                                  {field.value?.length
-                                    ? `${field.value.length} unit${field.value.length > 1 ? "s" : ""} selected`
-                                    : "Select units"}
-                                  <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                                </Button>
+                                <Input placeholder="john.doe@example.com" {...field} />
                               </FormControl>
-                            </PopoverTrigger>
-                            <PopoverContent className="w-full p-0">
-                              <Command>
-                                <CommandInput placeholder="Search units..." />
-                                <CommandList>
-                                  <CommandEmpty>No units found.</CommandEmpty>
-                                  <CommandGroup className="max-h-64 overflow-auto">
-                                    {units.map((unit) => (
-                                      <CommandItem
-                                        key={unit._id}
-                                        value={unit.title}
-                                        onSelect={() => {
-                                          const currentValue = field.value || []
-                                          const newValue = currentValue.includes(unit._id)
-                                            ? currentValue.filter((id) => id !== unit._id)
-                                            : [...currentValue, unit._id]
-                                          field.onChange(newValue)
-                                        }}
-                                      >
-                                        <Checkbox checked={field.value?.includes(unit._id)} className="mr-2" />
-                                        <span className="capitalize">{unit.title}</span>
-                                      </CommandItem>
-                                    ))}
-                                  </CommandGroup>
-                                </CommandList>
-                                <div className="border-t p-2">
-                                  <Button
-                                    variant="outline"
-                                    size="sm"
-                                    className="w-full"
-                                    onClick={() => setOpenAddUnitPopover(false)}
-                                  >
-                                    <Check className="mr-2 h-4 w-4" />
-                                    Done
-                                  </Button>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+
+                        <FormField
+                          control={addForm.control}
+                          name="phone"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="flex items-center gap-1">
+                                <Phone className="h-3.5 w-3.5" /> Phone
+                              </FormLabel>
+                              <FormControl>
+                                <Input placeholder="08012345678" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+
+                        <FormField
+                          control={addForm.control}
+                          name="level"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="flex items-center gap-1">
+                                <GraduationCap className="h-3.5 w-3.5" /> Level
+                              </FormLabel>
+                              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                <FormControl>
+                                  <SelectTrigger>
+                                    <SelectValue placeholder="Select level" />
+                                  </SelectTrigger>
+                                </FormControl>
+                                <SelectContent>
+                                  {levelOptions.map((level) => (
+                                    <SelectItem key={level} value={level}>
+                                      {level}
+                                    </SelectItem>
+                                  ))}
+                                </SelectContent>
+                              </Select>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+                    </TabsContent>
+
+                    <TabsContent value="additional" className="px-6 pt-4">
+                      <div className="space-y-4">
+                        <FormField
+                          control={addForm.control}
+                          name="address"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="flex items-center gap-1">
+                                <Home className="h-3.5 w-3.5" /> Address (Optional)
+                              </FormLabel>
+                              <FormControl>
+                                <Input placeholder="123 Main St, City" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+
+                        <FormField
+                          control={addForm.control}
+                          name="birthday"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="flex items-center gap-1">
+                                <CalendarDays className="h-3.5 w-3.5" /> Birthday (Optional)
+                              </FormLabel>
+                              <div className="relative">
+                                <FormControl>
+                                  <div className="flex">
+                                    <Button
+                                      variant="outline"
+                                      className={`w-full justify-start text-left font-normal ${!field.value && "text-muted-foreground"
+                                        }`}
+                                      type="button"
+                                      onClick={() => setShowCalendar(!showCalendar)}
+                                    >
+                                      {field.value ? format(field.value, "PPP") : "Select birthday"}
+                                      <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                    </Button>
+                                  </div>
+                                </FormControl>
+                                {showCalendar && (
+                                  <div className="absolute z-10 mt-1 bg-background border rounded-md shadow-md">
+                                    <Calendar
+                                      mode="single"
+                                      selected={field.value}
+                                      onSelect={(date) => {
+                                        field.onChange(date)
+                                        setShowCalendar(false)
+                                      }}
+                                      disabled={(date) => date > new Date() || date < new Date("1900-01-01")}
+                                      initialFocus
+                                    />
+                                  </div>
+                                )}
+                              </div>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+
+                        <FormField
+                          control={addForm.control}
+                          name="unit"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="flex items-center gap-1">
+                                <Layers className="h-3.5 w-3.5" /> Units (Optional)
+                              </FormLabel>
+                              <FormControl>
+                                <div className="border rounded-md p-4">
+                                  <div className="mb-2 flex justify-between items-center">
+                                    <span className="text-sm font-medium">
+                                      {field.value?.length || 0} unit(s) selected
+                                    </span>
+                                  </div>
+                                  <ScrollArea className="h-[200px] rounded-md border">
+                                    <div className="p-4 space-y-2">
+                                      {units.map((unit) => (
+                                        <div key={unit._id} className="flex items-center space-x-2">
+                                          <Checkbox
+                                            id={`add-unit-${unit._id}`}
+                                            checked={(field.value || []).includes(unit._id)}
+                                            onCheckedChange={() => toggleUnitSelection(unit._id, "add")}
+                                          />
+                                          <label
+                                            htmlFor={`add-unit-${unit._id}`}
+                                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 capitalize cursor-pointer"
+                                          >
+                                            {unit.title}
+                                          </label>
+                                        </div>
+                                      ))}
+                                      {units.length === 0 && (
+                                        <div className="text-center py-4 text-muted-foreground">No units available</div>
+                                      )}
+                                    </div>
+                                  </ScrollArea>
                                 </div>
-                              </Command>
-                            </PopoverContent>
-                          </Popover>
-                          <FormDescription>Select one or more units for this member.</FormDescription>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                              </FormControl>
+                              <FormDescription>Select one or more units for this member.</FormDescription>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+                    </TabsContent>
                   </form>
                 </Form>
-              </div>
+              </Tabs>
+
               <DialogFooter className="px-6 py-4 bg-muted/30">
                 <Button
                   type="button"
@@ -684,6 +729,7 @@ const Members = () => {
                   onClick={() => {
                     addForm.reset()
                     setIsAddDialogOpen(false)
+                    setShowCalendar(false)
                   }}
                 >
                   Cancel
@@ -701,211 +747,233 @@ const Members = () => {
             </DialogContent>
           </Dialog>
 
-          {/* Edit Member Dialog */}
+          {/* Edit Member Dialog - Completely Redesigned */}
           <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
-            <DialogContent className="sm:max-w-[650px] p-0 overflow-hidden">
-              <DialogHeader className="px-6 pt-6 pb-2">
-                <DialogTitle className="text-xl font-semibold text-primary">Edit Member</DialogTitle>
+            <DialogContent className="sm:max-w-[700px] p-0 overflow-hidden">
+              <DialogHeader className="px-6 pt-6 pb-2 bg-gradient-to-r from-primary/10 to-primary/5">
+                <DialogTitle className="text-xl font-semibold text-primary flex items-center gap-2">
+                  <Pencil className="h-5 w-5" /> Edit Member
+                </DialogTitle>
                 <DialogDescription>Update the member's information.</DialogDescription>
               </DialogHeader>
-              <div className="px-6 py-4">
+
+              <Tabs defaultValue="basic" className="w-full">
+                <div className="px-6 pt-4">
+                  <TabsList className="grid w-full grid-cols-2">
+                    <TabsTrigger value="basic">Basic Information</TabsTrigger>
+                    <TabsTrigger value="additional">Additional Details</TabsTrigger>
+                  </TabsList>
+                </div>
+
                 <Form {...editForm}>
                   <form onSubmit={editForm.handleSubmit(onEditMember)} className="space-y-6">
-                    <div className="grid grid-cols-2 gap-4">
-                      <FormField
-                        control={editForm.control}
-                        name="firstname"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>First Name</FormLabel>
-                            <FormControl>
-                              <Input placeholder="John" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={editForm.control}
-                        name="lastname"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Last Name</FormLabel>
-                            <FormControl>
-                              <Input placeholder="Doe" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      <FormField
-                        control={editForm.control}
-                        name="email"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Email</FormLabel>
-                            <FormControl>
-                              <Input placeholder="john.doe@example.com" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={editForm.control}
-                        name="phone"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Phone</FormLabel>
-                            <FormControl>
-                              <Input placeholder="08012345678" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-                    <FormField
-                      control={editForm.control}
-                      name="address"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Address (Optional)</FormLabel>
-                          <FormControl>
-                            <Input placeholder="123 Main St, City" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <div className="grid grid-cols-2 gap-4">
-                      <FormField
-                        control={editForm.control}
-                        name="level"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Level</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
-                              <FormControl>
-                                <SelectTrigger>
-                                  <SelectValue placeholder="Select level" />
-                                </SelectTrigger>
-                              </FormControl>
-                              <SelectContent>
-                                {levelOptions.map((level) => (
-                                  <SelectItem key={level} value={level}>
-                                    {level}
-                                  </SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={editForm.control}
-                        name="birthday"
-                        render={({ field }) => (
-                          <FormItem className="flex flex-col">
-                            <FormLabel>Birthday (Optional)</FormLabel>
-                            <Popover>
-                              <PopoverTrigger asChild>
+                    <TabsContent value="basic" className="px-6 pt-4">
+                      <div className="space-y-4">
+                        <div className="grid grid-cols-2 gap-4">
+                          <FormField
+                            control={editForm.control}
+                            name="firstname"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel className="flex items-center gap-1">
+                                  <User className="h-3.5 w-3.5" /> First Name
+                                </FormLabel>
                                 <FormControl>
-                                  <Button
-                                    variant={"outline"}
-                                    className={`w-full pl-3 text-left font-normal ${!field.value && "text-muted-foreground"
-                                      }`}
-                                  >
-                                    {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}
-                                    <Calendar className="ml-auto h-4 w-4 opacity-50" />
-                                  </Button>
+                                  <Input placeholder="John" {...field} />
                                 </FormControl>
-                              </PopoverTrigger>
-                              <PopoverContent className="w-auto p-0" align="start">
-                                <Calendar
-                                  mode="single"
-                                  selected={field.value}
-                                  onSelect={field.onChange}
-                                  disabled={(date) => date > new Date() || date < new Date("1900-01-01")}
-                                  initialFocus
-                                />
-                              </PopoverContent>
-                            </Popover>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-                    <FormField
-                      control={editForm.control}
-                      name="unit"
-                      render={({ field }) => (
-                        <FormItem className="flex flex-col">
-                          <FormLabel>Units (Optional)</FormLabel>
-                          <Popover open={openEditUnitPopover} onOpenChange={setOpenEditUnitPopover}>
-                            <PopoverTrigger asChild>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                          <FormField
+                            control={editForm.control}
+                            name="lastname"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel className="flex items-center gap-1">
+                                  <User className="h-3.5 w-3.5" /> Last Name
+                                </FormLabel>
+                                <FormControl>
+                                  <Input placeholder="Doe" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                        </div>
+
+                        <FormField
+                          control={editForm.control}
+                          name="email"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="flex items-center gap-1">
+                                <Mail className="h-3.5 w-3.5" /> Email
+                              </FormLabel>
                               <FormControl>
-                                <Button
-                                  variant="outline"
-                                  role="combobox"
-                                  className={`w-full justify-between ${!field.value?.length && "text-muted-foreground"}`}
-                                >
-                                  {field.value?.length
-                                    ? `${field.value.length} unit${field.value.length > 1 ? "s" : ""} selected`
-                                    : "Select units"}
-                                  <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                                </Button>
+                                <Input placeholder="john.doe@example.com" {...field} />
                               </FormControl>
-                            </PopoverTrigger>
-                            <PopoverContent className="w-full p-0">
-                              <Command>
-                                <CommandInput placeholder="Search units..." />
-                                <CommandList>
-                                  <CommandEmpty>No units found.</CommandEmpty>
-                                  <CommandGroup className="max-h-64 overflow-auto">
-                                    {units.map((unit) => (
-                                      <CommandItem
-                                        key={unit._id}
-                                        value={unit.title}
-                                        onSelect={() => {
-                                          const currentValue = field.value || []
-                                          const newValue = currentValue.includes(unit._id)
-                                            ? currentValue.filter((id) => id !== unit._id)
-                                            : [...currentValue, unit._id]
-                                          field.onChange(newValue)
-                                        }}
-                                      >
-                                        <Checkbox checked={field.value?.includes(unit._id)} className="mr-2" />
-                                        <span className="capitalize">{unit.title}</span>
-                                      </CommandItem>
-                                    ))}
-                                  </CommandGroup>
-                                </CommandList>
-                                <div className="border-t p-2">
-                                  <Button
-                                    variant="outline"
-                                    size="sm"
-                                    className="w-full"
-                                    onClick={() => setOpenEditUnitPopover(false)}
-                                  >
-                                    <Check className="mr-2 h-4 w-4" />
-                                    Done
-                                  </Button>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+
+                        <FormField
+                          control={editForm.control}
+                          name="phone"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="flex items-center gap-1">
+                                <Phone className="h-3.5 w-3.5" /> Phone
+                              </FormLabel>
+                              <FormControl>
+                                <Input placeholder="08012345678" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+
+                        <FormField
+                          control={editForm.control}
+                          name="level"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="flex items-center gap-1">
+                                <GraduationCap className="h-3.5 w-3.5" /> Level
+                              </FormLabel>
+                              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                <FormControl>
+                                  <SelectTrigger>
+                                    <SelectValue placeholder="Select level" />
+                                  </SelectTrigger>
+                                </FormControl>
+                                <SelectContent>
+                                  {levelOptions.map((level) => (
+                                    <SelectItem key={level} value={level}>
+                                      {level}
+                                    </SelectItem>
+                                  ))}
+                                </SelectContent>
+                              </Select>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+                    </TabsContent>
+
+                    <TabsContent value="additional" className="px-6 pt-4">
+                      <div className="space-y-4">
+                        <FormField
+                          control={editForm.control}
+                          name="address"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="flex items-center gap-1">
+                                <Home className="h-3.5 w-3.5" /> Address (Optional)
+                              </FormLabel>
+                              <FormControl>
+                                <Input placeholder="123 Main St, City" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+
+                        <FormField
+                          control={editForm.control}
+                          name="birthday"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="flex items-center gap-1">
+                                <CalendarDays className="h-3.5 w-3.5" /> Birthday (Optional)
+                              </FormLabel>
+                              <div className="relative">
+                                <FormControl>
+                                  <div className="flex">
+                                    <Button
+                                      variant="outline"
+                                      className={`w-full justify-start text-left font-normal ${!field.value && "text-muted-foreground"
+                                        }`}
+                                      type="button"
+                                      onClick={() => setShowEditCalendar(!showEditCalendar)}
+                                    >
+                                      {field.value ? format(field.value, "PPP") : "Select birthday"}
+                                      <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                    </Button>
+                                  </div>
+                                </FormControl>
+                                {showEditCalendar && (
+                                  <div className="absolute z-10 mt-1 bg-background border rounded-md shadow-md">
+                                    <Calendar
+                                      mode="single"
+                                      selected={field.value}
+                                      onSelect={(date) => {
+                                        field.onChange(date)
+                                        setShowEditCalendar(false)
+                                      }}
+                                      disabled={(date) => date > new Date() || date < new Date("1900-01-01")}
+                                      initialFocus
+                                    />
+                                  </div>
+                                )}
+                              </div>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+
+                        <FormField
+                          control={editForm.control}
+                          name="unit"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="flex items-center gap-1">
+                                <Layers className="h-3.5 w-3.5" /> Units (Optional)
+                              </FormLabel>
+                              <FormControl>
+                                <div className="border rounded-md p-4">
+                                  <div className="mb-2 flex justify-between items-center">
+                                    <span className="text-sm font-medium">
+                                      {field.value?.length || 0} unit(s) selected
+                                    </span>
+                                  </div>
+                                  <ScrollArea className="h-[200px] rounded-md border">
+                                    <div className="p-4 space-y-2">
+                                      {units.map((unit) => (
+                                        <div key={unit._id} className="flex items-center space-x-2">
+                                          <Checkbox
+                                            id={`edit-unit-${unit._id}`}
+                                            checked={(field.value || []).includes(unit._id)}
+                                            onCheckedChange={() => toggleUnitSelection(unit._id, "edit")}
+                                          />
+                                          <label
+                                            htmlFor={`edit-unit-${unit._id}`}
+                                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 capitalize cursor-pointer"
+                                          >
+                                            {unit.title}
+                                          </label>
+                                        </div>
+                                      ))}
+                                      {units.length === 0 && (
+                                        <div className="text-center py-4 text-muted-foreground">No units available</div>
+                                      )}
+                                    </div>
+                                  </ScrollArea>
                                 </div>
-                              </Command>
-                            </PopoverContent>
-                          </Popover>
-                          <FormDescription>Select one or more units for this member.</FormDescription>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                              </FormControl>
+                              <FormDescription>Select one or more units for this member.</FormDescription>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+                    </TabsContent>
                   </form>
                 </Form>
-              </div>
+              </Tabs>
+
               <DialogFooter className="px-6 py-4 bg-muted/30">
                 <Button
                   type="button"
@@ -913,6 +981,7 @@ const Members = () => {
                   onClick={() => {
                     editForm.reset()
                     setIsEditDialogOpen(false)
+                    setShowEditCalendar(false)
                   }}
                 >
                   Cancel
@@ -957,6 +1026,23 @@ const Members = () => {
 }
 
 export default Members
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
