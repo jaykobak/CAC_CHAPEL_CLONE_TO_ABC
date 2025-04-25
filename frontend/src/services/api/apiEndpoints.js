@@ -48,6 +48,15 @@ export const getTotalMembersAnalytics = async () => {
   return response.data;
 };
 
+// sermons 
 
+export const createSermons = async (data) => {
+  const response = await apiClient.post("/user/sermon/create-sermons", data)
+  return response.data;
+};
 
+export const getSermons = async () => {
+  const response = await apiClient.get("/user/sermon/get-sermons",)
+  return response.data;
+};
 

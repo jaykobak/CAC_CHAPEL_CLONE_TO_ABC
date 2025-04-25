@@ -37,3 +37,18 @@ export const loginUser = async (data) => {
     const response = await makeApiRequest('POST', '/auth/login', data);
     return response;
 };
+
+// sermons 
+
+
+export const createSermons = async (data) => {
+    const response = await makeApiRequest('POST', '/user/sermon/create-sermons', data);
+    return response;
+};
+
+export const getSermons = async (data) => {
+    const response = await makeApiRequest('GET', '/user/sermon/get-sermons', data);
+    return response;
+};
+
+

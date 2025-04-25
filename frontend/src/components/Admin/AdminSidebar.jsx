@@ -15,10 +15,16 @@ const nav = [
     slug: "dashboard",
   },
   {
-    name: "Members", 
+    name: "Members",
     link: "/admin/members?tab=overview",
     icon: <UsersIcon className='w-8' />,
     slug: "members",
+  },
+  {
+    name: "Sermons",
+    link: "/admin/sermons",
+    icon: <UsersIcon className='w-8' />,
+    slug: "sermons",
   },
   {
     name: "Attendance",
@@ -40,7 +46,7 @@ const AdminSidebar = () => {
       initializeSidebar(isLargeScreen);
     };
 
-    handleResize(); 
+    handleResize();
     window.addEventListener('resize', handleResize);
 
     return () => {
