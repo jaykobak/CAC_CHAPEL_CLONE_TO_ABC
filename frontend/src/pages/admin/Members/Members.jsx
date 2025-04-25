@@ -55,6 +55,7 @@ import { useForm } from "react-hook-form"
 import * as z from "zod"
 import { format } from "date-fns"
 import { Calendar } from "@/components/ui/calendar"
+import { useNavigate } from "react-router-dom"
 
 // Form schema for member
 const memberFormSchema = z.object({
@@ -82,6 +83,7 @@ const levelOptions = [
 ]
 
 const Members = () => {
+  const navigate = useNavigate();
   // State
   const [members, setMembers] = useState([])
   const [units, setUnits] = useState([])
@@ -393,12 +395,12 @@ const Members = () => {
                         {members.length > 0 ? (
                           members.map((member) => (
                             <TableRow key={member._id} className="hover:bg-muted/20 transition-colors">
-                              <TableCell className="font-medium">
+                              <TableCell onClick={() => navigate(`/admin/members/${member?._id}`)} className="font-medium cursor-pointer">
                                 {member.firstname} {member.lastname}
                               </TableCell>
-                              <TableCell>{member.email}</TableCell>
+                              <TableCell onClick={() => navigate(`/admin/members/${member?._id}`)} className="cursor-pointer">{member.email}</TableCell>
                               <TableCell>{member.phone}</TableCell>
-                              <TableCell>
+                              <TableCell onClick={() => navigate(`/admin/members/${member?._id}`)} className="cursor-pointer">
                                 <Badge variant="outline" className="bg-primary/10 text-primary border-primary/20">
                                   {member.level}
                                 </Badge>
@@ -407,7 +409,7 @@ const Members = () => {
                                 <div className="flex flex-wrap gap-1">
                                   {member.unit && member.unit.length > 0 ? (
                                     getUnitTitles(member.unit).map((title, index) => (
-                                      <Badge key={index} variant="secondary" className="capitalize">
+                                      <Badge key={index} variant="secondary" onClick={() => navigate(`/admin/members/${member?._id}`)} className="capitalize cursor-pointer">
                                         {title}
                                       </Badge>
                                     ))

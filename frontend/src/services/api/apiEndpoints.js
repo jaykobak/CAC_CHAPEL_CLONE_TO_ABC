@@ -17,8 +17,8 @@ export const getMembers = async () => {
   return response.data;
 };
 
-export const getMember = async () => {
-  const response = await apiClient.get(`/member/${id}`)
+export const getMember = async (memberId) => {
+  const response = await apiClient.get(`/member/${memberId}`)
   return response.data;
 };
 

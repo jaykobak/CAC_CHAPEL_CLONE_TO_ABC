@@ -34,6 +34,7 @@ function App() {
           <Route path="/admin/dashboard" element={<Dashboard />} />
           <Route path="/admin/members" element={<Members />} />
           <Route path="/admin/members/:id" element={<Member />} />
+
           <Route path="/admin/attendance" element={<Attendance />} />
           <Route path="/admin/attendance/:id" element={<AttendanceMarking />} />
 
