@@ -44,8 +44,8 @@ const Login = () => {
     return (
         <AuthLayout>
             <div className='flex flex-col space-y-6'>
-            <h1 className='text-2xl text-center font-semibold bg-gradient-to-b from-foreground/40 via-foreground/60 to-foreground/80 bg-clip-text text-transparent '>Welcome Back</h1>
-            <Form {...form}>
+                <h1 className='text-2xl text-center font-semibold bg-gradient-to-b from-foreground/40 via-foreground/60 to-foreground/80 bg-clip-text text-transparent '>Welcome Back</h1>
+                <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className='flex flex-col gap-6'>
                         {formFieldsConfig.map((formField) => (
                             <FormField
