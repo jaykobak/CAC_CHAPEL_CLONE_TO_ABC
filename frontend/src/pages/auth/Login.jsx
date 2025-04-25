@@ -1,5 +1,5 @@
 import AuthLayout from '@/layouts/AuthLayout'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm, Controller } from "react-hook-form"
@@ -13,7 +13,10 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
+import { useLoginMutation } from '@/dataOperations/auth'
+import { useToast } from '@/hooks/use-toast'
+import Loader from '@/components/Loader'
 
 const schema = z.object({
     email: z.string(),
@@ -26,6 +29,10 @@ const formFieldsConfig = [
 ]
 
 const Login = () => {
+    const { toast } = useToast()
+    const [searchParams] = useSearchParams()
+    const nextUrl = searchParams.get("next")
+    const { mutate, isPending } = useLoginMutation()
     const form = useForm({
         resolver: zodResolver(schema),
         defaultValues: {
@@ -34,11 +41,22 @@ const Login = () => {
         },
     })
 
+    useEffect(() => {
+        if (nextUrl) {
+            toast({
+                title: 'Not Authorized',
+                description: "Please login to continue"
+            })
+        }
+    }, [nextUrl])
+
+
     const email = form.watch("email")
     const password = form.watch("password")
 
     const onSubmit = (values) => {
         console.log(values)
+        mutate(values)
     }
 
     return (
@@ -69,8 +87,8 @@ const Login = () => {
                         </h1>
 
 
-                        <Button disabled={!email || !password} className="w-full">
-                            Login
+                        <Button disabled={!email || !password || isPending} className="w-full">
+                            {isPending ? <Loader className={'border-primary-foreground'} /> : "Login" }
                         </Button>
 
                         <h1 className='flex gap-2 text-sm font-medium justify-center flex-wrap text-nowrap'>

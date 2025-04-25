@@ -15,7 +15,7 @@ const nav = [
     slug: "dashboard",
   },
   {
-    name: "Members",
+    name: "Members", 
     link: "/admin/members?tab=overview",
     icon: <UsersIcon className='w-8' />,
     slug: "members",

@@ -8,6 +8,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { ChevronDown, LogOut, Settings, UserRoundCheck } from 'lucide-react'
+import useAuthStore from '@/stores/authStore'
 
 
 const menus = [
@@ -17,7 +18,7 @@ const menus = [
         link: "#",
     },
     {
-        name: "Logout",
+        name: "Another thing",
         icon: <LogOut />,
         link: "#",
     },
@@ -28,6 +29,7 @@ const menus = [
 const UserDropDown = () => {
     const [isOpen, setIsOpen] = useState(false)
     const toggleDropdown = () => setIsOpen(!isOpen)
+    const logout = useAuthStore(state => state.logout)
     return (
         <DropdownMenu>
             <DropdownMenuTrigger className="outline-none">
@@ -51,6 +53,11 @@ const UserDropDown = () => {
                         <span>{menu.name}</span>
                     </DropdownMenuItem>
                 ))}
+                <DropdownMenuSeparator />
+                <DropdownMenuItem className="text-xs" onClick={()=> logout()}>
+                    <LogOut />
+                    <span>Logout</span>
+            </DropdownMenuItem>
 
             </DropdownMenuContent>
         </DropdownMenu>

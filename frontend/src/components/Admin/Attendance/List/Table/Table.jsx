@@ -10,6 +10,56 @@ import { RingLoader } from 'react-spinners'
 import Loader from '@/components/Loader'
 import { Skeleton } from "@/components/ui/skeleton"
 
+const attendanceData = [
+    {
+        id: 1, 
+        name: "LAST SUNDAY",
+        date: "21th November, 2024",
+        fromTime: "5:00PM",
+        toTime: "7:00PM",
+        attendance: 90,
+    },
+    {
+        id: 1, 
+        name: "LAST SUNDAY",
+        date: "21th November, 2024",
+        fromTime: "5:00PM",
+        toTime: "7:00PM",
+        attendance: 90,
+    },
+    {
+        id: 1, 
+        name: "LAST SUNDAY",
+        date: "21th November, 2024",
+        fromTime: "5:00PM",
+        toTime: "7:00PM",
+        attendance: 90,
+    },
+    {
+        id: 1, 
+        name: "LAST SUNDAY",
+        date: "21th November, 2024",
+        fromTime: "5:00PM",
+        toTime: "7:00PM",
+        attendance: 90,
+    },
+    {
+        id: 1, 
+        name: "LAST SUNDAY",
+        date: "21th November, 2024",
+        fromTime: "5:00PM",
+        toTime: "7:00PM",
+        attendance: 90,
+    },
+    {
+        id: 1, 
+        name: "LAST SUNDAY",
+        date: "21th November, 2024",
+        fromTime: "5:00PM",
+        toTime: "7:00PM",
+        attendance: 90,
+    },
+]
 
 
 const Table = () => {
@@ -25,7 +75,7 @@ const Table = () => {
 
     return (
         <div className='w-full'>
-            {!isLoading && <DataTable columns={columns} data={data?.data || []} selected={selectedMemberIds} />}
+            {!isLoading && <DataTable columns={columns} data={attendanceData || []} selected={selectedMemberIds} />}
             {isLoading && (
                 <div className='flex justify-center flex-col space-y-2 h-full w-full'>
                     <div className='flex justify-between items-center'>

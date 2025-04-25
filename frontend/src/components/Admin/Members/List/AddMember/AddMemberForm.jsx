@@ -2,7 +2,6 @@ import React from "react"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm, Controller } from "react-hook-form"
-
 import { Button } from "@/components/ui/button"
 import {
     Form,
@@ -15,15 +14,17 @@ import { Input } from "@/components/ui/input"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Checkbox } from "@/components/ui/checkbox"
+import { useCreateMemberMutation, useEditMemberMutation } from "@/dataOperations/members"
+import { useGetUnitsQuery } from "@/dataOperations/unit"
+import Loader from "@/components/Loader"
 
 const levels = ["100 Level", "200 Level", "300 Level", "400 Level", "500 Level", "JUPEB", "PRE DEGREE", "Parents", "Children", "Alumni"]
 
-// Define schema
+
 const formSchema = z.object({
-    firstName: z.string().min(3, { message: "Name cannot be less than 3 characters" }).max(50),
-    middleName: z.string().min(3, { message: "Name cannot be less than 3 characters" }).max(50),
-    lastName: z.string().min(3, { message: "Name cannot be less than 3 characters" }).max(50),
-    matricNumber: z.string().min(10, { message: "Matric Number must be at least 10 characters" }),
+    firstname: z.string().min(3, { message: "Name cannot be less than 3 characters" }).max(50),
+    lastname: z.string().min(3, { message: "Name cannot be less than 3 characters" }).max(50),
+    // matricNumber: z.string().min(10, { message: "Matric Number must be at least 10 characters" }).optional(),
     email: z.string().email({ message: "Invalid email address" }),
     phone: z.string().min(11, { message: "Phone number must be 11 digits" }).max(15),
     isAWorker: z.boolean(),
@@ -40,38 +41,43 @@ const formSchema = z.object({
 
 // Form configuration for easier looping
 const formFieldsConfig = [
-    { name: "firstName", placeholder: "First Name", type: "text" },
-    { name: "middleName", placeholder: "Middle Name", type: "text" },
-    { name: "lastName", placeholder: "Last Name", type: "text" },
-    { name: "matricNumber", placeholder: "Matric Number", type: "text" },
+    { name: "firstname", placeholder: "First Name", type: "text" },
+    { name: "lastname", placeholder: "Last Name", type: "text" },
+    // { name: "matricNumber", placeholder: "Matric Number", type: "text" },
     { name: "email", placeholder: "Email", type: "email" },
-    { name: "phone", placeholder: "Phone Number", type: "text" }
+    { name: "phone", placeholder: "Phone Number", type: "number" }
 ]
 
-const AddMemberForm = () => {
+const AddMemberForm = ({ memberData }) => {
+    const { data,  } = useGetUnitsQuery()
+    
+    const { mutate, isPending } = useCreateMemberMutation()
+    const { mutate: editMutate, isPending: editIsPending } = useEditMemberMutation(memberData?._id)
     const form = useForm({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            firstName: "",
-            middleName: "",
-            lastName: "",
-            matricNumber: "",
-            email: "",
-            phone: "",
-            isAWorker: false,
-            unit: "",
-            level: "100 Level"
+            firstname: memberData ? memberData?.firstname : "",
+            lastname: memberData ? memberData?.lastname : "",
+            matricNumber: memberData ? memberData?.matricNumber : "",
+            email: memberData ? memberData?.email : "",
+            phone: memberData ? memberData?.phone : "",
+            isAWorker: (memberData && memberData?.unit != []) ? true : false,
+            level: memberData ? memberData?.level : "100 Level",
+            unit: memberData ? memberData?.unit[0] : null,
         }
     })
 
     const onSubmit = (values) => {
         console.log(values)
+        memberData ? editMutate(values) : mutate(values) 
     }
+
+    const pending = isPending || editIsPending 
 
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
-                <ScrollArea className="max-h-[70vh] h-[350px] w-full">
+                <div className="custom-scroll-area max-h-[50vh] h-fit w-full ">
                     <div className='p-4 space-y-8'>
 
                         {/* Dynamically render input fields */}
@@ -82,7 +88,7 @@ const AddMemberForm = () => {
                                 name={formField.name}
                                 render={({ field }) => (
                                     <FormItem>
-                                        <Input placeholder={formField.placeholder} {...field} type={field.type} />
+                                        <Input placeholder={formField.placeholder} {...field} type={formField.type} />
                                         <FormMessage className="text-xs" />
                                     </FormItem>
                                 )}
@@ -95,7 +101,7 @@ const AddMemberForm = () => {
                             name="level"
                             render={({ field }) => (
                                 <FormItem>
-                                    <Select onValueChange={field.onChange}>
+                                    <Select onValueChange={field.onChange} value={field.value}>
                                         <SelectTrigger>
                                             <SelectValue placeholder="Select level" defaultValue={field.value}/>
                                         </SelectTrigger>
@@ -132,13 +138,13 @@ const AddMemberForm = () => {
                                 name="unit"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                        <Select onValueChange={field.onChange} value={field.value}>
                                             <SelectTrigger>
-                                                <SelectValue placeholder="Select unit" />
+                                                <SelectValue placeholder="Select unit" defaultValue={field.value} />
                                             </SelectTrigger>
                                             <SelectContent>
-                                                {["Admin", "IT", "Finance", "Marketing", "HR"].map((unit) => (
-                                                    <SelectItem key={unit} value={unit}>{unit}</SelectItem>
+                                                {data?.data.map((unit) => (
+                                                    <SelectItem key={unit._id} value={unit._id}>{unit.title}</SelectItem>
                                                 ))}
                                             </SelectContent>
                                         </Select>
@@ -148,8 +154,10 @@ const AddMemberForm = () => {
                             />
                         )}
                     </div>
-                </ScrollArea>
-                <Button type="submit" className="float-right">Add Member</Button>
+                </div>
+                <Button type="submit" className="float-right">
+                    {pending? <Loader className={"border-primary-foreground"} /> : "Submit"}
+                </Button>
             </form>
         </Form>
     )

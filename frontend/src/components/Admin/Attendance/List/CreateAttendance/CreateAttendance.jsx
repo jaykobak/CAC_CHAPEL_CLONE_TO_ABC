@@ -9,24 +9,24 @@ import {
 } from "@/components/ui/dialog"
 import { Button } from '@/components/ui/button'
 import { Plus } from 'lucide-react'
-import AddMemberForm from './AddMemberForm'
+import CreateAttendanceForm from './CreateAttendanceForm'
 
 
-const AddMember = () => {
+const CreateAttendance = () => {
     return (
         <div>
             <Dialog>
                 <DialogTrigger asChild>
                     <Button className='items-center px-4 py-2 text-xs'>
                         <Plus />
-                        Add Member
+                        Create Attendance
                     </Button>
                 </DialogTrigger>
-                <DialogContent aria-describedby="add-member-form">
+                <DialogContent aria-describedby="create-attendance-form">
                     <DialogHeader>
-                        <DialogTitle>Add a new member</DialogTitle>
+                        <DialogTitle>Create New Attendance</DialogTitle>
                     </DialogHeader>
-                    <AddMemberForm />
+                    <CreateAttendanceForm />
                 </DialogContent>
             </Dialog>
 
@@ -34,4 +34,4 @@ const AddMember = () => {
     )
 }
 
-export default AddMember
+export default CreateAttendance

@@ -10,7 +10,7 @@ const BlogCard = ({ banner, title, description, date, link }) => {
                 <h1 className='font-cinzel text-2xl font-medium'>{title}</h1>
                 <p className='text-foreground/80 font-medium'>{description}</p>
                 <div className='flex justify-between items-center mt-5'>
-                    <Link to={link} className='has-svg text-sm border px-3 py-2 rounded-full flex gap-2'>
+                    <Link to={link} className='has-svg text-sm text-foreground/80 shadow-md border px-4 py-2 rounded-full flex gap-2 items-center'>
                     Read More
                     <ArrowRight />
                     </Link>

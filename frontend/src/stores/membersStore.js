@@ -16,14 +16,14 @@ const useMembersStore = create((set, get) => ({
   isMemberSelected: (id) => get().selectedMemberIds.has(id),
 
   selectAllMembers: () => set((state) => ({
-    selectedMemberIds: new Set(state.members.map((member) => member.id)),
+    selectedMemberIds: new Set(state.members.map((member) => member._id)),
   })),
 
   deselectAllMembers: () => set({ selectedMemberIds: new Set() }),
 
   getSelectedMembersData: () =>
     Array.from(get().selectedMemberIds).map(
-      (id) => get().members.find((member) => member.id === id)
+      (id) => get().members.find((member) => member._id === id)
     ),
 }));
 

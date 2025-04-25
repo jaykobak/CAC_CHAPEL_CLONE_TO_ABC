@@ -8,8 +8,8 @@ import React from 'react'
 const Dashboard = () => {
     return (
         <AdminLayout>
-            <AdminPadding className={``}>
-                <div className='flex flex-col space-y-5'>
+            <AdminPadding className={`bg-neutral-100 h-full`}>
+                <div className='flex flex-col space-y-5 '>
                     <div>
                         <h1 className='text-lg font-medium flex flex-col'>
                             Dashboard

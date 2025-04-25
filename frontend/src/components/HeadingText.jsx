@@ -2,7 +2,7 @@ import React from 'react'
 
 const HeadingText = ({children, className}) => {
   return (
-    <h1 className={`font-secondary leading-tight ${className}`}>{children}</h1>
+    <h1 className={`font-secondary leading-relaxed ${className}`}>{children}</h1>
   )
 }
 
