@@ -31,6 +31,12 @@ const nav = [
     slug: "library",
   },
   {
+    name: "Books",
+    link: "/admin/book",
+    icon: <UsersIcon className='w-8' />,
+    slug: "book",
+  },
+  {
     name: "Attendance",
     link: "/admin/attendance",
     icon: <BookmarkCheck className='w-8' />,

@@ -23,6 +23,11 @@ export const getMember = async () => {
 };
 
 
+export const searchMember = async (query) => {
+  const response = await apiClient.get(`/member/search${query}`,)
+  return response.data;
+};
+
 export const createMember = async (data) => {
   const response = await apiClient.post("/member", data)
   return response.data;
@@ -111,6 +116,12 @@ export const returnBook = async () => {
 };
 
 export const borrowHistory = async () => {
-  const response = await apiClient.post("/user/book/borrow-history",)
+  const response = await apiClient.get("/user/book/borrow-history",)
+  return response.data;
+};
+
+
+export const searchBooks = async (query) => {
+  const response = await apiClient.get(`/user/book${query}`,)
   return response.data;
 };

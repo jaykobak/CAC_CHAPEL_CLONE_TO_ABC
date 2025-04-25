@@ -14,7 +14,8 @@ import ResetPassword from "./pages/auth/ResetPassword"
 import Member from "./pages/admin/Members/Member"
 import AttendanceMarking from "./pages/admin/Attendance/AttendanceMarking";
 import AdminSermonPage from "./pages/admin/Sermons/SermonPage";
-import AdminLibraryPage from "./pages/admin/Library/LibraryPage"
+import AdminLibraryPage from "./pages/admin/Library/LibraryPage";
+import AdminBorrowBookPage from "./pages/admin/Borrow-Book/BorrowBookPage"
 
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
 
           {/* Library */}
           <Route path="/admin/library" element={<AdminLibraryPage />} />
+          <Route path="/admin/book" element={<AdminBorrowBookPage />} />
 
           {/* Authentication */}
           <Route path="/auth/login" element={<Login />} />
