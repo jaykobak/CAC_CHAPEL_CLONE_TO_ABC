@@ -24,7 +24,7 @@ const nav = [
   },
   {
     name: "Members",
-    link: "/admin/members?tab=overview",
+    link: "/admin/members",
     icon: <UsersIcon className='w-8' />,
     slug: "members",
   },
