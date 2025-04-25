@@ -105,13 +105,13 @@ export const deleteBook = async (bookId) => {
 
 // BORROWING
 
-export const borrowBook = async () => {
-  const response = await apiClient.post("/user/book/borrow-book",)
+export const borrowBook = async (data) => {
+  const response = await apiClient.post("/user/book/borrow-book", data)
   return response.data;
 };
 
-export const returnBook = async () => {
-  const response = await apiClient.post("/user/book/return-book",)
+export const returnBook = async (data) => {
+  const response = await apiClient.post("/user/book/return-book", data)
   return response.data;
 };
 
@@ -122,6 +122,6 @@ export const borrowHistory = async () => {
 
 
 export const searchBooks = async (query) => {
-  const response = await apiClient.get(`/user/book${query}`,)
+  const response = await apiClient.get(`/user/book/search${query}`,)
   return response.data;
 };
