@@ -25,6 +25,12 @@ const nav = [
     slug: "sermons",
   },
   {
+    name: "Library",
+    link: "/admin/library",
+    icon: <UsersIcon className='w-8' />,
+    slug: "library",
+  },
+  {
     name: "Attendance",
     link: "/admin/attendance",
     icon: <BookmarkCheck className='w-8' />,

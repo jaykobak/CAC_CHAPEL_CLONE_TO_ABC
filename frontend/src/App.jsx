@@ -12,8 +12,10 @@ import ForgotPassword from "./pages/auth/ForgotPassword"
 import VerifyOtp from "./pages/auth/VerifyOtp"
 import ResetPassword from "./pages/auth/ResetPassword"
 import Member from "./pages/admin/Members/Member"
-import AttendanceMarking from "./pages/admin/Attendance/AttendanceMarking"
-import AdminSermonPage from "./pages/admin/Sermons/SermonPage"
+import AttendanceMarking from "./pages/admin/Attendance/AttendanceMarking";
+import AdminSermonPage from "./pages/admin/Sermons/SermonPage";
+import AdminLibraryPage from "./pages/admin/Library/LibraryPage"
+
 
 function App() {
 
@@ -36,6 +38,9 @@ function App() {
 
           {/* Sermons  */}
           <Route path="/admin/sermons" element={<AdminSermonPage />} />
+
+          {/* Library */}
+          <Route path="/admin/library" element={<AdminLibraryPage />} />
 
           {/* Authentication */}
           <Route path="/auth/login" element={<Login />} />

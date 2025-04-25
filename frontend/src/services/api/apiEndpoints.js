@@ -69,3 +69,31 @@ export const deleteSermon = async (sermonId) => {
   const response = await apiClient.delete(`/user/sermon/delete-sermon/${sermonId}`)
   return response.data;
 };
+
+// library
+
+export const addBook = async (data) => {
+  console.log('............................', data)
+  const response = await apiClient.post("/user/book/create-book", data)
+  return response.data;
+};
+
+export const getBooks = async () => {
+  const response = await apiClient.get("/user/book/get-books",)
+  return response.data;
+};
+
+export const getBook = async (bookId) => {
+  const response = await apiClient.get(`/user/book/get-book/${bookId}`)
+  return response.data;
+};
+
+export const editBook = async (bookId, data) => {
+  const response = await apiClient.put(`/user/book/update-book/${bookId}`, data)
+  return response.data;
+};
+
+export const deleteBook = async (bookId) => {
+  const response = await apiClient.delete(`/user/book/delete-book/${bookId}`)
+  return response.data;
+};
