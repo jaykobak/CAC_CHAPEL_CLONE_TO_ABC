@@ -97,3 +97,20 @@ export const deleteBook = async (bookId) => {
   const response = await apiClient.delete(`/user/book/delete-book/${bookId}`)
   return response.data;
 };
+
+// BORROWING
+
+export const borrowBook = async () => {
+  const response = await apiClient.post("/user/book/borrow-book",)
+  return response.data;
+};
+
+export const returnBook = async () => {
+  const response = await apiClient.post("/user/book/return-book",)
+  return response.data;
+};
+
+export const borrowHistory = async () => {
+  const response = await apiClient.post("/user/book/borrow-history",)
+  return response.data;
+};
