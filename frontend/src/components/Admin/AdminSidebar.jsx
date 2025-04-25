@@ -1,6 +1,16 @@
 import React, { useEffect } from 'react'
 import Logo from '../Navbar/Logo'
-import { BookmarkCheck, LucideLayoutDashboard, SidebarCloseIcon, SidebarOpenIcon, UsersIcon } from 'lucide-react'
+import {
+  BookmarkCheck,
+  LucideLayoutDashboard,
+  SidebarCloseIcon,
+  SidebarOpenIcon,
+  UsersIcon,
+  Mic,
+  Library,
+  BookOpen,
+  CalendarCheck
+} from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 import { useSidebarStore } from '@/stores/otherStores';
@@ -21,25 +31,25 @@ const nav = [
   {
     name: "Sermons",
     link: "/admin/sermons",
-    icon: <UsersIcon className='w-8' />,
+    icon: <Mic className='w-8' />,
     slug: "sermons",
   },
   {
     name: "Library",
     link: "/admin/library",
-    icon: <UsersIcon className='w-8' />,
+    icon: <Library className='w-8' />,
     slug: "library",
   },
   {
     name: "Books",
     link: "/admin/book",
-    icon: <UsersIcon className='w-8' />,
+    icon: <BookOpen className='w-8' />,
     slug: "book",
   },
   {
     name: "Attendance",
     link: "/admin/attendance",
-    icon: <BookmarkCheck className='w-8' />,
+    icon: <CalendarCheck className='w-8' />,
     slug: "attendance",
   }
 ]
