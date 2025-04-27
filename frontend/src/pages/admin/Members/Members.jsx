@@ -405,6 +405,7 @@ const Members = () => {
                                   {member.level}
                                 </Badge>
                               </TableCell>
+
                               <TableCell>
                                 <div className="flex flex-wrap gap-1">
                                   {member.unit && member.unit.length > 0 ? (
