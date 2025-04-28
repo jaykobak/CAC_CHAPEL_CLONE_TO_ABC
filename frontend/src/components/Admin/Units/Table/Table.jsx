@@ -70,7 +70,7 @@ const UnitsPage = () => {
     },
   ];
 
-  // Fetch data
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -85,7 +85,7 @@ const UnitsPage = () => {
     fetchData();
   }, []);
 
-  // Handle unit click to fetch members
+ 
   const handleUnitClick = async (unit) => {
     setSelectedUnit(unit);
     setMembersLoading(true);
