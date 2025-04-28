@@ -48,6 +48,26 @@ export const getUnits = async () => {
   return response.data;
 };
 
+// Create a new unit
+export const createUnit = async (unitData) => {
+  const response = await apiClient.post("/user/unit", unitData);
+  return response.data;
+};
+
+// Delete a single unit
+export const deleteUnit = async (unitId) => {
+  const response = await apiClient.delete(`/user/unit/${unitId}`);
+  return response.data;
+};
+
+// // Delete multiple units
+// export const deleteMultipleUnits = async (unitIds) => {
+//   const response = await apiClient.delete("/user/units", {
+//     data: { ids: unitIds }
+//   });
+//   return response.data;
+// };
+
 export const getTotalMembersAnalytics = async () => {
   const response = await apiClient.get("/user/analytics")
   return response.data;
@@ -59,6 +79,8 @@ export const createSermon = async (data) => {
   const response = await apiClient.post("/user/sermon/create-sermon", data)
   return response.data;
 };
+
+
 
 export const getSermons = async () => {
   const response = await apiClient.get("/user/sermon/get-sermons",)

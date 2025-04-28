@@ -16,6 +16,7 @@ import AttendanceMarking from "./pages/admin/Attendance/AttendanceMarking";
 import AdminSermonPage from "./pages/admin/Sermons/SermonPage";
 import AdminLibraryPage from "./pages/admin/Library/LibraryPage";
 import AdminBorrowBookPage from "./pages/admin/Borrow-Book/BorrowBookPage"
+import Unit from "./pages/admin/unit/unit";
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
 
           {/* Sermons  */}
           <Route path="/admin/sermons" element={<AdminSermonPage />} />
+          <Route path="/admin/unit" element={<Unit />} />
 
           {/* Library */}
           <Route path="/admin/library" element={<AdminLibraryPage />} />

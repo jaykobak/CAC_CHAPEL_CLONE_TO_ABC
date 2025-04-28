@@ -51,6 +51,13 @@ const nav = [
     link: "/admin/attendance",
     icon: <CalendarCheck className='w-8' />,
     slug: "attendance",
+  },
+
+  {
+    name: "Units",
+    link: "/admin/unit",
+    icon: <CalendarCheck className='w-8' />,
+    slug: "units",
   }
 ]
 
