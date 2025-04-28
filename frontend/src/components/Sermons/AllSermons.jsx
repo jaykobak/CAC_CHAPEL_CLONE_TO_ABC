@@ -1,61 +1,86 @@
-import React from 'react'
-import img from "../../assets/Home/Welcome/img2.jfif"
-import MainPadding from '@/layouts/MainPadding'
-import SermonCard from './SermonCard'
-import { Button } from '../ui/button'
-
-const sermons = [
-    {
-        title: 'The Power of God in Your Life',
-        date: 'July 15, 2022',
-        speaker: 'John Doe',
-        img: img,
-    },
-    {
-        title: 'The Power of God in Your Life',
-        date: 'July 15, 2022',
-        speaker: 'John Doe',
-        img: img,
-    },
-    {
-        title: 'The Power of God in Your Life',
-        date: 'July 15, 2022',
-        speaker: 'John Doe',
-        img: img,
-    },
-    {
-        title: 'The Power of God in Your Life',
-        date: 'July 15, 2022',
-        speaker: 'John Doe',
-        img: img,
-    },
-    {
-        title: 'The Power of God in Your Life',
-        date: 'July 15, 2022',
-        speaker: 'John Doe',
-        img: img,
-    },
-    {
-        title: 'The Power of God in Your Life',
-        date: 'July 15, 2022',
-        speaker: 'John Doe',
-        img: img,
-    },
-]
+import React, { useEffect, useState } from 'react';
+import MainPadding from '@/layouts/MainPadding';
+import { Button } from '../ui/button';
+import { getSermons } from '@/services/api/apiEndpoints';
+import img from "../../assets/cac.png";
+import SermonCard from './SermonCard';
 
 const AllSermons = () => {
-    return (
-        <MainPadding className="flex flex-col gap-10 items-center">
-            <div className={`grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 gap-10`}>
-                {sermons.map((sermon, index)=>(
-                    <div key={index} className={`${index>1 && "md:flex hidden"}`}>
-                        <SermonCard sermon={sermon} />
-                    </div>
-                ))}
-            </div>
-            <Button className="px-8">See More</Button>
-        </MainPadding>
-    )
-}
+  const [sermons, setSermons] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [showAll, setShowAll] = useState(false);
 
-export default AllSermons
+  useEffect(() => {
+    const fetchSermons = async () => {
+      try {
+        const response = await getSermons();
+        const formattedSermons = response.data.map(sermon => ({
+          title: sermon.title || 'No title',
+          category: sermon.category || 'Uncategorized',
+          preacher: sermon.preacher || 'Unknown preacher',
+          duration: sermon.duration || 'Unknown duration',
+          bibleReferences: sermon.bibleReferences || 'unknown bibleReferences',
+          date: sermon.date || 'Unknown date',
+          link: sermon.telegramLink|| '#',
+          img: sermon.img || img
+        }));
+        setSermons(formattedSermons);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchSermons();
+  }, []);
+
+  const displayedSermons = showAll ? sermons : sermons.slice(0, 6);
+
+  if (loading) {
+    return (
+      <MainPadding className="flex flex-col gap-10 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-full">
+          {[...Array(6)].map((_, index) => (
+            <div key={index} className="animate-pulse h-full">
+              <div className="bg-gray-200 h-64 rounded-lg"></div>
+              <div className="mt-2 bg-gray-200 h-4 rounded w-3/4"></div>
+              <div className="mt-2 bg-gray-200 h-4 rounded w-1/2"></div>
+            </div>
+          ))}
+        </div>
+      </MainPadding>
+    );
+  }
+
+  if (error) {
+    return (
+      <MainPadding className="flex flex-col gap-10 items-center">
+        <p className="text-red-500">Error loading sermons: {error}</p>
+      </MainPadding>
+    );
+  }
+
+  return (
+    <MainPadding className="flex flex-col gap-10 items-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-full">
+        {displayedSermons.map((sermon, index) => (
+          <div key={index} className="h-full">
+            <SermonCard sermon={sermon} />
+          </div>
+        ))}
+      </div>
+      
+      {sermons.length > 6 && (
+        <Button 
+          className="px-8" 
+          onClick={() => setShowAll(!showAll)}
+        >
+          {showAll ? 'Show Less' : 'See More'}
+        </Button>
+      )}
+    </MainPadding>
+  );
+};
+
+export default AllSermons;

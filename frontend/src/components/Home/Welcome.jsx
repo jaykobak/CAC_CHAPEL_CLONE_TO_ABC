@@ -1,7 +1,8 @@
 import React from 'react'
 import MainPadding from '../../layouts/MainPadding'
-import img1 from "../../assets/Home/Welcome/img1.jfif"
-import img2 from "../../assets/Home/Welcome/img2.jfif"
+import img1 from "../../assets/Home/manpraying.jpg"
+import img3 from "../../assets/Home/pastoribitomi.jpg"
+import img2 from "../../assets/Home/chiorsing.jpg"
 import { Button } from '../ui/button'
 import { ArrowRight } from 'lucide-react'
 import HeadingText from '../HeadingText'
@@ -13,7 +14,7 @@ const Welcome = () => {
                 <div className='flex flex-col gap-5 items-end flex-grow'>
                     <div className=' grid grid-cols-2  gap-5 w-full md:w-[90%]'>
                         <img src={img1} alt="" className='h-[200px] sm:h-[250px] object-cover' />
-                        <img src={img1} alt="" className='h-[200px] sm:h-[250px] object-cover' />
+                        <img src={img2} alt="" className='h-[200px] sm:h-[250px] object-cover' />
                     </div>
                     <div className='bg-[#FDDDAA] h-fit w-full text-foreground/85 p-5 py-8 sm:py-10 sm:p-10 flex flex-col gap-5 font-medium'>
                         <HeadingText className='md:text-5xl text-3xl font-cinzel'>WELCOME TO OUR <br /> CHURCH</HeadingText>
@@ -25,7 +26,7 @@ const Welcome = () => {
 
                 </div>
                 <div className='h-[640px] min-w-[30%] hidden md:block'>
-                    <img src={img2} alt="" className='w-full h-full rounded-tr-[150px] object-cover z-0' />
+                    <img src={img3} alt="" className='w-full h-full rounded-tr-[150px] object-cover z-0' />
                 </div>
             </div>
         </MainPadding>

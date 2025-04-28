@@ -55,7 +55,14 @@ export const createUnit = async (unitData) => {
 };
 
 // Delete a single unit
+// export const deleteUnit = async (unitId) => {
+//   const response = await apiClient.delete(`/user/unit/${unitId}`);
+//   return response.data;
+// };
+
 export const deleteUnit = async (unitId) => {
+  // Add validation here too
+  if (!unitId) throw new Error('No unit ID provided');
   const response = await apiClient.delete(`/user/unit/${unitId}`);
   return response.data;
 };

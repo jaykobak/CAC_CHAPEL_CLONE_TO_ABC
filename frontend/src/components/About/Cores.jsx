@@ -2,7 +2,7 @@ import React from 'react'
 import img2 from "@/assets/About/img2.jpg"
 import img3 from "@/assets/About/img3.jpg"
 import img4 from "@/assets/About/img4.jfif"
-import img5 from "@/assets/About/img5.jfif"
+import img5 from "@/assets/Home/leadership.jpg"
 import HeadingText from '../HeadingText'
 import { Button } from '../ui/button'
 import MainPadding from '@/layouts/MainPadding'

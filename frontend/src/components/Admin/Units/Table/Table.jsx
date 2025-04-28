@@ -70,7 +70,7 @@ const UnitsPage = () => {
     },
   ];
 
-
+  // Fetch data
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -109,6 +109,11 @@ const UnitsPage = () => {
 
   // Delete unit
   const handleDelete = async (unitId) => {
+    if (!unitId) {  // Add validation for unitId
+      console.error('No unit ID provided for deletion');
+      return;
+    }
+    
     try {
       await deleteUnit(unitId);
       setData(data.filter(unit => unit.id !== unitId));
@@ -117,6 +122,7 @@ const UnitsPage = () => {
       }
     } catch (err) {
       setError('Failed to delete unit');
+      console.error('Delete error:', err);
     }
   };
 
