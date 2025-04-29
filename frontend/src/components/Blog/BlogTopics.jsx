@@ -37,6 +37,10 @@ const topics = [
     name: "GIVING",
     img: img,
   },
+  {
+    name: "WORSHIP",
+    img: img,
+  },
 
 
 ]

@@ -1,7 +1,8 @@
 import React from 'react';
 import MainPadding from '../../layouts/MainPadding';
 import { Button } from '../ui/button';
-import img from "../../assets/Home/Welcome/img1.jfif";
+import img from "../../assets/Blog/service.jpg";
+import img3 from "../../assets/Blog/thurs.jpg";
 import { MapPin } from 'lucide-react';
 import HeadingText from '../HeadingText';
 
@@ -25,7 +26,7 @@ const events = [
         location: "Behind Lagos Kitchen, Under-G, Ogbomoso",
         date: "Every Thursday | 4:00PM",
         description: "Midweek spiritual refreshing with passionate worship and deliverance sessions.",
-        img: img
+        img: img3
     },
 ];
 
@@ -55,7 +56,7 @@ const UpcomingEvents = () => {
                     </div>
                 ))}
             </div>
-            <Button className="px-6 w-fit self-center bg-blue-600 hover:bg-blue-700">
+            <Button className="px-6 w-fit self-center text-foreground/80 bg-background hover:bg-background border-[1px] border-foreground/80">
                 See All Events
             </Button>
         </div>

@@ -91,7 +91,8 @@ const LatestSermons = () => {
       <SermonsCarousel 
         name={"Latest Sermons"}
         sermons={sermons} 
-        heading={"LATEST SERMONS FROM CAC CHAPEL FOUNTAIN OF DIVINE FAVOUR"}  
+        heading={"LATEST SERMONS FROM CAC CHAPEL FOUNTAIN OF DIVINE FAVOUR"}
+        button={"/sermons"} 
       />
     </div>
   );
