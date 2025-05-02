@@ -154,3 +154,29 @@ export const searchBooks = async (query) => {
   const response = await apiClient.get(`/user/book/search${query}`,)
   return response.data;
 };
+
+// event
+export const createEvent = async (data) => {
+  const response = await apiClient.post(`/member/event/`, data)
+  return response.data;
+};
+
+export const getEvents = async () => {
+  const response = await apiClient.get(`/member/event/`,)
+  return response.data;
+};
+
+export const editEvent = async (data, eventId) => {
+  const response = await apiClient.put(`/member/event/${eventId}`, data)
+  return response.data;
+};
+
+export const createAttendance = async (data) => {
+  const response = await apiClient.post(`/member/attendance/${eventId}`, data)
+  return response.data;
+};
+
+export const getAttendance = async (eventId) => {
+  const response = await apiClient.get(`/member/event/${eventId}`,)
+  return response.data;
+};
