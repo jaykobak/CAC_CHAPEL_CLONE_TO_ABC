@@ -16,7 +16,7 @@ const Footer = () => {
                     <ConnectWithUs />
                 </div>
                 <div>
-                    <h2 className='text-center text-primary-foreground/80 text-sm'>CAC Chapel Lautech - Fountain Of Divine Favour 2024</h2>
+                    <h2 className='text-center text-primary-foreground/80 text-sm'>CAC Chapel Lautech - Fountain Of Divine Favour 2025</h2>
                 </div>
             </MainPadding>
         </div>

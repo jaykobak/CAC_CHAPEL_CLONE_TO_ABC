@@ -97,7 +97,7 @@ const Welcome = () => {
                         </HeadingText>
                         <p className="text-lg">Our church is a place for all to find hope, encouragement, and a fresh start. We gather as a community to worship, learn, and grow together, grounded in faith and guided by love.</p>
                         <p className="text-lg">Here, you'll find people who are committed to lifting each other up, walking through life's journey together, and discovering God's purpose in a supportive and open-hearted environment.</p>
-                        <p className="text-lg">No matter where you are in your faith journey, you're welcome here. We invite you to come, connect, and be a part of something greater.</p>
+                        {/* <p className="text-lg">No matter where you are in your faith journey, you're welcome here. We invite you to come, connect, and be a part of something greater.</p> */}
 
                         <motion.div
                             whileHover="hover"
