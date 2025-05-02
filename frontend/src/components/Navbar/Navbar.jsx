@@ -28,7 +28,7 @@ const navs = [
     // },
     {
         name: "Give",
-        link: "#give",
+        link: "/give",
         slug: "give",
     }
 ]

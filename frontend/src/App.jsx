@@ -17,6 +17,7 @@ import AdminSermonPage from "./pages/admin/Sermons/SermonPage";
 import AdminLibraryPage from "./pages/admin/Library/LibraryPage";
 import AdminBorrowBookPage from "./pages/admin/Borrow-Book/BorrowBookPage"
 import Unit from "./pages/admin/unit/unit";
+import GivePage from "./components/Give/GivePage"
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route path="/about-us" element={<About />} />
           <Route path="/sermons" element={<Sermons />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/give" element={<GivePage />} />
 
           {/* Admin */}
           <Route path="/admin/dashboard" element={<Dashboard />} />
