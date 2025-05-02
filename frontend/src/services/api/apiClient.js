@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 
 const apiClient = axios.create({
-    baseURL: "https://chapel-h3il.onrender.com/api/v1",
-    // baseURL: "https://chapel-backend-8233dc7a7600.herokuapp.com/api/v1",
+    // baseURL: "https://chapel-h3il.onrender.com/api/v1",
+    baseURL: "https://chapel-backend-8233dc7a7600.herokuapp.com/api/v1",
     // baseURL: "http://localhost:6000/api/v1",
     headers: {
         "Content-Type": "application/json",
@@ -33,7 +33,7 @@ apiClient.interceptors.response.use(
         if (error.response?.status === 403) {
             const { logout } = useAuthStore.getState();
             logout();
-            window.location.href = "/auth/login"; // Redirect to login page
+            window.location.href = "/login"; // Redirect to login page
         }
 
         return Promise.reject(error);

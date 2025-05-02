@@ -30,6 +30,7 @@ const UserDropDown = () => {
     const [isOpen, setIsOpen] = useState(false)
     const toggleDropdown = () => setIsOpen(!isOpen)
     const logout = useAuthStore(state => state.logout)
+    const { user } = useAuthStore.getState();
     return (
         <DropdownMenu>
             <DropdownMenuTrigger className="outline-none">
@@ -38,7 +39,7 @@ const UserDropDown = () => {
 
                     </div>
                     <div className='flex flex-col items-start text-xs font-semibold text-foreground/80'>
-                        <h1>John Doe</h1>
+                        <h1>{`${user?.firstname} ${user.lastname}`}</h1>
                         <p className='text-[10px] text-foreground/50'>Admin</p>
                     </div>
                     <ChevronDown className={`text-foreground/50 w-4 h-4 transition-all duration-500 ${isOpen ? " rotate-180" : "rotate-0"}`} />
@@ -54,10 +55,10 @@ const UserDropDown = () => {
                     </DropdownMenuItem>
                 ))}
                 <DropdownMenuSeparator />
-                <DropdownMenuItem className="text-xs" onClick={()=> logout()}>
+                <DropdownMenuItem className="text-xs" onClick={() => logout()}>
                     <LogOut />
                     <span>Logout</span>
-            </DropdownMenuItem>
+                </DropdownMenuItem>
 
             </DropdownMenuContent>
         </DropdownMenu>

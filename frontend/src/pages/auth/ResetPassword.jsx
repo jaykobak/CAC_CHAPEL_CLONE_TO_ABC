@@ -73,7 +73,7 @@ const ResetPassword = () => {
                         </Button>
                         <h1 className='flex gap-2 text-sm font-medium justify-center'>
                             Remember your password?
-                            <Link to='/auth/login' className='text-primary hover:underline'>
+                            <Link to='/login' className='text-primary hover:underline'>
                                 Login
                             </Link>
                         </h1>

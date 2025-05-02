@@ -7,8 +7,10 @@ const useAuthStore = create(
       (set, get) => ({
         isAuthenticated: false,
         accessToken: "",
+        user: {},
         rehydrated: false,
-        setAuth: (accessToken) => set({ isAuthenticated: true, accessToken }),
+        setAuth: (accessToken) => set({ isAuthenticated: true, accessToken, }),
+        setUser: (user) => set({ user }),
         logout: () => set({ isAuthenticated: false, accessToken: "" }),
       }),
       {

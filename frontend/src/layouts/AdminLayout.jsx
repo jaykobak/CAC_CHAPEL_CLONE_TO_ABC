@@ -15,7 +15,7 @@ const AdminLayout = ({ children }) => {
 
     useEffect(() => {
         if (!isAuthenticated) {
-            navigate(`/auth/login?next=${pathname}`);
+            navigate(`/login`);
             toast({
                 title: "Not Authorized",
                 description: "Please login to access this page",

@@ -7,12 +7,14 @@ import useAuthStore from "@/stores/authStore";
 
 export const useLoginMutation = () => {
     const navigate = useNavigate()
-    const { toast } = useToast() 
+    const { toast } = useToast()
     const setAuth = useAuthStore(state => state.setAuth)
+    const setUser = useAuthStore(state => state.setUser)
     return useMutation({
         mutationFn: (data) => loginUser(data),
         onSuccess: (data) => {
             setAuth(data.accessToken)
+            setUser(data?.data)
             navigate("/admin/dashboard")
             toast({
                 title: "Success",
@@ -38,7 +40,7 @@ export const useRegisterMutation = () => {
             alert(data.message)
         },
         onError: (error) => {
-            
+
         },
     })
 }
