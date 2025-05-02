@@ -48,12 +48,12 @@ const UserDropDown = () => {
             <DropdownMenuContent>
                 <DropdownMenuLabel className="text-xs">Admin</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                {menus.map((menu, index) => (
+                {/* {menus.map((menu, index) => (
                     <DropdownMenuItem key={index} className="text-xs">
                         {menu.icon}
                         <span>{menu.name}</span>
                     </DropdownMenuItem>
-                ))}
+                ))} */}
                 <DropdownMenuSeparator />
                 <DropdownMenuItem className="text-xs" onClick={() => logout()}>
                     <LogOut />

@@ -5,14 +5,18 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        inter: ["Inter"],
-        cinzel: ["Cinzel"],
-        secondary: ["Faculty Glyphic"],
-        poppins: ["Poppins"],
-        roboto: ["Roboto"],
-        playfairDisplay: ["Playfair Display"]
-
+        geist: ["Geist", "sans-serif"],
+        cinzel: ["Geist", "sans-serif"], // optional if still used in some parts
       },
+      // fontFamily: {
+      //   geist: ["Geist", "sans-serif"],  // ✅ added Geist
+      //   inter: ["Inter", "sans-serif"],
+      //   cinzel: ["Cinzel", "serif"],
+      //   secondary: ["Faculty Glyphic", "serif"],
+      //   poppins: ["Poppins", "sans-serif"],
+      //   roboto: ["Roboto", "sans-serif"],
+      //   playfairDisplay: ["Playfair Display", "serif"]
+      // },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
