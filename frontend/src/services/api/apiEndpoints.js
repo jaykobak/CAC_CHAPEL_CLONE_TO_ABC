@@ -171,12 +171,12 @@ export const editEvent = async (data, eventId) => {
   return response.data;
 };
 
-export const createAttendance = async (data) => {
+export const markAttendance = async (data, eventId) => {
   const response = await apiClient.post(`/member/attendance/${eventId}`, data)
   return response.data;
 };
 
 export const getAttendance = async (eventId) => {
-  const response = await apiClient.get(`/member/event/${eventId}`,)
+  const response = await apiClient.get(`/member/attendance/${eventId}`,)
   return response.data;
 };

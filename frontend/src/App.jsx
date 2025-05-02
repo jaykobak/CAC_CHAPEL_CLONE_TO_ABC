@@ -37,7 +37,7 @@ function App() {
           <Route path="/admin/members/:id" element={<Member />} />
 
           <Route path="/admin/attendance" element={<Attendance />} />
-          <Route path="/admin/attendance/:id" element={<AttendanceMarking />} />
+          <Route path="/admin/attendance/:eventId" element={<AttendanceMarking />} />
 
           {/* Sermons  */}
           <Route path="/admin/sermons" element={<AdminSermonPage />} />

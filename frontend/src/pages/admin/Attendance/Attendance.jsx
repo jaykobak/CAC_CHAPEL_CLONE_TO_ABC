@@ -3,8 +3,10 @@ import AdminPadding from '@/layouts/AdminPadding'
 import React, { useState, useEffect } from 'react'
 import { Calendar, ChevronLeft, ChevronRight, Plus } from 'lucide-react'
 import { createEvent, getEvents } from "@/services/api/apiEndpoints"
+import { useNavigate } from "react-router-dom"
 
 const Attendance = () => {
+  const navigate = useNavigate();
   const [events, setEvents] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [isCreating, setIsCreating] = useState(false)
@@ -184,7 +186,7 @@ const Attendance = () => {
                 ) : (
                   events.map((event) => (
                     <tr key={event._id}>
-                      <td className="px-6 py-4 whitespace-nowrap font-medium">{event.name}</td>
+                      <td onClick={() => navigate(`/admin/attendance/${event?._id}`)} className="px-6 py-4 whitespace-nowrap font-medium cursor-pointer">{event.name}</td>
                       <td className="px-6 py-4 whitespace-nowrap">{formatDate(event.createdAt)}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-right">
                         <button
