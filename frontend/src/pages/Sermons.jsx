@@ -11,8 +11,8 @@ const Sermons = () => {
         <MainLayout>
             <div className='flex flex-col gap-20'>
                 <Hero />
-                <PopularSermons />
-                <RecentSermons />
+                {/* <PopularSermons />
+                <RecentSermons /> */}
                 <AllSermons />
             </div>
         </MainLayout>
