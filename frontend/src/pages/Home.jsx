@@ -7,7 +7,6 @@ import LatestSermons from '../components/Home/LatestSermons'
 import OurLeadership from '../components/Home/OurLeadership'
 import UpcomingEvents from '../components/Home/UpcomingEvents'
 import ConnectWithUs from '../components/Home/ConnectWithUs'
-import OurBlog from '../components/Home/OurBlog'
 
 const Home = () => {
   return (
@@ -20,7 +19,6 @@ const Home = () => {
         <OurLeadership />
         <UpcomingEvents />
         <ConnectWithUs />
-        <OurBlog />
       </div>
     </MainLayout>
   )
