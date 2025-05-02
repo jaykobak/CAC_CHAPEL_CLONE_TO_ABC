@@ -88,15 +88,15 @@ const Login = () => {
 
 
                         <Button disabled={!email || !password || isPending} className="w-full">
-                            {isPending ? <Loader className={'border-primary-foreground'} /> : "Login" }
+                            {isPending ? <Loader className={'border-primary-foreground'} /> : "Login"}
                         </Button>
 
-                        <h1 className='flex gap-2 text-sm font-medium justify-center flex-wrap text-nowrap'>
+                        {/* <h1 className='flex gap-2 text-sm font-medium justify-center flex-wrap text-nowrap'>
                             Do you want to create a new account?
                             <Link to="/auth/register" className='text-primary hover:underline'>
                                 Register
                             </Link>
-                        </h1>
+                        </h1> */}
 
                     </form>
                 </Form>
