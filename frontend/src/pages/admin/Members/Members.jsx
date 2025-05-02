@@ -56,6 +56,9 @@ import * as z from "zod"
 import { format } from "date-fns"
 import { Calendar } from "@/components/ui/calendar"
 import { useNavigate } from "react-router-dom"
+import { sendToast } from "@/components/utilis"
+import { useToast } from '@/hooks/use-toast'
+
 
 // Form schema for member
 const memberFormSchema = z.object({
@@ -84,6 +87,7 @@ const levelOptions = [
 
 const Members = () => {
   const navigate = useNavigate();
+  const { toast } = useToast()
   // State
   const [members, setMembers] = useState([])
   const [units, setUnits] = useState([])
@@ -141,6 +145,10 @@ const Members = () => {
       setPagination(response.pagination)
       setLoading(false)
     } catch (error) {
+      toast({
+        title: 'Error',
+        description: error?.response?.data?.message,
+      })
       setMessage({ type: "error", text: "Failed to fetch members" })
       setLoading(false)
     }
@@ -174,6 +182,10 @@ const Members = () => {
       }
       setLoading(false)
     } catch (error) {
+      toast({
+        title: 'Error',
+        description: error?.response?.data?.message,
+      })
       setMessage({ type: "error", text: "Failed to search members" })
       setLoading(false)
     }
@@ -188,16 +200,25 @@ const Members = () => {
   const onAddMember = async (data) => {
     try {
       setLoading(true)
+      console.log('bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb')
       const response = await createMember({
         ...data,
         birthday: data.birthday ? format(data.birthday, "yyyy-MM-dd") : undefined,
       })
+      console.log('////////////////////////////////')
       setMessage({ type: "success", text: "Member added successfully" })
+      sendToast("success", response?.message)
       setIsAddDialogOpen(false)
       addForm.reset()
       fetchMembers()
       setLoading(false)
     } catch (error) {
+      console.log("eeeeeeeeeee", error?.response?.data?.message)
+      // sendToast('error', error?.response?.data?.message)
+      toast({
+        title: 'Error',
+        description: error?.response?.data?.message,
+      })
       setMessage({ type: "error", text: "Failed to add member" })
       setLoading(false)
     }
@@ -222,6 +243,10 @@ const Members = () => {
       fetchMembers()
       setLoading(false)
     } catch (error) {
+      toast({
+        title: 'Error',
+        description: error?.response?.data?.message,
+      })
       setMessage({ type: "error", text: "Failed to update member" })
       setLoading(false)
     }
@@ -239,6 +264,10 @@ const Members = () => {
       fetchMembers()
       setLoading(false)
     } catch (error) {
+      toast({
+        title: 'Error',
+        description: error?.response?.data?.message,
+      })
       setMessage({ type: "error", text: "Failed to delete member" })
       setLoading(false)
     }

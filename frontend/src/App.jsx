@@ -48,7 +48,7 @@ function App() {
           <Route path="/admin/book" element={<AdminBorrowBookPage />} />
 
           {/* Authentication */}
-          <Route path="/auth/login" element={<Login />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/auth/register" element={<Register />} />
           <Route path="/auth/forgot-password" element={<ForgotPassword />} />
           <Route path="/auth/verify-otp" element={<VerifyOtp />} />
