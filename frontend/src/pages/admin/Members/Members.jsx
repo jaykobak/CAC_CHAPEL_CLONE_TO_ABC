@@ -196,16 +196,16 @@ const Members = () => {
     fetchMembers(page)
   }
 
-  // Add member
+  // Update the API function calls that handle birthdays
+
+  // For onAddMember function:
   const onAddMember = async (data) => {
     try {
       setLoading(true)
-      console.log('bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb')
       const response = await createMember({
         ...data,
-        birthday: data.birthday ? format(data.birthday, "yyyy-MM-dd") : undefined,
+        birthday: data.birthday ? format(data.birthday, "MM-dd") : undefined,
       })
-      console.log('////////////////////////////////')
       setMessage({ type: "success", text: "Member added successfully" })
       sendToast("success", response?.message)
       setIsAddDialogOpen(false)
@@ -214,7 +214,6 @@ const Members = () => {
       setLoading(false)
     } catch (error) {
       console.log("eeeeeeeeeee", error?.response?.data?.message)
-      // sendToast('error', error?.response?.data?.message)
       toast({
         title: 'Error',
         description: error?.response?.data?.message,
@@ -224,7 +223,7 @@ const Members = () => {
     }
   }
 
-  // Edit member
+  // For onEditMember function:
   const onEditMember = async (data) => {
     if (!selectedMember) return
 
@@ -233,7 +232,7 @@ const Members = () => {
       const response = await editMember(
         {
           ...data,
-          birthday: data.birthday ? format(data.birthday, "yyyy-MM-dd") : undefined,
+          birthday: data.birthday ? format(data.birthday, "MM-dd") : undefined,
         },
         selectedMember._id,
       )
@@ -251,6 +250,62 @@ const Members = () => {
       setLoading(false)
     }
   }
+
+  // // Add member
+  // const onAddMember = async (data) => {
+  //   try {
+  //     setLoading(true)
+  //     console.log('bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb')
+  //     const response = await createMember({
+  //       ...data,
+  //       birthday: data.birthday ? format(data.birthday, "yyyy-MM-dd") : undefined,
+  //     })
+  //     console.log('////////////////////////////////')
+  //     setMessage({ type: "success", text: "Member added successfully" })
+  //     sendToast("success", response?.message)
+  //     setIsAddDialogOpen(false)
+  //     addForm.reset()
+  //     fetchMembers()
+  //     setLoading(false)
+  //   } catch (error) {
+  //     console.log("eeeeeeeeeee", error?.response?.data?.message)
+  //     // sendToast('error', error?.response?.data?.message)
+  //     toast({
+  //       title: 'Error',
+  //       description: error?.response?.data?.message,
+  //     })
+  //     setMessage({ type: "error", text: "Failed to add member" })
+  //     setLoading(false)
+  //   }
+  // }
+
+  // // Edit member
+  // const onEditMember = async (data) => {
+  //   if (!selectedMember) return
+
+  //   try {
+  //     setLoading(true)
+  //     const response = await editMember(
+  //       {
+  //         ...data,
+  //         birthday: data.birthday ? format(data.birthday, "yyyy-MM-dd") : undefined,
+  //       },
+  //       selectedMember._id,
+  //     )
+  //     setMessage({ type: "success", text: "Member updated successfully" })
+  //     setIsEditDialogOpen(false)
+  //     editForm.reset()
+  //     fetchMembers()
+  //     setLoading(false)
+  //   } catch (error) {
+  //     toast({
+  //       title: 'Error',
+  //       description: error?.response?.data?.message,
+  //     })
+  //     setMessage({ type: "error", text: "Failed to update member" })
+  //     setLoading(false)
+  //   }
+  // }
 
   // Delete member
   const onDeleteMember = async () => {
@@ -273,9 +328,20 @@ const Members = () => {
     }
   }
 
-  // Open edit dialog
+  // Update the openEditDialog function to handle the birthday with only month and day
+
+  // Modify the openEditDialog function:
   const openEditDialog = (member) => {
     setSelectedMember(member)
+
+    // Create a Date object with default year 2000 for the birthday
+    let birthdayDate = undefined;
+    if (member.birthday) {
+      // Parse the birthday from format "MM-dd" and set year to 2000
+      const [month, day] = member.birthday.split('-').map(num => parseInt(num));
+      birthdayDate = new Date(2000, month - 1, day); // month is 0-indexed in JS Date
+    }
+
     editForm.reset({
       firstname: member.firstname,
       lastname: member.lastname,
@@ -284,10 +350,26 @@ const Members = () => {
       address: member.address || "",
       level: member.level,
       unit: member.unit || [],
-      birthday: member.birthday ? new Date(member.birthday) : undefined,
+      birthday: birthdayDate,
     })
     setIsEditDialogOpen(true)
   }
+
+  // // Open edit dialog
+  // const openEditDialog = (member) => {
+  //   setSelectedMember(member)
+  //   editForm.reset({
+  //     firstname: member.firstname,
+  //     lastname: member.lastname,
+  //     email: member.email,
+  //     phone: member.phone,
+  //     address: member.address || "",
+  //     level: member.level,
+  //     unit: member.unit || [],
+  //     birthday: member.birthday ? new Date(member.birthday) : undefined,
+  //   })
+  //   setIsEditDialogOpen(true)
+  // }
 
   // Open delete dialog
   const openDeleteDialog = (member) => {
@@ -662,6 +744,76 @@ const Members = () => {
                         />
 
                         <FormField
+                          // control={formControl} // use addForm.control or editForm.control depending on where it's used
+                          control={addForm.control}
+                          name="birthday"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="flex items-center gap-1">
+                                <CalendarDays className="h-3.5 w-3.5" /> Birthday (Optional)
+                              </FormLabel>
+                              <div className="grid grid-cols-2 gap-4">
+                                <FormControl>
+                                  <Select
+                                    onValueChange={(month) => {
+                                      // Get current value or create new date with default year 2000
+                                      const currentDate = field.value || new Date(2000, 0, 1);
+                                      // Create new date with selected month, keeping day and default year
+                                      const newDate = new Date(2000, parseInt(month), currentDate.getDate() || 1);
+                                      field.onChange(newDate);
+                                    }}
+                                    value={field.value ? field.value.getMonth().toString() : ""}
+                                  >
+                                    <SelectTrigger>
+                                      <SelectValue placeholder="Month" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                      <SelectItem value="0">Jan</SelectItem>
+                                      <SelectItem value="1">Feb</SelectItem>
+                                      <SelectItem value="2">Mar</SelectItem>
+                                      <SelectItem value="3">Apr</SelectItem>
+                                      <SelectItem value="4">May</SelectItem>
+                                      <SelectItem value="5">Jun</SelectItem>
+                                      <SelectItem value="6">Jul</SelectItem>
+                                      <SelectItem value="7">Aug</SelectItem>
+                                      <SelectItem value="8">Sep</SelectItem>
+                                      <SelectItem value="9">Oct</SelectItem>
+                                      <SelectItem value="10">Nov</SelectItem>
+                                      <SelectItem value="11">Dec</SelectItem>
+                                    </SelectContent>
+                                  </Select>
+                                </FormControl>
+                                <FormControl>
+                                  <Select
+                                    onValueChange={(day) => {
+                                      // Get current value or create new date with default year 2000
+                                      const currentDate = field.value || new Date(2000, 0, 1);
+                                      // Create new date with selected day, keeping month and default year
+                                      const newDate = new Date(2000, currentDate.getMonth(), parseInt(day));
+                                      field.onChange(newDate);
+                                    }}
+                                    value={field.value ? field.value.getDate().toString() : ""}
+                                  >
+                                    <SelectTrigger>
+                                      <SelectValue placeholder="Day" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                      {Array.from({ length: 31 }, (_, i) => i + 1).map((day) => (
+                                        <SelectItem key={day} value={day.toString()}>
+                                          {day}
+                                        </SelectItem>
+                                      ))}
+                                    </SelectContent>
+                                  </Select>
+                                </FormControl>
+                              </div>
+                              <FormDescription>Enter month and day only. Year will default to 2000.</FormDescription>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+
+                        {/* <FormField
                           control={addForm.control}
                           name="birthday"
                           render={({ field }) => (
@@ -702,7 +854,7 @@ const Members = () => {
                               <FormMessage />
                             </FormItem>
                           )}
-                        />
+                        /> */}
 
                         <FormField
                           control={addForm.control}
