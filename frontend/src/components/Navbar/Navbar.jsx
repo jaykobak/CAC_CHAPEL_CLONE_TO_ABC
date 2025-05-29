@@ -45,7 +45,7 @@ const Navbar = () => {
             <Logo />
             <nav className='items-center gap-10 hidden lg:flex'>
                 {navs.map(({ name, link, slug }) => (
-                    <Link to={link} key={slug} className={`font-bold text-sm hover:text-primary ${pathname === link ? 'text-primary' : 'text-foreground/60'
+                    <Link to={link} key={slug} className={`font-bold text-sm hover:text-foreground/40 ${pathname === link ? ' text-[#00A652] ' : 'text-foreground/60'
                         }`}
                     >
                         {name}
