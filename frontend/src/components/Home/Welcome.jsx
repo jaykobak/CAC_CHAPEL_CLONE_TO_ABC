@@ -1,7 +1,7 @@
 import React from 'react'
 import MainPadding from '../../layouts/MainPadding'
-import img1 from "../../assets/Home/manpraying.jpg"
-import img3 from "../../assets/Home/pastoribitomi.jpg"
+import img1 from "../../assets/Home/ladypraying.jpg"
+import img3 from "../../assets/Home/pastor.jpg"
 import img2 from "../../assets/Home/hero.jpg"
 import { Button } from '../ui/button'
 import { ArrowRight } from 'lucide-react'
@@ -77,7 +77,7 @@ const Welcome = () => {
                             whileHover="hover"
                             className="overflow-hidden rounded-lg shadow-md"
                         >
-                            <img src={img1} alt="Man praying" className='h-[200px] sm:h-[250px] object-cover w-full transition-transform duration-500 hover:scale-110' />
+                            <img src={img1} alt="lady praying" className='h-[200px] sm:h-[250px] object-cover w-full transition-transform duration-500 hover:scale-110' />
                         </motion.div>
                         <motion.div
                             variants={imageVariants}

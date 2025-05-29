@@ -92,7 +92,7 @@ const Home = () => {
           viewport={{ once: true, amount: 0.2 }}
           variants={fadeInUp}
         >
-          <OurLeadership />
+          {/* <OurLeadership /> */}
         </motion.div>
 
         {/* Animated Counter Section */}

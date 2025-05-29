@@ -107,7 +107,7 @@ const Hero = () => {
     )
 }
 
-export default Hero
+export default Hero;
 
 // import React from 'react'
 // import herobg from "../../assets/herobg.jpg"
