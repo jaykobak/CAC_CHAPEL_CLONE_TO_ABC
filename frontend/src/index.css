@@ -6,15 +6,14 @@
 
 /* @import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap'); */
 
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
 
 @font-face {
-  font-family: 'Cinzel';
-  src: url('./assets/fonts/geist/Geist-Regular.ttf') format('opentype');
+  font-family: "Cinzel";
+  src: url("./assets/fonts/geist/Geist-Regular.ttf") format("opentype");
   font-weight: normal;
   font-style: normal;
 }
-
 
 /* family=Cinzel:wght@400..900 */
 
@@ -25,7 +24,6 @@
   font-style: normal;
 } */
 
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -33,7 +31,6 @@
 /* * {
   font-family: "Inter";
 } */
-
 
 * {
   font-family: "Geist", sans-serif;
@@ -47,7 +44,7 @@
     --card-foreground: 0 0% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 3.9%;
-    --primary: 0 78% 62%;
+    --primary: 238 52% 37%;
     --primary-foreground: 0 85.7% 97.3%;
     --secondary: 0 0% 96.1%;
     --secondary-foreground: 0 0% 9%;
@@ -83,8 +80,8 @@
     --card-foreground: 0 0% 98%;
     --popover: 0 0% 3.9%;
     --popover-foreground: 0 0% 98%;
-    --primary: 0 72.2% 50.6%;
-    --primary-foreground: 0 85.7% 97.3%;
+    --primary: 238 52% 37%;
+    --primary-foreground: 0 0% 100%;
     --secondary: 0 0% 14.9%;
     --secondary-foreground: 0 0% 98%;
     --muted: 0 0% 14.9%;
@@ -112,7 +109,6 @@
   }
 }
 
-
 .hero-bg {
   background-image: url("./assets/herobg.jpg");
   background-size: cover;
@@ -122,14 +118,12 @@
 }
 
 .hero-heading span {
-  @apply text-[50px] sm:text-[70px]
+  @apply text-[50px] sm:text-[70px];
 }
-
 
 .hide-scrollbar {
   scrollbar-width: none;
 }
-
 
 @layer base {
   * {
@@ -148,7 +142,6 @@
     @apply flex justify-center items-center;
   }
 }
-
 
 .custom-scroll-area {
   overflow: scroll;
@@ -169,5 +162,5 @@
 .custom-scroll-area::-webkit-scrollbar-thumb {
   background: transparent;
   border-radius: 8px;
-  transition: .5s ease-in;
+  transition: 0.5s ease-in;
 }
