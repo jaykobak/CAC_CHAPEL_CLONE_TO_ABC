@@ -55,7 +55,7 @@ const Navbar = () => {
             <Button className="hidden lg:block">Contact Us</Button>
 
 
-            <Menu onClick={openNav} className='w-10 h-10 text-primary lg:hidden' />
+            <Menu onClick={openNav} className='w-10 h-10 text-[#00A652] lg:hidden' />
 
             <div className={`fixed flex flex-col gap-5 right-0 top-0 h-screen w-full sm:w-[300px] bg-background shadow-xl backdrop-blur-sm z-50 px-10 py-5 transition-all duration-500 ${showNav ? 'right-0 opacity-100' : 'right-[-450px] opacity-0'
                 }`}>
