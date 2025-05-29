@@ -2,7 +2,7 @@ import React from 'react'
 import MainPadding from '../../layouts/MainPadding'
 import img1 from "../../assets/Home/manpraying.jpg"
 import img3 from "../../assets/Home/pastoribitomi.jpg"
-import img2 from "../../assets/Home/chiorsing.jpg"
+import img2 from "../../assets/Home/hero.jpg"
 import { Button } from '../ui/button'
 import { ArrowRight } from 'lucide-react'
 import HeadingText from '../HeadingText'

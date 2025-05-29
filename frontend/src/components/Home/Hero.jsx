@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import herobg from "../../assets/herobg.jpg"
+import hero from "../../assets/Home/hero.jpg"
 import { Button } from '../ui/button'
 import { ArrowRight } from 'lucide-react'
 import MainPadding from '../../layouts/MainPadding'
@@ -59,7 +59,7 @@ const Hero = () => {
         <div className='min-h-[85vh] md:min-h-[90vh] relative overflow-hidden'>
             <div className='h-full w-full absolute hero-bg flex items-center'
                 style={{
-                    backgroundImage: `url(${herobg})`,
+                    backgroundImage: `url(${hero})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
