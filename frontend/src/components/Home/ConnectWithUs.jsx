@@ -75,7 +75,7 @@ const ConnectWithUs = () => {
     <div>
       <BackgroundImage
         img={img}
-        bgClass="bg-gradient-to-r from-black/80 to-black/60"
+        bgClass="bg-gradient-to-r from-black/50 to-black/60"
         className='relative min-h-[550px] md:min-h-[450px]'
       >
         <MainPadding className="h-full">
@@ -123,7 +123,7 @@ const ConnectWithUs = () => {
               whileHover="hover"
               className="mt-4"
             >
-              <Button className="bg-orange hover:bg-orange/90 px-8 py-6 text-base font-medium shadow-lg">
+              <Button className="bg-[#00A652] text-white hover:bg-white hover:text-[#2E3094] px-8 py-6 text-base font-medium shadow-lg">
                 Connect With Us
               </Button>
             </motion.div>

@@ -8,25 +8,25 @@ import HeadingText from '../HeadingText';
 import { motion } from 'framer-motion';
 
 const events = [
-    {
-        name: "BIBLE STUDY",
-        location: "Behind Lagos Kitchen, Under-G, Ogbomoso",
-        date: "Every Tuesday",
-        time: "5:30PM",
-        description: "Join us for deep scripture study and group discussions that strengthen your faith.",
-        img: img
-    },
+    // {
+    //     name: "BIBLE STUDY",
+    //     location: "Osupa Area, Opp. Bowen Teaching Hospital, Ogbomoso",
+    //     date: "Every Wedne",
+    //     time: "5:30PM",
+    //     description: "Join us for deep scripture study and group discussions that strengthen your faith.",
+    //     img: img
+    // },
     {
         name: "SUNDAY SERVICE",
-        location: "Behind Lagos Kitchen, Under-G, Ogbomoso",
+        location: "Osupa Area, Opp. Bowen Teaching Hospital, Ogbomoso",
         date: "Every Sunday",
-        time: "7:30AM",
+        time: "9:00AM",
         description: "Our spirit-filled worship services with powerful messages and communion.",
         img: img
     },
     {
         name: "THURSDAY REVIVAL",
-        location: "Behind Lagos Kitchen, Under-G, Ogbomoso",
+        location: "Osupa Area, Opp. Bowen Teaching Hospital, Ogbomoso",
         date: "Every Thursday",
         time: "4:00PM",
         description: "Midweek spiritual refreshing with passionate worship and deliverance sessions.",
