@@ -9,7 +9,7 @@ const Logo = ({footer, className}) => {
             </div>
             <div className='flex flex-col tracking-tighter'>
                 <h2 className={`font-semibold text-lg ${footer ? "text-primary-foreground" : "text-foreground/70"}`}>Antioch B.C.</h2>
-                <p className='text-foreground/50 text-xs font-semibold -mt-1'>TEENS SECTION</p>
+                <p className='text-[#00A652] /50 text-xs font-semibold -mt-1'>TEENS SECTION</p>
             </div>
         </div>
     );
