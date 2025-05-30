@@ -45,7 +45,7 @@ const Navbar = () => {
             <Logo />
             <nav className='items-center gap-10 hidden lg:flex'>
                 {navs.map(({ name, link, slug }) => (
-                    <Link to={link} key={slug} className={`font-bold text-sm hover:text-primary ${pathname === link ? 'text-primary' : 'text-foreground/60'
+                    <Link to={link} key={slug} className={`font-bold text-sm hover:text-foreground/40 ${pathname === link ? ' text-[#00A652] ' : 'text-foreground/60'
                         }`}
                     >
                         {name}
@@ -55,13 +55,13 @@ const Navbar = () => {
             <Button className="hidden lg:block">Contact Us</Button>
 
 
-            <Menu onClick={openNav} className='w-10 h-10 text-primary lg:hidden' />
+            <Menu onClick={openNav} className='w-10 h-10 text-[#00A652] lg:hidden' />
 
             <div className={`fixed flex flex-col gap-5 right-0 top-0 h-screen w-full sm:w-[300px] bg-background shadow-xl backdrop-blur-sm z-50 px-10 py-5 transition-all duration-500 ${showNav ? 'right-0 opacity-100' : 'right-[-450px] opacity-0'
                 }`}>
-                <X onClick={closeNav} className='w-10 h-10 text-primary' />
+                <X onClick={closeNav} className='w-10 h-10  text-[#00A652] ' />
                 {navs.map(({ name, link, slug }) => (
-                    <Link to={link} key={slug} className={`font-bold w-fit hover:text-primary text-[20px] ${pathname.includes(link) ? 'text-primary' : 'text-foreground/60'
+                    <Link to={link} key={slug} className={`font-bold w-fit hover:text-[#2E3094]' text-[20px] ${pathname.includes(link) ? ' text-[#00A652] ' : 'text-foreground/60'
                         }`}
                     >
                         {name}
@@ -73,4 +73,4 @@ const Navbar = () => {
     )
 }
 
-export default Navbar
+export default Navbar;

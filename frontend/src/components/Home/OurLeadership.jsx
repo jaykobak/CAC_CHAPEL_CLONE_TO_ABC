@@ -1,6 +1,6 @@
 import React from 'react'
 import MainPadding from '../../layouts/MainPadding'
-import img from "../../assets/Home/leadership.jpg"
+import img from "../../assets/Home/leader.jpg"
 import BackgroundImage from '../BackgroundImage'
 import { Button } from '../ui/button'
 import { ArrowRight } from 'lucide-react'

@@ -12,7 +12,7 @@ const NewsLetter = () => {
             <input type="text" className='border-none outline-none bg-transparent text-[16px] py-2 w-full' placeholder='Email Address' />
             <Mail />
         </div>
-        <Button className="bg-orange hover:bg-orange/90 w-fit">Subscribe</Button>
+        <Button className="bg-[#00A652] text-white hover:bg-white hover:text-black w-fit">Subscribe</Button>
       </div>
     </div>
   )
