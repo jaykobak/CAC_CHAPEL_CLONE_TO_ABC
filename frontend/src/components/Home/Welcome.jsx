@@ -7,6 +7,7 @@ import { Button } from '../ui/button'
 import { ArrowRight } from 'lucide-react'
 import HeadingText from '../HeadingText'
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 const Welcome = () => {
     // Animation variants
@@ -103,9 +104,11 @@ const Welcome = () => {
                             whileHover="hover"
                             variants={buttonVariants}
                         >
-                            <Button className="flex gap-2 items-center px-6 py-6 mt-6 w-full sm:w-fit text-base">
-                                Learn More About Our Values <ArrowRight />
-                            </Button>
+                            <Link to="/about-us">
+                                <Button className="flex gap-2 items-center px-6 py-6 mt-6 w-full sm:w-fit text-base">
+                                    Learn More About Our Values <ArrowRight />
+                                </Button>
+                            </Link>
                         </motion.div>
                     </motion.div>
                 </motion.div>

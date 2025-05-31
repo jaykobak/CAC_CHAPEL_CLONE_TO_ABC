@@ -3,6 +3,7 @@ import SermonsCarousel from '../Sermons/SermonsCarousel';
 import { getSermons } from '@/services/api/apiEndpoints';
 import img from "../../assets/cac.png";
 import MainPadding from '@/layouts/MainPadding';
+import { Link } from 'react-router-dom';
 
 const LatestSermons = () => {
   const [sermons, setSermons] = useState([]);
@@ -88,11 +89,13 @@ const LatestSermons = () => {
 
   return (
     <div>
-      <SermonsCarousel 
+      <SermonsCarousel
         name={"Latest Sermons"}
-        sermons={sermons} 
-        heading={"LATEST SERMONS FROM THE TEEN'S MINISTRY OF ANTIOCH BAPTIST CHURCH"}
-        button={"/sermons"} 
+        sermons={sermons}
+        heading={
+          "LATEST SERMONS FROM THE TEEN'S MINISTRY OF ANTIOCH BAPTIST CHURCH"
+        }
+        button={"/sermons"}
       />
     </div>
   );

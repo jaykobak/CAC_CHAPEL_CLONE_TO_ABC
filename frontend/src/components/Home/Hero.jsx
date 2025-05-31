@@ -5,6 +5,7 @@ import { ArrowRight } from 'lucide-react'
 import MainPadding from '../../layouts/MainPadding'
 import HeadingText from '../HeadingText'
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 const Hero = () => {
     // Animation variants
@@ -96,9 +97,11 @@ const Hero = () => {
               </motion.p>
 
               <motion.div variants={buttonVariants} whileHover="hover">
-                <Button className="flex gap-2 items-center px-8 py-6 mt-4 text-base font-medium shadow-md">
-                  Get To Know Us <ArrowRight className="ml-1" />
-                </Button>
+                <Link to="/about-us">
+                  <Button className="flex gap-2 items-center px-8 py-6 mt-4 text-base font-medium shadow-md">
+                    Get To Know Us <ArrowRight className="ml-1" />
+                  </Button>
+                </Link>
               </motion.div>
             </motion.div>
             <div className="absolute h-full w-full bg-gradient-to-r from-black/80 to-black/50 top-0 left-0"></div>
