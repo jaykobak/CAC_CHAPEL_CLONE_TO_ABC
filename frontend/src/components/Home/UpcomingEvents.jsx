@@ -25,9 +25,9 @@ const events = [
         img: img
     },
     {
-        name: "THURSDAY REVIVAL",
+        name: "WEDNESDAY REVIVAL",
         location: "Osupa Area, Opp. Bowen Teaching Hospital, Ogbomoso",
-        date: "Every Thursday",
+        date: "Every Wednesday",
         time: "4:00PM",
         description: "Midweek spiritual refreshing with passionate worship and deliverance sessions.",
         img: img3
