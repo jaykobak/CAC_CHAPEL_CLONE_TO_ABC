@@ -12,8 +12,8 @@ const Hero = () => {
                     <h1>Featured</h1>
                     <HeadingText className="md:text-6xl text-[42px] text-primary-foreground/80">THE POWER OF LOVE</HeadingText>
                     <div className='flex gap-14 text-sm'>
-                        <p>Pastor Obasa</p>
-                        <p>2022-04-05</p>
+                        <p>*****</p>
+                        <p>20**-04-05</p>
                     </div>
                 </div>
                 <div className='md:h-20 md:w-[1px] h-[1px] w-20 bg-primary-foreground/60'></div>

@@ -28,7 +28,7 @@ const SermonCard = ({ sermon }) => {
           <p className="text-gray-600 text-sm mb-3">Refrence: {sermon.bibleReferences}</p>
           <Button 
             className="w-full  text-white"
-            onClick={handleListenNow}
+            // onClick={handleListenNow}
           >
             Listen Now
           </Button>
