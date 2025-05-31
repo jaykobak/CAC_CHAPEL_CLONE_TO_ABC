@@ -18,7 +18,7 @@ const About = () => {
           <>
             <Hero />
             <WhoAreWe />
-            <OurHistory />
+            {/* <OurHistory /> */}
             <Cores />
           </>
         )}

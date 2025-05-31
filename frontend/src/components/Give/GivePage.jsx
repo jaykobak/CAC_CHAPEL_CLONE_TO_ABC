@@ -27,9 +27,9 @@ export default function GivePage() {
     const [copied, setCopied] = React.useState(false);
 
     const accountDetails = {
-        bankName: "Polaris Bank Plc",
-        accountNumber: "1017246246",
-        accountName: "CHRIST APOSTOLIC CHURCH"
+        bankName: "*******",
+        accountNumber: "00000",
+        accountName: "ANTIOCH BAPTIST CHURCH, TEEN'S MINISTRY"
     };
 
     const copyToClipboard = () => {

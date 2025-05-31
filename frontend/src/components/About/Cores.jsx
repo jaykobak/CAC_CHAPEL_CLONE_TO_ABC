@@ -29,12 +29,12 @@ const coreStatements = [
     img: img4,
     link: "/about-us?core=our-vision"
   },
-  {
-    name: "OUR LEADERSHIP",
-    description: "Discover our visions and what drives us at CAC Chapel Lautech. Learn more here",
-    img: img5,
-    link: "/about-us?core=our-leadership"
-  },
+  // {
+  //   name: "OUR LEADERSHIP",
+  //   description: "Discover our visions and what drives us at CAC Chapel Lautech. Learn more here",
+  //   img: img5,
+  //   link: "/about-us?core=our-leadership"
+  // },
 
 ]
 
