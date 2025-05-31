@@ -104,7 +104,7 @@ const Welcome = () => {
                             whileHover="hover"
                             variants={buttonVariants}
                         >
-                            <Link to="/about-us">
+                            <Link to="/about-us?core=our-values">
                                 <Button className="flex gap-2 items-center px-6 py-6 mt-6 w-full sm:w-fit text-base">
                                     Learn More About Our Values <ArrowRight />
                                 </Button>
