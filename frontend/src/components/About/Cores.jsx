@@ -48,7 +48,7 @@ const Cores = () => {
               <HeadingText className="text-4xl">{name}</HeadingText>
               <p>{description}</p>
               <Link to={link}>
-                <Button className={`w-fit ${index % 2 === 1 ? 'bg-orange hover:bg-orange/90' : ''}`}>{name} <ArrowRight /> </Button>
+                <Button className={`w-fit ${index % 2 === 1 ? 'bg-[#2E3094] hover:bg-[#24266f]' : ''}`}>{name} <ArrowRight /> </Button>
               </Link>
             </div>
             <div className='md:w-[50%] w-full '>
