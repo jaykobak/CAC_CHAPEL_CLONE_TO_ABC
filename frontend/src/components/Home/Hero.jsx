@@ -56,55 +56,56 @@ const Hero = () => {
     }, []);
 
     return (
-        <div className='min-h-[85vh] md:min-h-[90vh] relative overflow-hidden'>
-            <div className='h-full w-full absolute hero-bg flex items-center'
-                style={{
-                    backgroundImage: `url(${hero})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    backgroundRepeat: 'no-repeat',
-                }}>
-                <MainPadding>
-                    <motion.div
-                        className='relative flex flex-col py-10 justify-center gap-8 z-10 items-start h-full w-full sm:w-[630px]'
-                        initial="hidden"
-                        animate="visible"
-                        variants={{
-                            hidden: {},
-                            visible: {
-                                transition: {
-                                    staggerChildren: 0.3
-                                }
-                            }
-                        }}
-                    >
-                        <motion.div variants={textVariants}>
-                            <HeadingText className='font-cinzel text-[42px] leading-none sm:text-7xl text-primary-foreground hero-heading drop-shadow-lg'>
-                                Come as You Are, Find Hope, Leave with Love
-                            </HeadingText>
-                        </motion.div>
+      <div className="min-h-[85vh] md:min-h-[90vh] relative overflow-hidden">
+        <div
+          className="h-full w-full absolute hero-bg flex items-center"
+          style={{
+            backgroundImage: `url(${hero})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        >
+          <MainPadding>
+            <motion.div
+              className="relative flex flex-col py-10 justify-center gap-8 z-10 items-start h-full w-full sm:w-[630px]"
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: {},
+                visible: {
+                  transition: {
+                    staggerChildren: 0.3,
+                  },
+                },
+              }}
+            >
+              <motion.div variants={textVariants}>
+                <HeadingText className="font-cinzel text-[42px] leading-tight sm:text-7xl sm:leading-none text-primary-foreground hero-heading drop-shadow-lg">
+                  Come as You Are, Find Hope, Leave with Love
+                </HeadingText>
+              </motion.div>
 
-                        <motion.p
-                            className='text-primary-foreground font-medium text-lg drop-shadow-md max-w-[540px]'
-                            variants={textVariants}
-                        >
-                            God's grace is for everyone, including you. Join a welcoming community to grow in faith and connect with others on the journey.
-                        </motion.p>
+              <motion.p
+                className="text-primary-foreground font-medium text-lg drop-shadow-md max-w-[540px]"
+                variants={textVariants}
+              >
+                God's grace is for everyone, including you. Join a welcoming
+                community to grow in faith and connect with others on the
+                journey.
+              </motion.p>
 
-                        <motion.div
-                            variants={buttonVariants}
-                            whileHover="hover"
-                        >
-                            <Button className="flex gap-2 items-center px-8 py-6 mt-4 text-base font-medium shadow-md">
-                                Get To Know Us <ArrowRight className="ml-1" />
-                            </Button>
-                        </motion.div>
-                    </motion.div>
-                    <div className='absolute h-full w-full bg-gradient-to-r from-black/80 to-black/50 top-0 left-0'></div>
-                </MainPadding>
-            </div>
+              <motion.div variants={buttonVariants} whileHover="hover">
+                <Button className="flex gap-2 items-center px-8 py-6 mt-4 text-base font-medium shadow-md">
+                  Get To Know Us <ArrowRight className="ml-1" />
+                </Button>
+              </motion.div>
+            </motion.div>
+            <div className="absolute h-full w-full bg-gradient-to-r from-black/80 to-black/50 top-0 left-0"></div>
+          </MainPadding>
         </div>
-    )
+      </div>
+    );
 }
 
 export default Hero;
@@ -138,3 +139,5 @@ export default Hero;
 // }
 
 // export default Hero
+
+// `Fixed whitespace and formatting inconsistencies in Hero.jsx component`
