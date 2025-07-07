@@ -19,19 +19,19 @@ const coreStatements = [
   },
   {
     name: "OUR VALUES",
-    description: "Discover the core values that defines us at CAC Chapel Lautech. Explore more here",
+    description: "Discover the core values that defines us at the Teens Section of Antioch Baptist Church. Explore more here",
     img: img3,
     link: "/about-us?core=our-values"
   },
   {
     name: "OUR VISION",
-    description: "Discover our visions and what drives us at CAC Chapel Lautech. Learn more here",
+    description: "Discover our visions and what drives us at at the Teens Section of Antioch Baptist Church. Learn more here",
     img: img4,
     link: "/about-us?core=our-vision"
   },
   // {
   //   name: "OUR LEADERSHIP",
-  //   description: "Discover our visions and what drives us at CAC Chapel Lautech. Learn more here",
+  //   description: "Discover our visions and what drives us at the Teens Section of Antioch Baptist Church. Learn more here",
   //   img: img5,
   //   link: "/about-us?core=our-leadership"
   // },
