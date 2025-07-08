@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import MainPadding from '@/layouts/MainPadding';
-import { Button } from '../ui/button';
-import { getSermons } from '@/services/api/apiEndpoints';
-import img from "../../assets/cac.png";
-import SermonCard from './SermonCard';
+import React, { useEffect, useState } from "react";
+import MainPadding from "@/layouts/MainPadding";
+import { Button } from "../ui/button";
+import { getSermons } from "@/services/api/apiEndpoints";
+import img from "../../assets/ABC-logo.png";
+import SermonCard from "./SermonCard";
 
 const AllSermons = () => {
   const [sermons, setSermons] = useState([]);
@@ -14,24 +14,42 @@ const AllSermons = () => {
   useEffect(() => {
     const fetchSermons = async () => {
       try {
-        const response = await getSermons();
-        const formattedSermons = response.data.map(sermon => ({
-          title: sermon.title || 'No title',
-          category: sermon.category || 'Uncategorized',
-          preacher: sermon.preacher || 'Unknown preacher',
-          duration: sermon.duration || 'Unknown duration',
-          bibleReferences: sermon.bibleReferences || 'unknown bibleReferences',
-          date: sermon.date || 'Unknown date',
-          link: sermon.telegramLink|| '#',
-          img: sermon.img || img
+        // const response = await getSermons();
+        // Mock data
+        const response = {
+          data: [
+            {
+              title: "The Consequences of Sin",
+              preacher: "Rev. Dr. Wale Olajire",
+              date: "May 28, 2025",
+              duration: "42 min",
+              bibleReferences: "1 Samuel 15",
+              telegramLink: "https://t.me/example1",
+              img: img,
+            },
+          ],
+        };
+
+        const formattedSermons = response.data.map((sermon) => ({
+          title: sermon.title || "No title",
+          category: "Latest",
+          preacher: sermon.preacher || sermon.speaker || "Unknown preacher",
+          duration: sermon.duration || "Unknown duration",
+          date: sermon.date || "Unknown date",
+          bibleReferences: sermon.bibleReferences || "unknown bibleReferences",
+          link: sermon.telegramLink || "#",
+          img: sermon.img || img,
         }));
+
         setSermons(formattedSermons);
       } catch (err) {
         setError(err.message);
+        setSermons([]);
       } finally {
         setLoading(false);
       }
     };
+
     fetchSermons();
   }, []);
 
@@ -70,13 +88,10 @@ const AllSermons = () => {
           </div>
         ))}
       </div>
-      
+
       {sermons.length > 6 && (
-        <Button 
-          className="px-8" 
-          onClick={() => setShowAll(!showAll)}
-        >
-          {showAll ? 'Show Less' : 'See More'}
+        <Button className="px-8" onClick={() => setShowAll(!showAll)}>
+          {showAll ? "Show Less" : "See More"}
         </Button>
       )}
     </MainPadding>

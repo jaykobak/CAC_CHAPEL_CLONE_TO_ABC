@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import SermonsCarousel from '../Sermons/SermonsCarousel';
-import { getSermons } from '@/services/api/apiEndpoints';
-import img from "../../assets/cac.png";
-import MainPadding from '@/layouts/MainPadding';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import SermonsCarousel from "../Sermons/SermonsCarousel";
+import { getSermons } from "@/services/api/apiEndpoints";
+import img from "../../assets/ABC-logo.png";
+import MainPadding from "@/layouts/MainPadding";
+import { Link } from "react-router-dom";
 
 const LatestSermons = () => {
   const [sermons, setSermons] = useState([]);
@@ -13,53 +13,42 @@ const LatestSermons = () => {
   useEffect(() => {
     const fetchSermons = async () => {
       try {
-        const response = await getSermons();
-        const formattedSermons = response.data.map(sermon => ({
-          title: sermon.title || 'No title',
-          category: 'Latest', // Changed from 'Popular'
-          preacher: sermon.preacher || sermon.speaker || 'Unknown preacher',
-          duration: sermon.duration || 'Unknown duration',
-          date: sermon.date || 'Unknown date',
-          bibleReferences: sermon.bibleReferences || 'unknown bibleReferences',
-          link: sermon.telegramLink|| '#',
-          img: sermon.img || img
+        // const response = await getSermons();
+        // Mock data
+        const response = {
+          data: [
+            {
+              title: "The Consequences of Sin",
+              preacher: "Rev. Dr. Wale Olajire",
+              date: "May 28, 2025",
+              duration: "42 min",
+              bibleReferences: "1 Samuel 15",
+              telegramLink: "https://t.me/example1",
+              img: img,
+            },
+          ],
+        };
+
+        const formattedSermons = response.data.map((sermon) => ({
+          title: sermon.title || "No title",
+          category: "Latest",
+          preacher: sermon.preacher || sermon.speaker || "Unknown preacher",
+          duration: sermon.duration || "Unknown duration",
+          date: sermon.date || "Unknown date",
+          bibleReferences: sermon.bibleReferences || "unknown bibleReferences",
+          link: sermon.telegramLink || "#",
+          img: sermon.img || img,
         }));
+
         setSermons(formattedSermons);
       } catch (err) {
         setError(err.message);
-        setSermons([
-          {
-            title: 'The Power of God in Your Life',
-            date: 'July 15, 2022',
-            preacher: 'John Doe',
-            img: img,
-            link: '#',
-            category: 'Latest',
-            duration: '45 min'
-          },
-          {
-            title: 'Walking in Faith',
-            date: 'July 22, 2022',
-            preacher: 'Jane Smith',
-            img: img,
-            link: '#',
-            category: 'Latest',
-            duration: '38 min'
-          },
-          {
-            title: 'Finding Peace in Troubled Times',
-            date: 'July 29, 2022',
-            preacher: 'Michael Johnson',
-            img: img,
-            link: '#',
-            category: 'Latest',
-            duration: '52 min'
-          }
-        ]);
+        setSermons([]);
       } finally {
         setLoading(false);
       }
     };
+
     fetchSermons();
   }, []);
 

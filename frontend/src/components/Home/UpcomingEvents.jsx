@@ -1,8 +1,8 @@
 import React from 'react';
 import MainPadding from '../../layouts/MainPadding';
 import { Button } from '../ui/button';
-import img from "../../assets/Blog/service.jpg";
-import img3 from "../../assets/Blog/thurs.jpg";
+import img from "../../assets/sermon-image.jpg";
+import img3 from "../../assets/sermon-image2.jpg";
 import { Calendar, MapPin, Clock } from 'lucide-react';
 import HeadingText from '../HeadingText';
 import { motion } from 'framer-motion';
